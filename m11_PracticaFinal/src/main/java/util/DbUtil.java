@@ -19,14 +19,14 @@ public class DbUtil {
 
     public static Connection getConnection() {
         String driver = "com.mysql.jdbc.Driver";
-        String url="jdbc:mysql://localhost:3306/"*"?useTimezone=true&serverTimezone=UTC";
+        String url="jdbc:mysql://localhost:3306/m11practicafinal?useTimezone=true&serverTimezone=UTC";
         String user="root";
         String password="root"; 
         Log.logdb.info("Entramos a conectar con la BBDD");
         if (connection != null) {
             Log.logdb.info("Ya hay una conexion");
             return connection;
-        } else {
+        } else {    
             try {                
                 Log.logdb.info("Creamos una nueva conexion");
                                
