@@ -5,10 +5,13 @@
  */
 package model;
 
+import java.sql.Timestamp;
 /**
  *
  * @author danih
  */
 public class vacaciones {
-    
+     private Timestamp startdate;
+    private Timestamp enddate;
+    private int iden_trabajador;
 }
