@@ -18,7 +18,7 @@ public class Trabajador {
     private String contraseña;
     private int telefono;
     private String id_proyecto;
-    private int horas;
+    private float horas;
     private String tipo;
 
     public int getIden() {
@@ -53,7 +53,7 @@ public class Trabajador {
         return id_proyecto;
     }
 
-    public int getHoras() {
+    public float getHoras() {
         return horas;
     }
 
@@ -93,7 +93,7 @@ public class Trabajador {
         this.id_proyecto = id_proyecto;
     }
 
-    public void setHoras(int horas) {
+    public void setHoras(float horas) {
         this.horas = horas;
     }
 

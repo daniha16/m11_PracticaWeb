@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  *
  * @author danih
  */
-public class registroEmpleado {
+public class RegistroEmpleado {
     private Timestamp entrada;
     private Timestamp salida;
     private int iden_trabajador;

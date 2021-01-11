@@ -12,7 +12,7 @@ package model;
 public class Proyecto {
     private String id;
     private int tiempo;
-    private String text;
+    private String descripcion;
     private String cif_empresa;
 
     public String getId() {
@@ -23,8 +23,8 @@ public class Proyecto {
         return tiempo;
     }
 
-    public String getText() {
-        return text;
+    public String getDescripcion() {
+        return descripcion;
     }
 
     public String getCif_empresa() {
@@ -39,8 +39,8 @@ public class Proyecto {
         this.tiempo = tiempo;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public void setCif_empresa(String cif_empresa) {
