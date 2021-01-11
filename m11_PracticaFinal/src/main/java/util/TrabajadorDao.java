@@ -76,7 +76,7 @@ public class TrabajadorDao {
         }
     }
 
-    public List<Trabajador> getAllEmpresas() {
+    public List<Trabajador> getAllTrabajadores() {
         List<Trabajador> trabajadoresdb = new ArrayList<Trabajador>();
         if (connection != null)
         {

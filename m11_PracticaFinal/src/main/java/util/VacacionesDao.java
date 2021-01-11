@@ -38,9 +38,9 @@ public class VacacionesDao {
         }
     }
 
-    public void deleteTrabajador(int trabajadorIden) {
+    public void deleteVacaciones(int trabajadorIden) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("delete from vaciones where iden_trabjador=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from vacaciones where iden_trabjador=?");
             // Parameters start with 1 
             preparedStatement.setInt(1, trabajadorIden);
             preparedStatement.executeUpdate();
@@ -62,7 +62,7 @@ public class VacacionesDao {
         }
     }
 
-    public List<Vacaciones> getAllEmpresas() {
+    public List<Vacaciones> getAllVacaciones() {
         List<Vacaciones> vacacionesdb = new ArrayList<Vacaciones>();
         if (connection != null)
         {
@@ -92,7 +92,7 @@ public class VacacionesDao {
     public Vacaciones getVacacionesByIden(int trabajadorIden) {
         Vacaciones vacaciones = new Vacaciones();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from vacacioens where iden_trabajador=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from vacaciones where iden_trabajador=?");
             preparedStatement.setInt(1, trabajadorIden);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
