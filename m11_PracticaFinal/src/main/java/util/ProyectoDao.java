@@ -29,21 +29,22 @@ public class ProyectoDao {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("insert into proyecto(id,tiempo,descripcion,cif_empresa) values (?, ?, ?, ? )");
 // Parameters start with 1 
-            preparedStatement.setString(1, proyecto.getId());
-            preparedStatement.setInt(2, proyecto.getTiempo());            
-            preparedStatement.setString(3, proyecto.getDescripcion());
-            preparedStatement.setString(4, proyecto.getCif_empresa());
+            
+            preparedStatement.setInt(1, proyecto.getTiempo());            
+            preparedStatement.setString(2, proyecto.getDescripcion());
+            preparedStatement.setString(3, proyecto.getCif_empresa());
+            preparedStatement.setString(4, proyecto.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);
         }
     }
 
-    public void deleteProyecto(int proyectoId) {
+    public void deleteProyecto(String proyectoId) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("delete from proyecto where id=?");
             // Parameters start with 1 
-            preparedStatement.setInt(1, proyectoId);
+            preparedStatement.setString(1, proyectoId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);
@@ -54,10 +55,11 @@ public class ProyectoDao {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("update proyecto tiempo=?, descripcion=?, cif_empresa=?" + "where id=?");
 // Parameters start with 1 
-            preparedStatement.setString(1, proyecto.getId());
-            preparedStatement.setInt(2, proyecto.getTiempo());            
-            preparedStatement.setString(3, proyecto.getDescripcion());
-            preparedStatement.setString(4, proyecto.getCif_empresa());
+            
+            preparedStatement.setInt(1, proyecto.getTiempo());            
+            preparedStatement.setString(2, proyecto.getDescripcion());
+            preparedStatement.setString(3, proyecto.getCif_empresa());
+            preparedStatement.setString(4, proyecto.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);            
@@ -92,11 +94,11 @@ public class ProyectoDao {
        
     }
 
-    public Proyecto getProyectoById(int proyectoId) {
+    public Proyecto getProyectoById(String proyectoId) {
         Proyecto proyecto = new Proyecto();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from proyecto where id=?");
-            preparedStatement.setInt(1, proyectoId);
+            preparedStatement.setString(1, proyectoId);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 proyecto.setId(rs.getString("id"));
@@ -108,5 +110,35 @@ public class ProyectoDao {
             Log.logdb.error("SQL Exception: " + e);
         }
         return proyecto;
+    }
+    
+    public int getTimeProyecto(String proyectoId) {
+        int tiempo = 0;
+        try{
+            Statement statement = connection.createStatement();
+            PreparedStatement preparedStatement = connection.prepareStatement("select tiempo from proyecto where id=?;");
+            preparedStatement.setString(1, proyectoId);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()){
+                tiempo = rs.getInt("tiempo");
+            }
+        } catch (SQLException e) {
+            Log.logdb.error("SQL Exception: " + e);
+        }
+        return tiempo;
+    }
+    public void addTimeProyecto(int tiempo, Proyecto proyecto) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("update proyecto tiempo=?, descripcion=?, cif_empresa=?" + "where id=?");
+// Parameters start with 1 
+            
+            preparedStatement.setInt(1, proyecto.getTiempo()+tiempo);            
+            preparedStatement.setString(2, proyecto.getDescripcion());
+            preparedStatement.setString(3, proyecto.getCif_empresa());
+            preparedStatement.setString(4, proyecto.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            Log.logdb.error("SQL Exception: " + e);            
+        }
     }
 }

@@ -58,13 +58,14 @@ public class EmpresaDao {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("update empresa nombre=?, direccion=?, codigo_postal=?, poblacion=?, provincia=?, telefono=?" + "where cif=?");
 // Parameters start with 1 
-            preparedStatement.setInt(1, empresa.getCif());
-            preparedStatement.setString(2, empresa.getNombre()); 
-            preparedStatement.setString(3, empresa.getDireccion());
-            preparedStatement.setInt(4, empresa.getCodigoPostal());
-            preparedStatement.setString(5, empresa.getPoblacion());
-            preparedStatement.setString(6, empresa.getProvincia());
-            preparedStatement.setInt(7, empresa.getTelefono());
+            
+            preparedStatement.setString(1, empresa.getNombre()); 
+            preparedStatement.setString(2, empresa.getDireccion());
+            preparedStatement.setInt(3, empresa.getCodigoPostal());
+            preparedStatement.setString(4, empresa.getPoblacion());
+            preparedStatement.setString(5, empresa.getProvincia());
+            preparedStatement.setInt(6, empresa.getTelefono());
+            preparedStatement.setInt(7, empresa.getCif());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);            

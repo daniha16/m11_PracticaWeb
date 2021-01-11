@@ -27,7 +27,7 @@ public class VacacionesDao {
 
     public void addVacaciones(Vacaciones vacaciones) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into vacaciones(iden,dni,nombre,apellidos,correo,contraseña,telefono,id_proyecto,horas,tipo) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into vacaciones(startdate,enddate,iden_trabajador) values (?, ?, ?)");
 // Parameters start with 1 
             preparedStatement.setTimestamp(1, vacaciones.getStartdate());
             preparedStatement.setTimestamp(2, vacaciones.getEnddate()); 

@@ -21,8 +21,10 @@ import util.ProyectoDao;
  */
 public class ProyectoController extends HttpServlet{
     private static final long serialVersionUID = 1L;
-    private static String INSERT_OR_EDIT = "/.jsp";
-    private static String LISTA_PROYECTOS = "/Empleados/poryectos.html";
+    private static String INSERT_OR_EDIT = "/Empleados/proyecto.html";
+    private static String LISTA_PROYECTOS = "/Empleados/proyectos.html";
+    private static String TIME_PROYECTO = "/Empleados/proyectos.html";
+    private static String ADD_TIME = "/Empleados/proyectos.html";
     private ProyectoDao dao;
     private Log log;
 
@@ -40,23 +42,22 @@ public class ProyectoController extends HttpServlet{
         Log.log.info("Recogemos el parametro action con valor " + action);
         if (action.equalsIgnoreCase("delete")) {
             Log.log.info("Parametro valor DELETE");
-            int proyectoId = Integer.parseInt(request.getParameter("proyectoId"));
-            dao.deleteProyecto(proyectoId);
+            dao.deleteProyecto("id");
             forward = LISTA_PROYECTOS;
-            request.setAttribute("proyectos", dao.getAllProyectos());
+            request.setAttribute("proyecto", dao.getAllProyectos());
         } else if (action.equalsIgnoreCase("edit")) {
             Log.log.info("Parametro valor EDIT");
             forward = INSERT_OR_EDIT;
-            int proyectoId = Integer.parseInt(request.getParameter("proyectoId"));
-            Proyecto proyecto = dao.getProyectoById(proyectoId);
+            Proyecto proyecto = dao.getProyectoById("id");
             request.setAttribute("proyecto", proyecto);
         } else if (action.equalsIgnoreCase("listProyecto")) {
             Log.log.info("Parametro valor LIST");
             forward = LISTA_PROYECTOS;
             request.setAttribute("proyectos", dao.getAllProyectos());
-        } else {
-            Log.log.info("Parametro valor vacio vamos a insertar");
-            forward = INSERT_OR_EDIT;
+        }else if (action.equalsIgnoreCase("timeProyecto")) {
+            Log.log.info("Parámetro valor GETTIME");
+            forward = TIME_PROYECTO;
+            request.setAttribute("timeProyecto", dao.getTimeProyecto("id"));
         }
         RequestDispatcher view = request.getRequestDispatcher(forward);
         view.forward(request, response);
@@ -69,11 +70,11 @@ public class ProyectoController extends HttpServlet{
         Log.log.info("Entramos por el doPost");
 /*        processRequest(request, response); */
         Proyecto proyecto = new Proyecto();
-        proyecto.setId(request.getParameter("proyectoId"));
-        proyecto.setDescripcion(request.getParameter("proyectoText"));                
+        proyecto.setId(request.getParameter("id"));
+        proyecto.setDescripcion(request.getParameter("descripcion"));                
         proyecto.setCif_empresa(request.getParameter("cif_empresa"));
-        proyecto.setId(request.getParameter("proyectoId"));
-        request.setAttribute("proyectos", dao.getAllProyectos());
+        proyecto.setId(request.getParameter("id"));
+        request.setAttribute("proyecto", dao.getAllProyectos());
         RequestDispatcher view = request.getRequestDispatcher(LISTA_PROYECTOS);            
         view.forward(request, response);
         return;

@@ -60,16 +60,17 @@ public class TrabajadorDao {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("update trabajador dni=?, nombre=?, apellidos=?, correo=?, contraseña=?, telefono=?, id_proyecto=?, horas=?, tipo=?" + "where iden=?");
 // Parameters start with 1 
-            preparedStatement.setInt(1, trabajador.getIden());
-            preparedStatement.setString(2, trabajador.getDni()); 
-            preparedStatement.setString(3, trabajador.getNombre());
-            preparedStatement.setString(4, trabajador.getApellidos());
-            preparedStatement.setString(5, trabajador.getCorreo());
-            preparedStatement.setString(6, trabajador.getContraseña());
-            preparedStatement.setInt(7, trabajador.getTelefono());
-            preparedStatement.setString(8, trabajador.getId_proyecto());
-            preparedStatement.setFloat(9, trabajador.getHoras());
-            preparedStatement.setString(10, trabajador.getTipo());
+            
+            preparedStatement.setString(1, trabajador.getDni()); 
+            preparedStatement.setString(2, trabajador.getNombre());
+            preparedStatement.setString(3, trabajador.getApellidos());
+            preparedStatement.setString(4, trabajador.getCorreo());
+            preparedStatement.setString(5, trabajador.getContraseña());
+            preparedStatement.setInt(6, trabajador.getTelefono());
+            preparedStatement.setString(7, trabajador.getId_proyecto());
+            preparedStatement.setFloat(8, trabajador.getHoras());
+            preparedStatement.setString(9, trabajador.getTipo());
+            preparedStatement.setInt(10, trabajador.getIden());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);            

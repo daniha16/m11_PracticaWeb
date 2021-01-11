@@ -89,7 +89,7 @@ public class RegistroEmpleadoDao {
        
     }
 
-    public RegistroEmpleado getVacacionesByIden(int trabajadorIden) {
+    public RegistroEmpleado getRegistroByIden(int trabajadorIden) {
         RegistroEmpleado registro = new RegistroEmpleado();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from registroEmpleado where iden_trabajador=?");
