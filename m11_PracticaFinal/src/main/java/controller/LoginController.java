@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import static java.lang.System.in;
 import static java.lang.System.out;
 import static java.sql.JDBCType.NULL;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,8 @@ import util.TrabajadorDao;
  */
 public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static String LOGIN = "/index.html";
+    private static String LOGIN_EMPLEADOS = "Empleados/dias_libres_sol.html";
+    private static String LOGIN_RRHH = "RRHH/main.html";
     private TrabajadorDao dao;
     private Log log;
     
@@ -77,6 +79,17 @@ public class LoginController extends HttpServlet {
                     System.out.println("EXISTE EL USUARIO");
                     if(pass.equals(elem.getContraseña())){
                         System.out.println("EXISTE LA PASSWORD");
+                        if(elem.getTipo().equals("Empleado")){
+                            System.out.println("LOGIN DE EMPLEADO");
+                            RequestDispatcher view = request.getRequestDispatcher(LOGIN_EMPLEADOS);            
+                            view.forward(request, response);
+                            return;
+                        }
+                        else if(elem.getTipo().equals("RRHH")){
+                            System.out.println("LOGIN DE RRHH");
+                            RequestDispatcher view = request.getRequestDispatcher(LOGIN_RRHH);            
+                            view.forward(request, response);
+                        }                  
                         response(response,"Login succedeed");
                     }
                 }
