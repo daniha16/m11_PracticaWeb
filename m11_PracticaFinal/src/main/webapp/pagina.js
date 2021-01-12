@@ -139,10 +139,8 @@ function validarLogin(){
         alert("Los siguientes campos están vacíos: \n"+error)
     }
     else{
-        alert("Enviando datos con éxito!");
-        formulario.submit();
+        formulario.submit();  
     }
-    
 }
 
 function validarQuejas(){

@@ -25,9 +25,9 @@ import util.TrabajadorDao;
  */
 public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static String LOGIN_EMPLEADOS = "Empleados/main.html";
+    private static String LOGIN_EMPLEADOS = "/Empleados/main.html";
     private static String LOGIN_RRHH = "RRHH/main.html";
-    private static String LOGIN_FAILED = "index.html";
+    private static String LOGIN_FAILED = "/index.html";
     private TrabajadorDao dao;
     private Log log;
     
@@ -82,30 +82,32 @@ public class LoginController extends HttpServlet {
                         System.out.println("EXISTE LA PASSWORD");
                         if(elem.getTipo().equals("Empleado")){
                             System.out.println("LOGIN DE EMPLEADO");
-                            RequestDispatcher view = request.getRequestDispatcher(LOGIN_EMPLEADOS);            
+                            RequestDispatcher view = request.getRequestDispatcher(LOGIN_EMPLEADOS); 
+                            response(response,"Login succedeed");
                             view.forward(request, response);
                             return;
                         }
                         else if(elem.getTipo().equals("RRHH")){
                             System.out.println("LOGIN DE RRHH");
-                            RequestDispatcher view = request.getRequestDispatcher(LOGIN_RRHH);            
-                            view.forward(request, response);
+                            RequestDispatcher view2 = request.getRequestDispatcher(LOGIN_RRHH);            
+                            response(response,"Login succedeed");
+                            view2.forward(request, response);
                             return;
-                        }                 
-                        
-                        response(response,"Login succedeed");
+                        }                   
                     }
-                    else{
-                        RequestDispatcher view = request.getRequestDispatcher(LOGIN_FAILED);            
-                        view.forward(request, response);
+                    else if(pass != null){
+                        System.out.println("FALLO DE CONTRASEÑA");
+                        RequestDispatcher view3 = request.getRequestDispatcher(LOGIN_FAILED);            
+                        view3.forward(request, response);
                         response(response, "Login Failed");
+                        return;
                     }
                 }
-                else{
-                    RequestDispatcher view = request.getRequestDispatcher(LOGIN_FAILED);            
-                    view.forward(request, response);
+                else if(user != null){
+                    RequestDispatcher view4 = request.getRequestDispatcher(LOGIN_FAILED);            
+                    view4.forward(request, response);
                     response(response, "Login Failed");
-                    
+                    return;
                 }
             }
         }
