@@ -84,26 +84,26 @@ public class LoginController extends HttpServlet {
                         if(elem.getTipo().equals("Empleado")){
                             System.out.println("LOGIN DE EMPLEADO");
                             forward=LOGIN_EMPLEADOS;
-                            response.sendRedirect("/m11_PracticaFinal/Empleados/main.html");
+                            response.sendRedirect("../m11_PracticaFinal/Empleados/main.html");
                             return;
                         }
                         else if(elem.getTipo().equals("RRHH")){
                             System.out.println("LOGIN DE RRHH");
                             forward=LOGIN_RRHH;
-                            response.sendRedirect("/m11_PracticaFinal/RRHH/main.html");
+                            response.sendRedirect("../m11_PracticaFinal/RRHH/main.html");
                             return;
                         }                   
                     }
                     else if(pass != null){
                         System.out.println("FALLO DE CONTRASEÑA");
                         forward=LOGIN_FAILED;
-                        response.sendRedirect("/m11_PracticaFinal/index.html");
+                        response.sendRedirect("../m11_PracticaFinal/index.html");
                         return;
                     }
                 }
                 else if(correo != null){
                     forward=LOGIN_FAILED;
-                    response.sendRedirect("/m11_PracticaFinal/index.html");
+                    response.sendRedirect("../m11_PracticaFinal/index.html");
                     return;
                 }
             }
