@@ -27,6 +27,7 @@ public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static String LOGIN_EMPLEADOS = "Empleados/main.html";
     private static String LOGIN_RRHH = "RRHH/main.html";
+    private static String LOGIN_FAILED = "index.html";
     private TrabajadorDao dao;
     private Log log;
     
@@ -89,12 +90,22 @@ public class LoginController extends HttpServlet {
                             System.out.println("LOGIN DE RRHH");
                             RequestDispatcher view = request.getRequestDispatcher(LOGIN_RRHH);            
                             view.forward(request, response);
-                        }                  
+                            return;
+                        }                 
+                        
                         response(response,"Login succedeed");
+                    }
+                    else{
+                        RequestDispatcher view = request.getRequestDispatcher(LOGIN_FAILED);            
+                        view.forward(request, response);
+                        response(response, "Login Failed");
                     }
                 }
                 else{
+                    RequestDispatcher view = request.getRequestDispatcher(LOGIN_FAILED);            
+                    view.forward(request, response);
                     response(response, "Login Failed");
+                    
                 }
             }
         }
