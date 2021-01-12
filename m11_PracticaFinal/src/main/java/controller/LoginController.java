@@ -64,8 +64,8 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Log.log.info("Entramos por el doPost");
-        String user = request.getParameter("nombre");
-        System.out.println(user);
+        String correo = request.getParameter("correo");
+        System.out.println(correo);
         String pass = request.getParameter("pwd");
         System.out.println(pass);
         System.out.println("HELLO THERE!");
@@ -76,7 +76,7 @@ public class LoginController extends HttpServlet {
         }
         else{
             for(Trabajador elem:dao.getAllTrabajadores()){
-                if(user.equals(elem.getCorreo())){
+                if(correo.equals(elem.getCorreo())){
                     System.out.println("EXISTE EL USUARIO");
                     if(pass.equals(elem.getContraseña())){
                         System.out.println("EXISTE LA PASSWORD");
@@ -89,23 +89,23 @@ public class LoginController extends HttpServlet {
                         }
                         else if(elem.getTipo().equals("RRHH")){
                             System.out.println("LOGIN DE RRHH");
-                            RequestDispatcher view2 = request.getRequestDispatcher(LOGIN_RRHH);            
+                            RequestDispatcher view = request.getRequestDispatcher(LOGIN_RRHH);            
                             response(response,"Login succedeed");
-                            view2.forward(request, response);
+                            view.forward(request, response);
                             return;
                         }                   
                     }
                     else if(pass != null){
                         System.out.println("FALLO DE CONTRASEÑA");
-                        RequestDispatcher view3 = request.getRequestDispatcher(LOGIN_FAILED);            
-                        view3.forward(request, response);
-                        response(response, "Login Failed");
+                        RequestDispatcher view = request.getRequestDispatcher(LOGIN_FAILED);
+                        view.forward(request, response);
+                        response(response, "Login Failed"); 
                         return;
                     }
                 }
-                else if(user != null){
-                    RequestDispatcher view4 = request.getRequestDispatcher(LOGIN_FAILED);            
-                    view4.forward(request, response);
+                else if(correo != null){
+                    RequestDispatcher view = request.getRequestDispatcher(LOGIN_FAILED);            
+                    view.forward(request, response);
                     response(response, "Login Failed");
                     return;
                 }
@@ -115,8 +115,7 @@ public class LoginController extends HttpServlet {
     
     private void response(HttpServletResponse resp, String msg)
 			throws IOException {
-        PrintWriter out = resp.getWriter();
-        out.println("<html><head></head><body onload=\"alert("+msg+")\"></body></html>");
+        
     }
 
     /**

@@ -1,6 +1,6 @@
 
 function validarNombre(){
-    var nombre = document.getElementsByName("nombre")[0].value;
+    var nombre = document.getElementById("nombre").value;
     console.log("Nombre "+nombre)
     if (nombre == null || nombre.length == 0) {
         mensajes.push("-Nombre");
@@ -28,7 +28,7 @@ function validarApellido(){
 }
 
 function validarCorreo(){
-    var correo = document.getElementById("correo").value;
+    var correo = document.getElementsByName("correo")[0].value;
     emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
     if (correo == null || correo.length == 0){
         mensajes.push("-Correo");
@@ -132,7 +132,7 @@ function validarRegister(){
 function validarLogin(){
     var formulario = document.getElementById("formulario")
     mensajes = [];
-    var vN = validarNombre();
+    var vN = validarCorreo();
     var vP = validarPassword();
     error = mensajes.join("\n");
     if(!(vN && vP)){
