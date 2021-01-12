@@ -63,6 +63,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String forward = "";
         Log.log.info("Entramos por el doPost");
         String correo = request.getParameter("correo");
         System.out.println(correo);
@@ -82,40 +83,38 @@ public class LoginController extends HttpServlet {
                         System.out.println("EXISTE LA PASSWORD");
                         if(elem.getTipo().equals("Empleado")){
                             System.out.println("LOGIN DE EMPLEADO");
-                            RequestDispatcher view = request.getRequestDispatcher(LOGIN_EMPLEADOS); 
-                            response(response,"Login succedeed");
-                            view.forward(request, response);
+                            forward=LOGIN_EMPLEADOS;
+                            response.sendRedirect("/m11_PracticaFinal/Empleados/main.html");
                             return;
                         }
                         else if(elem.getTipo().equals("RRHH")){
                             System.out.println("LOGIN DE RRHH");
-                            RequestDispatcher view = request.getRequestDispatcher(LOGIN_RRHH);            
-                            response(response,"Login succedeed");
-                            view.forward(request, response);
+                            forward=LOGIN_RRHH;
+                            response.sendRedirect("/m11_PracticaFinal/RRHH/main.html");
                             return;
                         }                   
                     }
                     else if(pass != null){
                         System.out.println("FALLO DE CONTRASEÑA");
-                        RequestDispatcher view = request.getRequestDispatcher(LOGIN_FAILED);
-                        view.forward(request, response);
-                        response(response, "Login Failed"); 
+                        forward=LOGIN_FAILED;
+                        response.sendRedirect("/m11_PracticaFinal/index.html");
                         return;
                     }
                 }
                 else if(correo != null){
-                    RequestDispatcher view = request.getRequestDispatcher(LOGIN_FAILED);            
-                    view.forward(request, response);
-                    response(response, "Login Failed");
+                    forward=LOGIN_FAILED;
+                    response.sendRedirect("/m11_PracticaFinal/index.html");
                     return;
                 }
             }
         }
+        RequestDispatcher view = request.getRequestDispatcher(forward);            
+        view.forward(request, response);
     }
     
     private void response(HttpServletResponse resp, String msg)
 			throws IOException {
-        
+
     }
 
     /**
