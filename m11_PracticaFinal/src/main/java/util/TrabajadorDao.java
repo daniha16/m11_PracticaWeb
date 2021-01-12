@@ -29,7 +29,7 @@ public class TrabajadorDao {
 
     public void addTrabajador(Trabajador trabajador) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into trabajador(iden,dni,nombre,apellidos,correo,contraseña,telefono,id_proyecto,horas,tipo) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into trabajador(iden,dni,nombre,apellidos,correo,contrasena,telefono,id_proyecto,horas,tipo) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 // Parameters start with 1 
             preparedStatement.setInt(1, trabajador.getIden());
             preparedStatement.setString(2, trabajador.getDni()); 
@@ -60,7 +60,7 @@ public class TrabajadorDao {
 
     public void updateTrabajador(Trabajador trabajador) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("update trabajador dni=?, nombre=?, apellidos=?, correo=?, contraseña=?, telefono=?, id_proyecto=?, horas=?, tipo=?" + "where iden=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update trabajador dni=?, nombre=?, apellidos=?, correo=?, contrasena=?, telefono=?, id_proyecto=?, horas=?, tipo=?" + "where iden=?");
 // Parameters start with 1 
             
             preparedStatement.setString(1, trabajador.getDni()); 
@@ -93,7 +93,7 @@ public class TrabajadorDao {
                     trabajador.setNombre(rs.getString("nombre"));
                     trabajador.setApellidos(rs.getString("apellidos"));
                     trabajador.setCorreo(rs.getString("correo"));
-                    trabajador.setContraseña(rs.getString("contraseña"));
+                    trabajador.setContraseña(rs.getString("contrasena"));
                     trabajador.setTelefono(rs.getInt("telefono"));
                     trabajador.setId_proyecto(rs.getString("id_proyectos"));
                     trabajador.setHoras(rs.getFloat("horas"));
@@ -103,10 +103,12 @@ public class TrabajadorDao {
             } catch (SQLException e) {
                 Log.logdb.error("SQL Exception: " + e);            
             }
+            System.out.println("SI QUE LOS HAY!");
             return trabajadoresdb;
         }
         else
         {
+            System.out.println("TREMENDA F");
             Log.logdb.error("No hay conexion con la bbdd");
             return null;
         }
@@ -125,7 +127,7 @@ public class TrabajadorDao {
                 trabajador.setNombre(rs.getString("nombre"));
                 trabajador.setApellidos(rs.getString("apellidos"));
                 trabajador.setCorreo(rs.getString("correo"));
-                trabajador.setContraseña(rs.getString("contraseña"));
+                trabajador.setContraseña(rs.getString("contrasena"));
                 trabajador.setTelefono(rs.getInt("telefono"));
                 trabajador.setId_proyecto(rs.getString("id_proyectos"));
                 trabajador.setHoras(rs.getFloat("horas"));

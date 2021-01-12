@@ -1,6 +1,6 @@
 
 function validarNombre(){
-    var nombre = document.getElementById("nombre").value;
+    var nombre = document.getElementsByName("nombre")[0].value;
     console.log("Nombre "+nombre)
     if (nombre == null || nombre.length == 0) {
         mensajes.push("-Nombre");
@@ -55,7 +55,7 @@ function validarTelefono(){
 }
 
 function validarPassword(){
-    var password = document.getElementById("pwd").value;
+    var password = document.getElementsByName("pwd")[0].value;
     console.log("Password "+password)
     if (password == null || password.length == 0){
         mensajes.push("-Contraseña");

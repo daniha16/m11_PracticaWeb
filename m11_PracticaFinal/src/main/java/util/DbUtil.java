@@ -18,6 +18,7 @@ public class DbUtil {
     private static Connection connection = null;
 
     public static Connection getConnection() {
+        
         String driver = "com.mysql.jdbc.Driver";
         String url="jdbc:mysql://localhost:3306/m11practicafinal?useTimezone=true&serverTimezone=UTC";
         String user="root";

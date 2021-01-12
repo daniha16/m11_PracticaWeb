@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.in;
 import static java.lang.System.out;
+import static java.sql.JDBCType.NULL;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -64,13 +65,16 @@ public class LoginController extends HttpServlet {
         System.out.println(user);
         String pass = request.getParameter("pwd");
         System.out.println(pass);
-        if(dao.getAllTrabajadores().isEmpty()){
+        System.out.println("HELLO THERE!");
+        System.out.println(dao.getAllTrabajadores());
+        if(dao.getAllTrabajadores()== null){
+            System.out.println("NO HAY USUARIOS");
             response(response, "No hay usuarios");
         }
         else{
             for(Trabajador elem:dao.getAllTrabajadores()){
-                if(user == elem.getCorreo()){
-                    if(pass == elem.getContraseña()){
+                if(user.equals(elem.getCorreo())){
+                    if(pass.equals(elem.getContraseña())){
                         response(response,"Login succedeed");
                     }
                     response(response, "Login Failed");
@@ -82,7 +86,7 @@ public class LoginController extends HttpServlet {
     private void response(HttpServletResponse resp, String msg)
 			throws IOException {
         PrintWriter out = resp.getWriter();
-        out.println("<html><head></head><body onload=\"alert("+msg+")\"></body></html>");
+        System.out.println("<html><head></head><body onload=\"alert("+msg+")\"></body></html>");
     }
 
     /**
