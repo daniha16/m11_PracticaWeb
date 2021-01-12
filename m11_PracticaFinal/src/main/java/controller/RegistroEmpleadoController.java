@@ -23,7 +23,7 @@ import util.RegistroEmpleadoDao;
 public class RegistroEmpleadoController extends HttpServlet{
     private static final long serialVersionUID = 1L;
     private static String INSERT_OR_EDIT = "/Empleados/registro_diario.html";
-     private static String REGISTROS_EMPLEADOS = "/Empleados/registro_diario.html";
+    private static String REGISTROS_EMPLEADOS = "/Empleados/registro_diario.html";
     private RegistroEmpleadoDao dao;
     private Log log;
 

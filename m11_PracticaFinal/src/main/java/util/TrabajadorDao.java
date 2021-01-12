@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.sound.midi.Soundbank;
 import model.Trabajador;
 
 /**
@@ -23,6 +24,7 @@ public class TrabajadorDao {
 
     public TrabajadorDao() {
         connection = DbUtil.getConnection();
+        System.out.println("Hello there");
     }
 
     public void addTrabajador(Trabajador trabajador) {
