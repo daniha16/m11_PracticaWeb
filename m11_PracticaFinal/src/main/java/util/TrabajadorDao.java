@@ -95,7 +95,7 @@ public class TrabajadorDao {
                     trabajador.setCorreo(rs.getString("correo"));
                     trabajador.setContraseña(rs.getString("contrasena"));
                     trabajador.setTelefono(rs.getInt("telefono"));
-                    trabajador.setId_proyecto(rs.getString("id_proyectos"));
+                    trabajador.setId_proyecto(rs.getString("id_proyecto"));
                     trabajador.setHoras(rs.getFloat("horas"));
                     trabajador.setTipo(rs.getString("tipo"));
                     trabajadoresdb.add(trabajador);
@@ -129,7 +129,7 @@ public class TrabajadorDao {
                 trabajador.setCorreo(rs.getString("correo"));
                 trabajador.setContraseña(rs.getString("contrasena"));
                 trabajador.setTelefono(rs.getInt("telefono"));
-                trabajador.setId_proyecto(rs.getString("id_proyectos"));
+                trabajador.setId_proyecto(rs.getString("id_proyecto"));
                 trabajador.setHoras(rs.getFloat("horas"));
                 trabajador.setTipo(rs.getString("tipo"));
             }

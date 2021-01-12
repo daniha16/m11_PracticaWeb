@@ -74,9 +74,13 @@ public class LoginController extends HttpServlet {
         else{
             for(Trabajador elem:dao.getAllTrabajadores()){
                 if(user.equals(elem.getCorreo())){
+                    System.out.println("EXISTE EL USUARIO");
                     if(pass.equals(elem.getContraseña())){
+                        System.out.println("EXISTE LA PASSWORD");
                         response(response,"Login succedeed");
                     }
+                }
+                else{
                     response(response, "Login Failed");
                 }
             }
@@ -86,7 +90,7 @@ public class LoginController extends HttpServlet {
     private void response(HttpServletResponse resp, String msg)
 			throws IOException {
         PrintWriter out = resp.getWriter();
-        System.out.println("<html><head></head><body onload=\"alert("+msg+")\"></body></html>");
+        out.println("<html><head></head><body onload=\"alert("+msg+")\"></body></html>");
     }
 
     /**
