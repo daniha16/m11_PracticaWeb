@@ -25,7 +25,7 @@ import util.TrabajadorDao;
  */
 public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static String LOGIN_EMPLEADOS = "Empleados/dias_libres_sol.html";
+    private static String LOGIN_EMPLEADOS = "Empleados/main.html";
     private static String LOGIN_RRHH = "RRHH/main.html";
     private TrabajadorDao dao;
     private Log log;
