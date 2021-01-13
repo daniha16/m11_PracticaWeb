@@ -16,17 +16,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link HREF="<%=request.getContextPath()%>/style_sheet.css" TYPE="text/css" rel="stylesheet">
+    <script src="<%=request.getContextPath()%>"></script>
+    
   </head>
 
   <body>
-
+      
     <h1>LOGO INGENIEROS AL PESO</h1>
     <h2>EMPLEADOS</h2>
 
     <div class="navbar">
       <a href="<%=request.getContextPath()%>/Empleados/main.jsp"> Inicio </a>
       <a href="<%=request.getContextPath()%>/Empleados/registro_diario.jsp"> Registro diario </a>
-      <a href="ProyectoController?action=listProyecto"> Proyectos </a>
+      <a href="javascript:enviarDatos()"> Proyectos </a>
       <a href="<%=request.getContextPath()%>/Empleados/calendario.jsp"> Calendario </a>
       <a href="<%=request.getContextPath()%>/Empleados/estadisticas.jsp"> Estadísticas </a>
       <a href="<%=request.getContextPath()%>/Empleados/solicitudes.jsp"> Solicitudes </a>
@@ -47,6 +49,7 @@
         <h2>BIENVENIDO</h2>
         <p>Has iniciado sesión como empleado.</p>
         <p><img src="<%=request.getContextPath()%>/Empleados/logo_inicio.png" alt="logo texto" width="250" height="250"></p>
+        <input type="button" onclick = "enviarDatos()" value="Iniciar sesion">
     </div>
 
     <div class="pie">

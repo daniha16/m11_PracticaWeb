@@ -1,3 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : 13-ene-2021, 19:43:19
+    Author     : danih
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en"> 
   <head>
@@ -14,8 +21,8 @@
     <h1>LOGO INGENIEROS AL PESO</h1>
 
     <div class="navbar">
-      <a href="/Empleados/main.jsp"> Empleados </a>
-      <a href="/RRHH/main.jsp"> RRHH </a>
+      <a href="<%=request.getContextPath()%>/Empleados/main.jsp"> Empleados </a>
+      <a href="<%=request.getContextPath()%>/RRHH/main.jsp"> RRHH </a>
     </div>
 
     <div class="texto1">

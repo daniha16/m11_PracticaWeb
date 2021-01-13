@@ -164,3 +164,7 @@ function borrar(){
     var formulario = document.getElementById("formulario");
     formulario.reset();
 }
+
+function enviarDatos(){
+    alert("HOLA");
+}
