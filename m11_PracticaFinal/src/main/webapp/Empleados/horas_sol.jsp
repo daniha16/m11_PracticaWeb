@@ -1,6 +1,6 @@
 <%-- 
-    Document   : main
-    Created on : 12-ene-2021, 17:53:10
+    Document   : horas_sol
+    Created on : 13-ene-2021, 11:45:10
     Author     : danih
 --%>
 
@@ -8,17 +8,17 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
   <head>
 
-    <title>Inicio</title>
+    <title>Solicitud</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link HREF="<%=request.getContextPath()%>/style_sheet.css" TYPE="text/css" rel="stylesheet">
-  </head>
+    <link href="..\style_sheet.css" rel="stylesheet">
 
   <body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css%22%3E">
 
     <h1>LOGO INGENIEROS AL PESO</h1>
     <h2>EMPLEADOS</h2>
@@ -26,33 +26,30 @@
     <div class="navbar">
       <a href="<%=request.getContextPath()%>/Empleados/main.jsp"> Inicio </a>
       <a href="<%=request.getContextPath()%>/Empleados/registro_diario.jsp"> Registro diario </a>
-      <a href="ProyectoController?action=listProyecto"> Proyectos </a>
+      <a href="<%=request.getContextPath()%>/Empleados/proyectos.jsp"> Proyectos </a>
       <a href="<%=request.getContextPath()%>/Empleados/calendario.jsp"> Calendario </a>
       <a href="<%=request.getContextPath()%>/Empleados/estadisticas.jsp"> Estadísticas </a>
       <a href="<%=request.getContextPath()%>/Empleados/solicitudes.jsp"> Solicitudes </a>
     </div>
-       
-    <%
-    Object iden = request.getAttribute("iden");
-    Object nombre = request.getAttribute("nombre");
-    Object apellidos = request.getAttribute("apellidos");
-    Object correo = request.getAttribute("correo");
-    Object telefono = request.getAttribute("telefono");
-    Object horas = request.getAttribute("horas");
-    out.println(iden+" nombre:"+nombre+" apellidos:"+apellidos+" correo:"+correo+" telefono:"+telefono+" horas:"+horas);
-    %>
-    <input type="hidden" name="iden" value="${iden}" />
-    
+
     <div class="texto1">
-        <h2>BIENVENIDO</h2>
-        <p>Has iniciado sesión como empleado.</p>
-        <p><img src="<%=request.getContextPath()%>/Empleados/logo_inicio.png" alt="logo texto" width="250" height="250"></p>
+        <h2> SOLICITUD DE HORAS LIBRES </h2>
+        <p>El horario de la oficina es de 08:30h a 18:00h</p>
+        <form action="">
+          <br><label for="horaseleccionada">Selecciona la hora de salida . . . . .</label>
+          <input type="time" id="hora_salida" value="00:00" name="salida-start" min="08:30" max="18:00" required> <br>
+          <br><label for="horaseleccionada">Selecciona la hora de entrada . . .</label>
+          <input type="time" id="hora_entrada" value="00:00" name="salida-end" min="08:30" max="18:00" required> <br>
+          <br><button class="boton">
+            <a id="solicitar"> SOLICITAR </a>
+          </button>
+        </form> 
     </div>
 
     <div class="pie">
       <p>Ingenieros al peso S.A.</p>
     </div>
+
   </body>
 
 </html>
-

@@ -5,12 +5,20 @@
         <servlet-class>util.ErrorHandler</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ProyectoController</servlet-name>
+        <servlet-class>controller.ProyectoController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ErrorHandler</servlet-name>
         <url-pattern>/ErrorHandler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProyectoController</servlet-name>
+        <url-pattern>/ProyectoController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>

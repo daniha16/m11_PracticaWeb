@@ -21,10 +21,10 @@ import util.ProyectoDao;
  */
 public class ProyectoController extends HttpServlet{
     private static final long serialVersionUID = 1L;
-    private static String INSERT_OR_EDIT = "/Empleados/proyecto.html";
-    private static String LISTA_PROYECTOS = "/Empleados/proyectos.html";
-    private static String TIME_PROYECTO = "/Empleados/proyectos.html";
-    private static String ADD_TIME = "/Empleados/proyectos.html";
+    private static String INSERT_OR_EDIT = "/Empleados/proyecto.jsp";
+    private static String LISTA_PROYECTOS = "/Empleados/proyectos.jsp";
+    private static String TIME_PROYECTO = "/Empleados/proyectos.jsp";
+    private static String ADD_TIME = "/Empleados/proyectos.jsp";
     private ProyectoDao dao;
     private Log log;
 
@@ -51,8 +51,10 @@ public class ProyectoController extends HttpServlet{
             Proyecto proyecto = dao.getProyectoById("id");
             request.setAttribute("proyecto", proyecto);
         } else if (action.equalsIgnoreCase("listProyecto")) {
+            System.out.println("LIST PROYECTO");
             Log.log.info("Parametro valor LIST");
             forward = LISTA_PROYECTOS;
+            System.out.println(dao.getAllProyectos());
             request.setAttribute("proyectos", dao.getAllProyectos());
         }else if (action.equalsIgnoreCase("timeProyecto")) {
             Log.log.info("Parámetro valor GETTIME");

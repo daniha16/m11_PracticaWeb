@@ -25,9 +25,9 @@ import util.TrabajadorDao;
  */
 public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static String LOGIN_EMPLEADOS = "/Empleados/main.html";
-    private static String LOGIN_RRHH = "RRHH/main.html";
-    private static String LOGIN_FAILED = "/index.html";
+    private static String LOGIN_EMPLEADOS = "/Empleados/main.jsp";
+    private static String LOGIN_RRHH = "/RRHH/main.jsp";
+    private static String LOGIN_FAILED = "/index.jsp";
     private TrabajadorDao dao;
     private Log log;
     
@@ -84,32 +84,43 @@ public class LoginController extends HttpServlet {
                         if(elem.getTipo().equals("Empleado")){
                             System.out.println("LOGIN DE EMPLEADO");
                             forward=LOGIN_EMPLEADOS;
-                            response.sendRedirect("../m11_PracticaFinal/Empleados/main.html");
+                            request.setAttribute("iden",elem.getIden());
+                            request.setAttribute("nombre",elem.getNombre());
+                            request.setAttribute("apellidos",elem.getApellidos());
+                            request.setAttribute("correo",elem.getCorreo());
+                            request.setAttribute("telefono",elem.getTelefono());
+                            request.setAttribute("horas",elem.getHoras());
+                            RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
+                            view.forward(request, response);
                             return;
                         }
                         else if(elem.getTipo().equals("RRHH")){
                             System.out.println("LOGIN DE RRHH");
                             forward=LOGIN_RRHH;
-                            response.sendRedirect("../m11_PracticaFinal/RRHH/main.html");
+                            request.setAttribute("usuario",elem);
+                            RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
+                            view.forward(request, response);
                             return;
                         }                   
                     }
                     else if(pass != null){
                         System.out.println("FALLO DE CONTRASEÑA");
-                        forward=LOGIN_FAILED;
-                        response.sendRedirect("../m11_PracticaFinal/index.html");
+                        forward=LOGIN_FAILED;                      
+                        RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
+                        view.forward(request, response);
                         return;
                     }
                 }
                 else if(correo != null){
                     forward=LOGIN_FAILED;
-                    response.sendRedirect("../m11_PracticaFinal/index.html");
+                    //response.sendRedirect("../m11_PracticaFinal/index.html");
+                    //return;
+                    RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
+                    view.forward(request, response);
                     return;
                 }
             }
         }
-        RequestDispatcher view = request.getRequestDispatcher(forward);            
-        view.forward(request, response);
     }
     
     private void response(HttpServletResponse resp, String msg)
