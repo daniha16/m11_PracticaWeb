@@ -29,7 +29,7 @@ public class TrabajadorDao {
 
     public void addTrabajador(Trabajador trabajador) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into trabajador(iden,dni,nombre,apellidos,correo,contrasena,telefono,id_proyecto,horas,tipo) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into trabajador(iden,dni,nombre,apellidos,correo,contrasena,telefono,horas,tipo) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 // Parameters start with 1 
             preparedStatement.setInt(1, trabajador.getIden());
             preparedStatement.setString(2, trabajador.getDni()); 
@@ -38,9 +38,8 @@ public class TrabajadorDao {
             preparedStatement.setString(5, trabajador.getCorreo());
             preparedStatement.setString(6, trabajador.getContraseña());
             preparedStatement.setInt(7, trabajador.getTelefono());
-            preparedStatement.setString(8, trabajador.getId_proyecto());
-            preparedStatement.setDouble(9, trabajador.getHoras());
-            preparedStatement.setString(10, trabajador.getTipo());
+            preparedStatement.setDouble(8, trabajador.getHoras());
+            preparedStatement.setString(9, trabajador.getTipo());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);
@@ -60,7 +59,7 @@ public class TrabajadorDao {
 
     public void updateTrabajador(Trabajador trabajador) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("update trabajador dni=?, nombre=?, apellidos=?, correo=?, contrasena=?, telefono=?, id_proyecto=?, horas=?, tipo=?" + "where iden=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update trabajador dni=?, nombre=?, apellidos=?, correo=?, contrasena=?, telefono=?, horas=?, tipo=?" + "where iden=?");
 // Parameters start with 1 
             
             preparedStatement.setString(1, trabajador.getDni()); 
@@ -69,10 +68,9 @@ public class TrabajadorDao {
             preparedStatement.setString(4, trabajador.getCorreo());
             preparedStatement.setString(5, trabajador.getContraseña());
             preparedStatement.setInt(6, trabajador.getTelefono());
-            preparedStatement.setString(7, trabajador.getId_proyecto());
-            preparedStatement.setFloat(8, trabajador.getHoras());
-            preparedStatement.setString(9, trabajador.getTipo());
-            preparedStatement.setInt(10, trabajador.getIden());
+            preparedStatement.setFloat(7, trabajador.getHoras());
+            preparedStatement.setString(8, trabajador.getTipo());
+            preparedStatement.setInt(9, trabajador.getIden());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);            
@@ -95,7 +93,6 @@ public class TrabajadorDao {
                     trabajador.setCorreo(rs.getString("correo"));
                     trabajador.setContraseña(rs.getString("contrasena"));
                     trabajador.setTelefono(rs.getInt("telefono"));
-                    trabajador.setId_proyecto(rs.getString("id_proyecto"));
                     trabajador.setHoras(rs.getFloat("horas"));
                     trabajador.setTipo(rs.getString("tipo"));
                     trabajadoresdb.add(trabajador);
@@ -129,7 +126,6 @@ public class TrabajadorDao {
                 trabajador.setCorreo(rs.getString("correo"));
                 trabajador.setContraseña(rs.getString("contrasena"));
                 trabajador.setTelefono(rs.getInt("telefono"));
-                trabajador.setId_proyecto(rs.getString("id_proyecto"));
                 trabajador.setHoras(rs.getFloat("horas"));
                 trabajador.setTipo(rs.getString("tipo"));
             }

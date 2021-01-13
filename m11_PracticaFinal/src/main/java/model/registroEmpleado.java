@@ -39,6 +39,6 @@ public class RegistroEmpleado {
     public void setIden_trabajador(int iden_trabajador) {
         this.iden_trabajador = iden_trabajador;
     }
-    
-    
+
+
 }

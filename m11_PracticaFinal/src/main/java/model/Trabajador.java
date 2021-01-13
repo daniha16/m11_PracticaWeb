@@ -17,7 +17,6 @@ public class Trabajador {
     private String correo;
     private String contraseña;
     private int telefono;
-    private String id_proyecto;
     private float horas;
     private String tipo;
 
@@ -47,10 +46,6 @@ public class Trabajador {
 
     public int getTelefono() {
         return telefono;
-    }
-
-    public String getId_proyecto() {
-        return id_proyecto;
     }
 
     public float getHoras() {
@@ -87,10 +82,6 @@ public class Trabajador {
 
     public void setTelefono(int telefono) {
         this.telefono = telefono;
-    }
-
-    public void setId_proyecto(String id_proyecto) {
-        this.id_proyecto = id_proyecto;
     }
 
     public void setHoras(float horas) {
