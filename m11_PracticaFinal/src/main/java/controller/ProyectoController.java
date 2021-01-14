@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Proyecto;
+import model.Trabajador;
 import model.TrabajadorProyecto;
 import util.Log;
 import util.ProyectoDao;
@@ -81,9 +82,10 @@ public class ProyectoController extends HttpServlet{
                 Log.log.info("Parámetro valor LIST PROYECTOS TRABAJADOR");
                 forward = LISTA_TPROYECTOS;
                 System.out.println("FLAG1");
-                String iden = request.getParameter("iden");
+                Trabajador user = (Trabajador)sesion.getAttribute("usuario");
+                int iden = user.getIden();
                 System.out.println(iden);
-                List<TrabajadorProyecto> idenList = dao2.getProyectoByIden(Integer.parseInt(iden));
+                List<TrabajadorProyecto> idenList = dao2.getProyectoByIden(iden);
                 System.out.println("FLAG2");
                 List<Proyecto> listaProyectos = new  ArrayList<Proyecto>();
                 for(TrabajadorProyecto elem:idenList){

@@ -166,10 +166,11 @@ function borrar(){
 }
 
 function enviarDatos(info){
-    var formulario = document.getElementById("enviarForm");
+    //var formulario = document.getElementById("enviarForm");
     if(info==="proyectos"){
-        formulario.action.value="listTrabajadorProyectos";
-        formulario.setAttribute("action","ProyectoController");
+        //formulario.action.value="listTrabajadorProyectos";
+        //formulario.setAttribute("action","ProyectoController");
+        href = "/ProyectoController?action=listTrabajadorProyectos";
     }
     else if(info==="registroDiario"){
         

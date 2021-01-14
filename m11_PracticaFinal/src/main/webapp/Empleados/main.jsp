@@ -28,7 +28,7 @@
     <div class="navbar">
       <a href="<%=request.getContextPath()%>/Empleados/main.jsp"> Inicio </a>
       <a href="<%=request.getContextPath()%>/Empleados/registro_diario.jsp"> Registro diario </a>
-      <a href="javascript:enviarDatos('proyectos')"> Proyectos </a>
+      <a href="<%=request.getContextPath()%>/ProyectoController?action=listTrabajadorProyectos"> Proyectos </a>
       <a href="<%=request.getContextPath()%>/Empleados/calendario.jsp"> Calendario </a>
       <a href="<%=request.getContextPath()%>/Empleados/estadisticas.jsp"> Estadísticas </a>
       <a href="<%=request.getContextPath()%>/Empleados/solicitudes.jsp"> Solicitudes </a>
@@ -44,17 +44,17 @@
     out.println(iden+" nombre:"+nombre+" apellidos:"+apellidos+" correo:"+correo+" telefono:"+telefono+" horas:"+horas);
     %>
     <p>BIENVENIDO! ${sessionScope.usuario}</p>
-    <input type="hidden" name="iden" value="${iden}" />
-     <form  method="GET" id="enviarForm">
+    <!-- <input type="hidden" name="iden" value="${iden}" /> -->
+    <!-- <form  method="GET" id="enviarForm">
         <input type="hidden" name="action" value="" />
         <input type="hidden" name="iden" value="${iden}" />
-    </form>
+    </form> -->
     
     <div class="texto1">
         <h2>BIENVENIDO</h2>
         <p>Has iniciado sesión como empleado.</p>
         <p><img src="<%=request.getContextPath()%>/Empleados/logo_inicio.png" alt="logo texto" width="250" height="250"></p>
-        <input type="button" onclick = "enviarDatos()" value="Iniciar sesion">
+        <input type="button" onclick = "Cerrar Sesion()" value="Log Out">
     </div>
 
     <div class="pie">
