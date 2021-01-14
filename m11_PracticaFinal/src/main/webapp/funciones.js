@@ -167,7 +167,21 @@ function borrar(){
 
 function enviarDatos(info){
     var formulario = document.getElementById("enviarForm");
-    formulario.action.value="listTrabajadorProyectos";
-    formulario.setAttribute("action","ProyectoController");
+    if(info==="proyectos"){
+        formulario.action.value="listTrabajadorProyectos";
+        formulario.setAttribute("action","ProyectoController");
+    }
+    else if(info==="registroDiario"){
+        
+    }
+    else if(info==="calendario"){
+        
+    }
+    else if(info==="Estadisticas"){
+        
+    }
+    else if(info==="Solicitudes"){
+        
+    }
     formulario.submit();
 }

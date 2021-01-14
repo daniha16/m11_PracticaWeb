@@ -1,7 +1,31 @@
+
+  #tablaProyectos{
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #tablaProyectos td, #tablaProyectos th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #tablaProyectos tr:nth-child(even){background-color: #f2f2f2;}
+
+  #tablaProyectos tr:hover {background-color: #ddd;}
+
+  #tablaProyectos th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(69, 98, 104);;
+    color: white;
+  }
+  
 * {
     box-sizing: border-box;
   }
-
+  
   /* Style the body */
   body {
     font-family: "Segoe UI";
@@ -98,4 +122,7 @@
     text-align: center;
     color:rgb(85,85,85);
     font-size: smaller;
-  }
+    
+  
+  
+}

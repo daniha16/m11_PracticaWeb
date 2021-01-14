@@ -17,6 +17,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link HREF="<%=request.getContextPath()%>/style_sheet.css" TYPE="text/css" rel="stylesheet">
     <script src="<%=request.getContextPath()%>/funciones.js"></script>
+    <style>
+    #tablaProyectos{
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+    #tablaProyectos td, #tablaProyectos th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    #tablaProyectos tr:nth-child(even){background-color: #f2f2f2;}
+
+    #tablaProyectos tr:hover {background-color: #ddd;}
+
+    #tablaProyectos th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: rgb(69, 98, 104);
+      color: white;
+    }
+    </style>
   </head>
 
   <body>
@@ -35,7 +59,8 @@
 
     <div class="texto1">
         <h2> PROYECTOS </h2>
-        <table class="table table-striped"> 
+        
+        <table id="tablaProyectos" > 
             <thead> 
                 <tr> 
                     <th scope="col">Id</th> 
@@ -55,9 +80,6 @@
         </table> 
 
         <ul class="listas">
-          <li type="dot"> Proyecto 1</li>
-            <p>Total de horas invertidas . . . . . . . . . . <input class="campo_texto" type="text" name="textofijo" value="00" readonly> h </p>
-            <p>Horas a añadir <input class="campo_texto" type="number" name="textofijo" value="0"></p>
             <button class="boton">
               <a id="añadir_p1" onclick="añadirP1()"> Añadir </a>
             </button>

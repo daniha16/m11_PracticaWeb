@@ -123,4 +123,5 @@ REFERENCES m11practicafinal.trabajador (iden) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
+alter table many_proyecto_has_many_trabajador add column horas integer;
 
