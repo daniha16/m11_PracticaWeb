@@ -15,8 +15,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link href="<%=request.getContextPath()%>/style_sheet.css" rel="stylesheet">
-
+    <link HREF="<%=request.getContextPath()%>/style_sheet.css" TYPE="text/css" rel="stylesheet">
+    <script src="<%=request.getContextPath()%>/funciones.js"></script>
   </head>
 
   <body>
@@ -39,12 +39,16 @@
             <thead> 
                 <tr> 
                     <th scope="col">Id</th> 
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">CIF</th>
                 </tr> 
             </thead> 
             <tbody> 
-                <c:forEach items="${proyectos}" var="proyecto"> 
+                <c:forEach items="${proyectosTrabajador}" var="proyectos"> 
                     <tr> 
-                        <td scope="row"><c:out value="${proyecto.id}" /></td>     
+                        <td scope="row"><c:out value="${proyectos.id}" /></td> 
+                        <td><c:out value="${proyectos.descripcion}" /></td> 
+                        <td><c:out value="${proyectos.cif_empresa}" /></td>  
                     </tr> 
                 </c:forEach> 
             </tbody> 

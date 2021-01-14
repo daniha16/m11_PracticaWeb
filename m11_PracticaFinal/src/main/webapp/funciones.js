@@ -165,6 +165,9 @@ function borrar(){
     formulario.reset();
 }
 
-function enviarDatos(){
-    alert("HOLA");
+function enviarDatos(info){
+    var formulario = document.getElementById("enviarForm");
+    formulario.action.value="listTrabajadorProyectos";
+    formulario.setAttribute("action","ProyectoController");
+    formulario.submit();
 }

@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link HREF="<%=request.getContextPath()%>/style_sheet.css" TYPE="text/css" rel="stylesheet">
-    <script src="<%=request.getContextPath()%>"></script>
+    <script src="<%=request.getContextPath()%>/funciones.js"></script>
     
   </head>
 
@@ -44,6 +44,10 @@
     out.println(iden+" nombre:"+nombre+" apellidos:"+apellidos+" correo:"+correo+" telefono:"+telefono+" horas:"+horas);
     %>
     <input type="hidden" name="iden" value="${iden}" />
+     <form  method="GET" id="enviarForm">
+        <input type="hidden" name="action" value="" />
+        <input type="hidden" name="iden" value="${iden}" />
+    </form>
     
     <div class="texto1">
         <h2>BIENVENIDO</h2>
