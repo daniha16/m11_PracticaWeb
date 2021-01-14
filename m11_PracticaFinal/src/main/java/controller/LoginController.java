@@ -50,7 +50,12 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String action=(request.getPathInfo()!=null?request.getPathInfo():"");
+        HttpSession sesion = request.getSession();
+        if(action.equals("/out")){
+            sesion.invalidate();
+            response.sendRedirect("/home.jsp");
+        }
     }
 
     /**
@@ -79,48 +84,38 @@ public class LoginController extends HttpServlet {
         }
         else{
             for(Trabajador elem:dao.getAllTrabajadores()){
-                if(correo.equals(elem.getCorreo())){
-                    System.out.println("EXISTE EL USUARIO");
-                    if(pass.equals(elem.getContraseña())){
-                        System.out.println("EXISTE LA PASSWORD");
-                        if(elem.getTipo().equals("Empleado")){
-                            System.out.println("LOGIN DE EMPLEADO");
-                            forward=LOGIN_EMPLEADOS;
-                            request.setAttribute("iden",elem.getIden());
-                            request.setAttribute("nombre",elem.getNombre());
-                            request.setAttribute("apellidos",elem.getApellidos());
-                            request.setAttribute("correo",elem.getCorreo());
-                            request.setAttribute("telefono",elem.getTelefono());
-                            request.setAttribute("horas",elem.getHoras());
-                            RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
-                            view.forward(request, response);
-                            return;
-                        }
-                        else if(elem.getTipo().equals("RRHH")){
-                            System.out.println("LOGIN DE RRHH");
-                            forward=LOGIN_RRHH;
-                            request.setAttribute("usuario",elem);
-                            RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
-                            view.forward(request, response);
-                            return;
-                        }                   
-                    }
-                    else if(pass != null){
-                        System.out.println("FALLO DE CONTRASEÑA");
-                        forward=LOGIN_FAILED;                      
+                if(correo.equals(elem.getCorreo())&& pass.equals(elem.getContraseña()) && sesion.getAttribute("usuario") == null){
+                    if(elem.getTipo().equals("Empleado")){
+                        System.out.println("LOGIN DE EMPLEADO");
+                        forward=LOGIN_EMPLEADOS;
+                        sesion.setAttribute("usario", elem);
+                        request.setAttribute("iden",elem.getIden());
+                        request.setAttribute("nombre",elem.getNombre());
+                        request.setAttribute("apellidos",elem.getApellidos());
+                        request.setAttribute("correo",elem.getCorreo());
+                        request.setAttribute("telefono",elem.getTelefono());
+                        request.setAttribute("horas",elem.getHoras());
                         RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
                         view.forward(request, response);
                         return;
                     }
-                }
-                else if(correo != null){
-                    forward=LOGIN_FAILED;
-                    //response.sendRedirect("../m11_PracticaFinal/index.html");
-                    //return;
+                    else if(elem.getTipo().equals("RRHH")){
+                        System.out.println("LOGIN DE RRHH");
+                        forward=LOGIN_RRHH;
+                        request.setAttribute("usuario",elem);
+                        RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
+                        view.forward(request, response);
+                        return;
+                    }                   
+                }  
+                else if(pass != null || correo != null){
+                    System.out.println("FALLO DE CONTRASEÑA");
+                    forward=LOGIN_FAILED;                      
                     RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
                     view.forward(request, response);
                     return;
                 }
+                
             }
         }
     }

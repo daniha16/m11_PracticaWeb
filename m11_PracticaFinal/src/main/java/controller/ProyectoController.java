@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Proyecto;
 import model.TrabajadorProyecto;
 import util.Log;
@@ -30,6 +31,7 @@ public class ProyectoController extends HttpServlet{
     private static String TIME_PROYECTO = "/Empleados/proyectos.jsp";
     private static String ADD_TIME = "/Empleados/proyectos.jsp";
     private static String LISTA_TPROYECTOS = "/Empleados/proyectos.jsp";
+    private static String INICIO = "/index.jsp";
     private ProyectoDao dao;
     private TrabajadorProyectoDao dao2;
     private Log log;
@@ -43,6 +45,8 @@ public class ProyectoController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession sesion = request.getSession();
         String forward = "";
         Log.log.info("Entramos en el doGet");
         String action = request.getParameter("action");
@@ -91,16 +95,22 @@ public class ProyectoController extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Log.log.info("Entramos por el doPost");
-/*        processRequest(request, response); */
-        Proyecto proyecto = new Proyecto();
-        proyecto.setId(request.getParameter("id"));
-        proyecto.setDescripcion(request.getParameter("descripcion"));                
-        proyecto.setCif_empresa(request.getParameter("cif_empresa"));
-        proyecto.setId(request.getParameter("id"));
-        request.setAttribute("proyecto", dao.getAllProyectos());
-        RequestDispatcher view = request.getRequestDispatcher(LISTA_PROYECTOS);            
-        view.forward(request, response);
-        return;
+        HttpSession sesion = request.getSession();
+        if(sesion.getAttribute("usuario") == null){
+            response.sendRedirect(INICIO);
+        }
+        else{
+    /*          processRequest(request, response); */
+            Proyecto proyecto = new Proyecto();
+            proyecto.setId(request.getParameter("id"));
+            proyecto.setDescripcion(request.getParameter("descripcion"));                
+            proyecto.setCif_empresa(request.getParameter("cif_empresa"));
+            proyecto.setId(request.getParameter("id"));
+            request.setAttribute("proyecto", dao.getAllProyectos());
+            RequestDispatcher view = request.getRequestDispatcher(LISTA_PROYECTOS);            
+            view.forward(request, response);
+            return;
+        }
     }
 
     /**

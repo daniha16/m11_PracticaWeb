@@ -41,8 +41,10 @@
     Object correo = request.getAttribute("correo");
     Object telefono = request.getAttribute("telefono");
     Object horas = request.getAttribute("horas");
+    
     out.println(iden+" nombre:"+nombre+" apellidos:"+apellidos+" correo:"+correo+" telefono:"+telefono+" horas:"+horas);
     %>
+    BIENVENIDO! ${sessionScope.usuario}
     <input type="hidden" name="iden" value="${iden}" />
      <form  method="GET" id="enviarForm">
         <input type="hidden" name="action" value="" />
