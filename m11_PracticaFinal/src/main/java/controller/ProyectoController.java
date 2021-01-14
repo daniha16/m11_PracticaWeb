@@ -45,50 +45,56 @@ public class ProyectoController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         HttpSession sesion = request.getSession();
-        String forward = "";
-        Log.log.info("Entramos en el doGet");
-        String action = request.getParameter("action");
-        Log.log.info("Recogemos el parametro action con valor " + action);
-        if (action.equalsIgnoreCase("delete")) {
-            Log.log.info("Parametro valor DELETE");
-            dao.deleteProyecto("id");
-            forward = LISTA_PROYECTOS;
-            request.setAttribute("proyecto", dao.getAllProyectos());
-        } else if (action.equalsIgnoreCase("edit")) {
-            Log.log.info("Parametro valor EDIT");
-            forward = INSERT_OR_EDIT;
-            Proyecto proyecto = dao.getProyectoById("id");
-            request.setAttribute("proyecto", proyecto);
-        } else if (action.equalsIgnoreCase("listProyecto")) {
-            System.out.println("LIST PROYECTO");
-            Log.log.info("Parametro valor LIST");
-            forward = LISTA_PROYECTOS;
-            System.out.println(dao.getAllProyectos());
-            request.setAttribute("proyectos", dao.getAllProyectos());
-        }else if (action.equalsIgnoreCase("timeProyecto")) {
-            Log.log.info("Parámetro valor GETTIME");
-            forward = TIME_PROYECTO;
-            request.setAttribute("timeProyecto", dao.getTimeProyecto("id"));
-        System.out.println("Hello there 2");
-        }else if (action.equalsIgnoreCase("listTrabajadorProyectos")){
-            Log.log.info("Parámetro valor LIST PROYECTOS TRABAJADOR");
-            forward = LISTA_TPROYECTOS;
-            System.out.println("FLAG1");
-            String iden = request.getParameter("iden");
-            System.out.println(iden);
-            List<TrabajadorProyecto> idenList = dao2.getProyectoByIden(Integer.parseInt(iden));
-            System.out.println("FLAG2");
-            List<Proyecto> listaProyectos = new  ArrayList<Proyecto>();
-            for(TrabajadorProyecto elem:idenList){
-                listaProyectos.add(dao.getProyectoById(elem.getId_proyecto()));
-            }
-            request.setAttribute("proyectosTrabajador", listaProyectos);
+        System.out.println("Comprobando sesiones");
+        if(sesion.getAttribute("usuario") == null){
+            response.sendRedirect(INICIO);
         }
-        RequestDispatcher view = request.getRequestDispatcher(forward);
-        view.forward(request, response);
-        return;
+        else{
+            String forward = "";
+            System.out.println(sesion.getAttribute("usuario"));
+            Log.log.info("Entramos en el doGet");
+            String action = request.getParameter("action");
+            Log.log.info("Recogemos el parametro action con valor " + action);
+            if (action.equalsIgnoreCase("delete")) {
+                Log.log.info("Parametro valor DELETE");
+                dao.deleteProyecto("id");
+                forward = LISTA_PROYECTOS;
+                request.setAttribute("proyecto", dao.getAllProyectos());
+            } else if (action.equalsIgnoreCase("edit")) {
+                Log.log.info("Parametro valor EDIT");
+                forward = INSERT_OR_EDIT;
+                Proyecto proyecto = dao.getProyectoById("id");
+                request.setAttribute("proyecto", proyecto);
+            } else if (action.equalsIgnoreCase("listProyecto")) {
+                System.out.println("LIST PROYECTO");
+                Log.log.info("Parametro valor LIST");
+                forward = LISTA_PROYECTOS;
+                System.out.println(dao.getAllProyectos());
+                request.setAttribute("proyectos", dao.getAllProyectos());
+            }else if (action.equalsIgnoreCase("timeProyecto")) {
+                Log.log.info("Parámetro valor GETTIME");
+                forward = TIME_PROYECTO;
+                request.setAttribute("timeProyecto", dao.getTimeProyecto("id"));
+            System.out.println("Hello there 2");
+            }else if (action.equalsIgnoreCase("listTrabajadorProyectos")){
+                Log.log.info("Parámetro valor LIST PROYECTOS TRABAJADOR");
+                forward = LISTA_TPROYECTOS;
+                System.out.println("FLAG1");
+                String iden = request.getParameter("iden");
+                System.out.println(iden);
+                List<TrabajadorProyecto> idenList = dao2.getProyectoByIden(Integer.parseInt(iden));
+                System.out.println("FLAG2");
+                List<Proyecto> listaProyectos = new  ArrayList<Proyecto>();
+                for(TrabajadorProyecto elem:idenList){
+                    listaProyectos.add(dao.getProyectoById(elem.getId_proyecto()));
+                }
+                request.setAttribute("proyectosTrabajador", listaProyectos);
+            }
+            RequestDispatcher view = request.getRequestDispatcher(forward);
+            view.forward(request, response);
+            return;
+        }
     }
 
     @Override

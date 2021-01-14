@@ -88,7 +88,7 @@ public class LoginController extends HttpServlet {
                     if(elem.getTipo().equals("Empleado")){
                         System.out.println("LOGIN DE EMPLEADO");
                         forward=LOGIN_EMPLEADOS;
-                        sesion.setAttribute("usario", elem);
+                        sesion.setAttribute("usuario", elem);
                         request.setAttribute("iden",elem.getIden());
                         request.setAttribute("nombre",elem.getNombre());
                         request.setAttribute("apellidos",elem.getApellidos());
