@@ -50,11 +50,13 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action=(request.getPathInfo()!=null?request.getPathInfo():"");
+        //String action=(request.getPathInfo()!=null?request.getPathInfo():"");
+        String action = request.getParameter("action");
         HttpSession sesion = request.getSession();
-        if(action.equals("/out")){
+        if(action.equals("Logout")){
             sesion.invalidate();
-            response.sendRedirect("/home.jsp");
+            RequestDispatcher view = getServletContext().getRequestDispatcher("/index.jsp");            
+            view.forward(request, response);
         }
     }
 

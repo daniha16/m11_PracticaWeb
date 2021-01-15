@@ -20,15 +20,16 @@
   </head>
 
   <body>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css%22%3E">
-
+    <% 
+    Trabajador usuario = (Trabajador)request.getSession().getAttribute("usuario");
+    %>
     <h1>LOGO INGENIEROS AL PESO</h1>
     <h2>EMPLEADOS</h2>
     <p>BIENVENIDO! ${sessionScope.usuario}</p>
     <div class="navbar">
       <a href="<%=request.getContextPath()%>/Empleados/main.jsp"> Inicio </a>
       <a href="<%=request.getContextPath()%>/Empleados/registro_diario.jsp"> Registro diario </a>
-      <a href="<%=request.getContextPath()%>/Empleados/proyectos.jsp"> Proyectos </a>
+      <a href="<%=request.getContextPath()%>/ProyectoController?action=listTrabajadorProyectos"> Proyectos </a>
       <a href="<%=request.getContextPath()%>/Empleados/calendario.jsp"> Calendario </a>
       <a href="<%=request.getContextPath()%>/Empleados/estadisticas.jsp"> Estadísticas </a>
       <a href="<%=request.getContextPath()%>/Empleados/solicitudes.jsp"> Solicitudes </a>

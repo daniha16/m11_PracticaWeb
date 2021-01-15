@@ -4,6 +4,7 @@
     Author     : danih
 --%>
 
+<%@page import="model.Trabajador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -17,41 +18,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link HREF="<%=request.getContextPath()%>/style_sheet.css" TYPE="text/css" rel="stylesheet">
     <script src="<%=request.getContextPath()%>/funciones.js"></script>
-    <style>
-    #tablaProyectos{
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    }
-
-    #tablaProyectos td, #tablaProyectos th {
-      border: 1px solid #ddd;
-      padding: 8px;
-    }
-
-    #tablaProyectos tr:nth-child(even){background-color: #f2f2f2;}
-
-    #tablaProyectos tr:hover {background-color: #ddd;}
-
-    #tablaProyectos th {
-      padding-top: 12px;
-      padding-bottom: 12px;
-      text-align: left;
-      background-color: rgb(69, 98, 104);
-      color: white;
-    }
-    </style>
+    
   </head>
 
   <body>
-
+    <% 
+    Trabajador usuario = (Trabajador)request.getSession().getAttribute("usuario");
+    %>
     <h1>LOGO INGENIEROS AL PESO</h1>
     <h2>EMPLEADOS</h2>
-    <p>BIENVENIDO! ${sessionScope.usuario}</p>
+    <p>Usuario: <%=usuario.getNombre()%> </p>
     <div class="navbar">
       <a href="<%=request.getContextPath()%>/Empleados/main.jsp"> Inicio </a>
       <a href="<%=request.getContextPath()%>/Empleados/registro_diario.jsp"> Registro diario </a>
-      <a href="<%=request.getContextPath()%>/Empleados/proyectos.jsp"> Proyectos </a>
+      <a href="<%=request.getContextPath()%>/ProyectoController?action=listTrabajadorProyectos"> Proyectos </a>
       <a href="<%=request.getContextPath()%>/Empleados/calendario.jsp"> Calendario </a>
       <a href="<%=request.getContextPath()%>/Empleados/estadisticas.jsp"> Estadísticas </a>
       <a href="<%=request.getContextPath()%>/Empleados/solicitudes.jsp"> Solicitudes </a>

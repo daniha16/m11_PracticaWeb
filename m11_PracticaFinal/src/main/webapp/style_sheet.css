@@ -55,6 +55,31 @@
     background-color: #666;
     color: rgb(207, 176, 38);
   }
+  
+  .navbarVertical {
+    list-style-type: none;
+    overflow: hidden;
+    background-color: rgb(69, 98, 104);
+    position: sticky;
+    position: -webkit-sticky;
+    width: 200px;
+    top: 0;
+  }
+  .navbarVertical a {
+    display: block; 
+    color: rgb(252, 248, 236);
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+  }
+  .navbarVertical a:hover {
+    background-color:rgb(252,248,236);
+    color: rgb(85,85,85);
+  }
+  .navbarVertical a.active {
+    background-color: #666;
+    color: rgb(207, 176, 38);
+  }
 
   /*Texto cualquiera*/
   .texto1 {
@@ -99,7 +124,8 @@
     text-align: center;
     color:rgb(85,85,85);
     font-size: smaller;
-    
+  }
+  
   #tablaProyectos{
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -122,5 +148,3 @@
     background-color: rgb(69, 98, 104);;
     color: white;
   }
-  
-}

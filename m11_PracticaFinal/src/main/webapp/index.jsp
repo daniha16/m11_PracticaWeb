@@ -32,8 +32,13 @@
             <p>Correo de Usuario: <input type="text"  name="correo" size="40"></p>
             <p>Contraseña: <input type="password" name="pwd" placeholder="Password" size="40"></p>
             <p>
-              <input type="button" onclick = "validarLogin()" value="Iniciar sesion">
-              <input type="button" onclick = "borrar()" value="Cancelar">
+              <button class="boton">
+                <a id="desconectar" onclick="validarLogin()"> INICIAR SESION </a>
+              </button>
+              <button class="boton">
+                <a id="desconectar" onclick="borrar()"> CANCELAR </a>
+              </button>
+              
             </p>
             <br>
         </form>

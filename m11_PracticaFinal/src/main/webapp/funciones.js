@@ -186,3 +186,8 @@ function enviarDatos(info){
     }
     formulario.submit();
 }
+
+function cerrarSesion(){
+    document.forms[0].action = "LoginController?action=Logout";
+    document.forms[0].submit();
+}
