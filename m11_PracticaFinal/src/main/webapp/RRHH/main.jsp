@@ -13,14 +13,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link href="..\style_sheet.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/style_sheet.css" rel="stylesheet">
   </head>
 
   <body>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css%22%3E">
 
-
-    <img src="logo2.jpg" alt="logo pagina">
+    <img src="<%=request.getContextPath()%>/logo2.jpg" alt="logo pagina">
 
 
     <div class="navbar">
@@ -40,7 +38,7 @@
         <br><p>&nbsp;&nbsp;&nbsp;En la zona de Peticiones de Trabajadores contamos con todo lo necesario para que cualquier trabajador nos comente sus consultas.</p>
         <br><p>&nbsp;&nbsp;&nbsp;En la pestaña de Solicitar Informe podra solicitar informes de tanto empresas, proyectos y empleados.</p>
         <p>
-            <img src="logo1.png" alt="logo texto">
+            <img src="<%=request.getContextPath()%>/logo1.png" alt="logo texto">
         </p>
     </div>
  
