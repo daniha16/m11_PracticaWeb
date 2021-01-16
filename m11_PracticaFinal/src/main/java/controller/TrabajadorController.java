@@ -5,11 +5,14 @@
  */
 package controller;
 
+import com.sun.org.apache.xalan.internal.xsltc.trax.TrAXFilter;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Trabajador;
 import util.Log;
 import util.TrabajadorDao;
 
@@ -17,7 +20,7 @@ import util.TrabajadorDao;
  *
  * @author danih
  */
-public class TrabajadorController {
+public class TrabajadorController extends HttpServlet{
     private static final long serialVersionUID = 1L;
     private static String INSERT_OR_EDIT = "/user.jsp";
     private static String LIST_USER = "/listUser.jsp";
@@ -48,19 +51,19 @@ public class TrabajadorController {
         if (action.equalsIgnoreCase("delete")) {
             Log.log.info("Parametro valor DELETE");
             int userId = Integer.parseInt(request.getParameter("userId"));
-            dao.deleteUser(userId);
+            dao.deleteTrabajador(userId);
             forward = LIST_USER;
-            request.setAttribute("users", dao.getAllUsers());
+            request.setAttribute("users", dao.getAllTrabajadores());
         } else if (action.equalsIgnoreCase("edit")) {
             Log.log.info("Parametro valor EDIT");
             forward = INSERT_OR_EDIT;
             int userId = Integer.parseInt(request.getParameter("userId"));
-            User user = dao.getUserById(userId);
-            request.setAttribute("user", user);
+            Trabajador trabajador = dao.getTrabajadorByIden(userId);
+            request.setAttribute("user", trabajador);
         } else if (action.equalsIgnoreCase("listUser")) {
             Log.log.info("Parametro valor LIST");
             forward = LIST_USER;
-            request.setAttribute("users", dao.getAllUsers());
+            request.setAttribute("users", dao.getAllTrabajadores());
         } else {
             Log.log.info("Parametro valor vacio vamos a insertar");
             forward = INSERT_OR_EDIT;
@@ -83,19 +86,19 @@ public class TrabajadorController {
             throws ServletException, IOException {
         Log.log.info("Entramos por el doPost");
 /*        processRequest(request, response); */
-        User user = new User();
-        user.setFirstName(request.getParameter("firstName"));
-        user.setLastName(request.getParameter("lastName"));                
-        user.setEmail(request.getParameter("email"));
+        Trabajador user = new Trabajador();
+        user.setNombre(request.getParameter("firstName"));
+        user.setApellidos(request.getParameter("lastName"));                
+        user.setCorreo(request.getParameter("email"));
         String userid = request.getParameter("userid");
         if (userid == null || userid.isEmpty()) {
             Log.log.info("Vamos a añadir el usuario");
-            dao.addUser(user);
+            dao.addTrabajador(user);
         } else {
-            user.setUserid(Integer.parseInt(userid));
-            dao.updateUser(user);
+            user.setIden(Integer.parseInt(userid));
+            dao.updateTrabajador(user);
         }
-        request.setAttribute("users", dao.getAllUsers());
+        request.setAttribute("users", dao.getAllTrabajadores());
         RequestDispatcher view = request.getRequestDispatcher(LIST_USER);            
         view.forward(request, response);
         return;
