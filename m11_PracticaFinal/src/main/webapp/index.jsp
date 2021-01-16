@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en"> 
   <head>
@@ -16,10 +17,15 @@
     <link href="style_sheet.css" rel="stylesheet">
     <script src="funciones.js"></script>
   </head>
-
   <body>
+    <%HttpSession sesion=request.getSession(); 
+    if (!sesion.isNew()){
+        sesion.invalidate();
+    }
+    %>
+    
     <h1>LOGO INGENIEROS AL PESO</h1>
-
+    
     <div class="navbar">
       <a href="<%=request.getContextPath()%>/Empleados/main.jsp"> Empleados </a>
       <a href="<%=request.getContextPath()%>/RRHH/main.jsp"> RRHH </a>

@@ -18,7 +18,7 @@
 
   <body>
 
-    <img src="<%=request.getContextPath()%>/logo2.jpg" alt="logo pagina">
+    <img src="<%=request.getContextPath()%>/RRHH/logo2.jpg" alt="logo pagina">
 
 
     <div class="navbar">
@@ -38,7 +38,7 @@
         <br><p>&nbsp;&nbsp;&nbsp;En la zona de Peticiones de Trabajadores contamos con todo lo necesario para que cualquier trabajador nos comente sus consultas.</p>
         <br><p>&nbsp;&nbsp;&nbsp;En la pestaña de Solicitar Informe podra solicitar informes de tanto empresas, proyectos y empleados.</p>
         <p>
-            <img src="<%=request.getContextPath()%>/logo1.png" alt="logo texto">
+            <img src="<%=request.getContextPath()%>/RRHH/logo1.png" alt="logo texto">
         </p>
     </div>
  

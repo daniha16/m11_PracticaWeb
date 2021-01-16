@@ -71,7 +71,13 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sesion = request.getSession(false);
+        HttpSession sesion = request.getSession();
+        if(sesion.getAttribute("usuario")!=null){
+            Trabajador user = (Trabajador)sesion.getAttribute("usuario");
+            System.out.println("CORREO "+user.getCorreo());
+            sesion.invalidate();
+            sesion = request.getSession();
+        }
         String forward = "";
         Log.log.info("Entramos por el doPost");
         String correo = request.getParameter("correo");
@@ -107,6 +113,7 @@ public class LoginController extends HttpServlet {
                         return;
                     }                   
                 }
+                
             }
             if(pass != null || correo != null){
                 System.out.println("FALLO DE CONTRASEÑA");
