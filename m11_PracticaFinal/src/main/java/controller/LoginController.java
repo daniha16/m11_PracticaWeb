@@ -71,10 +71,12 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         HttpSession sesion = request.getSession();
         if(sesion.getAttribute("usuario")!=null){
             Trabajador user = (Trabajador)sesion.getAttribute("usuario");
             System.out.println("CORREO "+user.getCorreo());
+            System.out.println("NUEVA SESION");
             sesion.invalidate();
             sesion = request.getSession();
         }
@@ -86,43 +88,47 @@ public class LoginController extends HttpServlet {
         System.out.println(pass);
         System.out.println("HELLO THERE!");
         System.out.println(dao.getAllTrabajadores());
+        
         if(dao.getAllTrabajadores()== null){
             System.out.println("NO HAY USUARIOS");
-            response(response, "No hay usuarios");
+        }   
+        for(Trabajador elem:dao.getAllTrabajadores()){
+            System.out.println(elem.getCorreo());
+            if(correo.equals(elem.getCorreo())&& pass.equals(elem.getContraseña()) && sesion.getAttribute("usuario") == null){
+                System.out.println("El usuario se encuentra en la bd");
+                if(elem.getTipo().equals("Empleado")){
+                    System.out.println("LOGIN DE EMPLEADO");
+                    forward=LOGIN_EMPLEADOS;
+                    sesion.setAttribute("usuario", elem); 
+                    RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
+                    view.forward(request, response);
+                    return;
+                }
+                else if(elem.getTipo().equals("RRHH")){
+                    sesion.setAttribute("usuario", elem);
+                    System.out.println("LOGIN DE RRHH");
+                    forward=LOGIN_RRHH;
+                    request.setAttribute("usuario",elem);
+                    RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
+                    view.forward(request, response);
+                    return;
+                }                   
+            }
+
+        }
+        if(pass != null || correo != null){
+            System.out.println("FALLO DE CONTRASEÑA");
+            forward=LOGIN_FAILED;                      
+            RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
+            view.forward(request, response);
+            return;
         }
         else{
-            for(Trabajador elem:dao.getAllTrabajadores()){
-                System.out.println(elem.getCorreo());
-                if(correo.equals(elem.getCorreo())&& pass.equals(elem.getContraseña()) && sesion.getAttribute("usuario") == null){
-                    System.out.println("El usuario se encuentra en la bd");
-                    if(elem.getTipo().equals("Empleado")){
-                        System.out.println("LOGIN DE EMPLEADO");
-                        forward=LOGIN_EMPLEADOS;
-                        sesion.setAttribute("usuario", elem); 
-                        RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
-                        view.forward(request, response);
-                        return;
-                    }
-                    else if(elem.getTipo().equals("RRHH")){
-                        sesion.setAttribute("usuario", elem);
-                        System.out.println("LOGIN DE RRHH");
-                        forward=LOGIN_RRHH;
-                        request.setAttribute("usuario",elem);
-                        RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
-                        view.forward(request, response);
-                        return;
-                    }                   
-                }
-                
-            }
-            if(pass != null || correo != null){
-                System.out.println("FALLO DE CONTRASEÑA");
-                forward=LOGIN_FAILED;                      
-                RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
-                view.forward(request, response);
-                return;
-            }
-                
+            System.out.println("NICE TRY THOUGH");
+            forward=LOGIN_FAILED;                      
+            RequestDispatcher view = getServletContext().getRequestDispatcher(forward);            
+            view.forward(request, response);
+            return;
         }
     }
     

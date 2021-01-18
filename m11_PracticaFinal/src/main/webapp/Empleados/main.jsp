@@ -36,13 +36,6 @@
        
     <%
     Trabajador usuario = (Trabajador)request.getSession().getAttribute("usuario");
-    Object iden = request.getAttribute("iden");
-    Object nombre = request.getAttribute("nombre");
-    Object apellidos = request.getAttribute("apellidos");
-    Object correo = request.getAttribute("correo");
-    Object telefono = request.getAttribute("telefono");
-    Object horas = request.getAttribute("horas");
-    //out.println(iden+" nombre:"+nombre+" apellidos:"+apellidos+" correo:"+correo+" telefono:"+telefono+" horas:"+horas);
     %>
     <p>BIENVENIDO <%=usuario.getNombre()%>! </p>
     <!-- <input type="hidden" name="iden" value="${iden}" /> -->

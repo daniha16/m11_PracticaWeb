@@ -12,6 +12,14 @@
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EmpleadoController</servlet-name>
+        <servlet-class>controller.EmpleadoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmpresaController</servlet-name>
+        <servlet-class>controller.EmpresaController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ErrorHandler</servlet-name>
         <url-pattern>/ErrorHandler</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmpleadoController</servlet-name>
+        <url-pattern>/EmpleadoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmpresaController</servlet-name>
+        <url-pattern>/EmpresaController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -55,9 +71,9 @@
         <location>/ErrorHandler</location>
     </error-page>
     <jsp-config>
-     <jsp-property-group>
-       <url-pattern>*.jsp</url-pattern>
-       <trim-directive-whitespaces>true</trim-directive-whitespaces>
-     </jsp-property-group>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <trim-directive-whitespaces>true</trim-directive-whitespaces>
+        </jsp-property-group>
     </jsp-config>
 </web-app>

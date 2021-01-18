@@ -4,7 +4,10 @@
     Author     : danih
 --%>
 
+<%@page import="model.Trabajador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +20,9 @@
   </head>
 
   <body>
-
+    <% 
+    Trabajador usuario = (Trabajador)request.getSession().getAttribute("usuario");
+    %>
     <img src="<%=request.getContextPath()%>/RRHH/logo2.jpg" alt="logo pagina">
 
 

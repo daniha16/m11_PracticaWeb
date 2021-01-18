@@ -4,6 +4,7 @@
     Author     : danih
 --%>
 
+<%@page import="model.Trabajador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,9 +17,13 @@
   </head>
 
   <body>
+    <% 
+    Trabajador usuario = (Trabajador)request.getSession().getAttribute("usuario");
+    %>
+    
     <h1>LOGO RRHH</h1>
     <h2>Recursos Humanos</h2>
-
+    <p>BIENVENIDO <%=usuario.getNombre()%>! </p>
     <div class="navbar">
       <a href="<%=request.getContextPath()%>/RRHH/main.jsp">Home  </a>
       <a href="<%=request.getContextPath()%>/RRHH/informacion.jsp">Información</a>

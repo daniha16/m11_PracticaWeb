@@ -5,8 +5,8 @@
  */
 package controller;
 
-import com.sun.org.apache.xalan.internal.xsltc.trax.TrAXFilter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,34 +15,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Trabajador;
 import util.Log;
-import util.TrabajadorDao;
+import util.EmpleadoDao;
 
 /**
  *
  * @author danih
  */
-public class TrabajadorController extends HttpServlet{
-    private static final long serialVersionUID = 1L;
-    private static String INSERT_OR_EDIT = "/user.jsp";
-    private static String LIST_USER = "/listUser.jsp";
+public class EmpleadoController extends HttpServlet {
     private static String INICIO = "index.jsp";
-    private TrabajadorDao dao;
-    private Log log;
-
-    public TrabajadorController() {
+    private static String LIST_EMPLEADOS = "/RRHH/trabajadoresRRHH.jsp";
+    private static String INSERT_OR_EDIT = "/RRHH/editTrabajadores.jsp";
+    private EmpleadoDao dao;
+    public EmpleadoController() {
         super();
-        dao = new TrabajadorDao();
+        dao = new EmpleadoDao();
     }
-   
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -61,18 +49,23 @@ public class TrabajadorController extends HttpServlet{
                 Log.log.info("Parametro valor DELETE");
                 int userId = Integer.parseInt(request.getParameter("trabajadorIden"));
                 dao.deleteTrabajador(userId);
-                forward = LIST_USER;
-                request.setAttribute("trabajadores", dao.getAllTrabajadores());
+                forward = LIST_EMPLEADOS;
+                request.setAttribute("trabajadores", dao.getAllEmpleados());
             } else if (action.equalsIgnoreCase("edit")) {
                 Log.log.info("Parametro valor EDIT");
                 forward = INSERT_OR_EDIT;
                 int userId = Integer.parseInt(request.getParameter("trabajadorIden"));
                 Trabajador trabajador = dao.getTrabajadorByIden(userId);
                 request.setAttribute("trabajador", trabajador);
-            } else if (action.equalsIgnoreCase("listTrabajadores")) {
+            } else if (action.equalsIgnoreCase("listEmpleados")) {
                 Log.log.info("Parametro valor LIST");
-                forward = LIST_USER;
-                request.setAttribute("trabajadores", dao.getAllTrabajadores());
+                System.out.println("ESTOY EN LISTA EMPLEADOS");
+                forward = LIST_EMPLEADOS;
+                request.setAttribute("listaEmpleados", dao.getAllEmpleados());
+                System.out.println(dao.getAllEmpleados());
+                for(Trabajador i:dao.getAllEmpleados()){
+                    System.out.println(i.getNombre());
+                }
             } else {
                 Log.log.info("Parametro valor vacio vamos a insertar");
                 forward = INSERT_OR_EDIT;
@@ -83,15 +76,7 @@ public class TrabajadorController extends HttpServlet{
         }
         
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -113,8 +98,8 @@ public class TrabajadorController extends HttpServlet{
             user.setIden(Integer.parseInt(userid));
             dao.updateTrabajador(user);
         }
-        request.setAttribute("users", dao.getAllTrabajadores());
-        RequestDispatcher view = request.getRequestDispatcher(LIST_USER);            
+        request.setAttribute("empleados", dao.getAllEmpleados());
+        RequestDispatcher view = request.getRequestDispatcher(LIST_EMPLEADOS);            
         view.forward(request, response);
         return;
     }
@@ -128,4 +113,6 @@ public class TrabajadorController extends HttpServlet{
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+
 }

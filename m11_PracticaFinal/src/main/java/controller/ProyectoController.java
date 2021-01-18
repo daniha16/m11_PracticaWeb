@@ -28,11 +28,12 @@ import util.TrabajadorProyectoDao;
 public class ProyectoController extends HttpServlet{
     private static final long serialVersionUID = 1L;
     private static String INSERT_OR_EDIT = "/Empleados/proyecto.jsp";
-    private static String LISTA_PROYECTOS = "/Empleados/proyectos.jsp";
+    private static String PROYECTOS_RRHH = "/RRHH/proyectosRRHH.jsp";
     private static String TIME_PROYECTO = "/Empleados/proyectos.jsp";
     private static String ADD_TIME = "/Empleados/proyectos.jsp";
     private static String LISTA_TPROYECTOS = "/Empleados/proyectos.jsp";
-    private static String INICIO = "/index.jsp";
+    private static String LISTA_PROYECTOS = "/Empleados/proyectos.jsp";
+    private static String INICIO = "index.jsp";
     private ProyectoDao dao;
     private TrabajadorProyectoDao dao2;
     private Log log;
@@ -49,36 +50,44 @@ public class ProyectoController extends HttpServlet{
         HttpSession sesion = request.getSession();
         System.out.println("Comprobando sesiones");
         if(sesion.getAttribute("usuario") == null){
+            System.out.println("NO HAY SESIOOOOON");
             response.sendRedirect(INICIO);
         }
         else{
             String forward = "";
             System.out.println(sesion.getAttribute("usuario"));
+            Trabajador userNombre = (Trabajador)sesion.getAttribute("usuario");
+            System.out.println("NOMBRE: "+userNombre.getNombre());
             Log.log.info("Entramos en el doGet");
             String action = request.getParameter("action");
             Log.log.info("Recogemos el parametro action con valor " + action);
             if (action.equalsIgnoreCase("delete")) {
+                System.out.println("POS 1");
                 Log.log.info("Parametro valor DELETE");
                 dao.deleteProyecto("id");
                 forward = LISTA_PROYECTOS;
                 request.setAttribute("proyecto", dao.getAllProyectos());
             } else if (action.equalsIgnoreCase("edit")) {
+                System.out.println("POS 2");
                 Log.log.info("Parametro valor EDIT");
                 forward = INSERT_OR_EDIT;
                 Proyecto proyecto = dao.getProyectoById("id");
                 request.setAttribute("proyecto", proyecto);
-            } else if (action.equalsIgnoreCase("listProyecto")) {
-                System.out.println("LIST PROYECTO");
+            } else if (action.equalsIgnoreCase("listProyectosRRHH")) {
+                System.out.println("POS 3");
+                System.out.println("LISTADO CON PROYECTOS........");
                 Log.log.info("Parametro valor LIST");
-                forward = LISTA_PROYECTOS;
+                forward = PROYECTOS_RRHH;
                 System.out.println(dao.getAllProyectos());
-                request.setAttribute("proyectos", dao.getAllProyectos());
+                request.setAttribute("listaProyectos", dao.getAllProyectos());
             }else if (action.equalsIgnoreCase("timeProyecto")) {
+                System.out.println("POS 4");
                 Log.log.info("Parámetro valor GETTIME");
                 forward = TIME_PROYECTO;
                 request.setAttribute("timeProyecto", dao.getTimeProyecto("id"));
             System.out.println("Hello there 2");
             }else if (action.equalsIgnoreCase("listTrabajadorProyectos")){
+                System.out.println("POS 5");
                 Log.log.info("Parámetro valor LIST PROYECTOS TRABAJADOR");
                 forward = LISTA_TPROYECTOS;
                 System.out.println("FLAG1");

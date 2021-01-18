@@ -56,14 +56,42 @@
     color: rgb(207, 176, 38);
   }
   
+  .navbarRRHH {
+    align: center;
+    overflow: hidden;
+    background-color: rgb(69, 98, 104);
+    top: 0;
+  }
+  /* Style the navigation bar links */
+  .navbarRRHH a {
+    float: left;
+    display: block; 
+    color: rgb(252, 248, 236);
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+  }
+  /* Right-aligned link */
+  .navbarRRHH a.right {
+    float: right;
+  }
+  /* Change color on hover */
+  .navbarRRHH a:hover {
+    background-color:rgb(252,248,236);
+    color: rgb(85,85,85);
+  }
+  /* Active/current link */
+  .navbarRRHH a.active {
+    background-color: #666;
+    color: rgb(207, 176, 38);
+  }
+  
   .navbarVertical {
     list-style-type: none;
     overflow: hidden;
     background-color: rgb(69, 98, 104);
-    position: sticky;
-    position: -webkit-sticky;
     width: 200px;
-    top: 0;
+    top: 0; 
   }
   .navbarVertical a {
     display: block; 
@@ -90,7 +118,44 @@
     padding: 20px;
     text-align: center;
   }
+  
+  .menuBar {
+    align: center;
+    background-color: rgb(252, 248, 236);
+    color: rgb(85,85,85);
+    border: 10px solid rgb(69,98,104);
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .infoTable {
+    top: 0;
+  }
+   
+  #tablaEmpleados{
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
 
+  #tablaEmpleados td, #tablaEmpleados th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #tablaEmpleados tr:nth-child(even){background-color: #f2f2f2;}
+
+  #tablaEmpleados tr:hover {background-color: #ddd;}
+
+  #tablaEmpleados th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(69, 98, 104);;
+    color: white;
+  }
+  
   .listas {
     text-align:left;
     padding-left: 125px;
