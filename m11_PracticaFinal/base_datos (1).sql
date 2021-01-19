@@ -125,3 +125,12 @@ ON DELETE RESTRICT ON UPDATE CASCADE;
 
 alter table many_proyecto_has_many_trabajador add column horas integer;
 
+
+CREATE TABLE IF NOT EXISTS peticiones(
+	reqid integer NOT NULL,
+	iden integer,
+	concepto text,
+    resolucion char(20),
+    fecha date
+);
+-- ddl-end --

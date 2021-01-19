@@ -31,16 +31,31 @@
 
 
     <div class="texto1">
-        <h1>BLA BLA BLA </h1>
-        <div class="tool">
+        <div class="infoTable">
+            <table id="tablaEmpleados" > 
+                <thead> 
+                    <tr> 
+                        <th scope="col">Empleado</th> 
+                        <th scope="col">Concepto</th>
+                        <th scope="col">Resolución</th>
+                        <th scope="col">Acción</th>
+                    </tr> 
+                </thead> 
+                <tbody> 
+                    <c:forEach items="${listaPeticiones}" var="peticion"> 
+                        <tr> 
+                            <td scope="row"><c:out value="${peticion.iden}" /></td> 
+                            <td><c:out value="${peticion.concepto}" /></td> 
+                            <td><c:out value="${peticion.resolucion}"/></td>  
+                            <td> 
+                                <input type="button" onclick = "adminResolucion()" value="Aceptar">                          
+                                <input type="button" onclick = "adminResolucion()" value="Denegar">   
+                            </td>  
+                        </tr> 
+                    </c:forEach> 
+                </tbody> 
+            </table> 
         </div>
-        <br><p>BLA BLA BLA</p>
-        <br><p>&nbsp;&nbsp;&nbsp;BLA BLA BLA</p>
-        <br><p>&nbsp;&nbsp;&nbsp;BLA BLA BLA</p>
-        <br><p>&nbsp;&nbsp;&nbsp;BLA BLA BLA</p>
-        <p>
-            <img src=" " alt="logo texto">
-        </p>
     </div>
 
 
