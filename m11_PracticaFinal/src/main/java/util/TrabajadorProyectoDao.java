@@ -30,7 +30,7 @@ public class TrabajadorProyectoDao {
     public List<TrabajadorProyecto> getProyectoByIden(int iden){
          List<TrabajadorProyecto> tpdb = new ArrayList<TrabajadorProyecto>();
         try{
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from many_proyecto_has_many_trabajador where iden_trabajador=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from proyecto_trabajadores where iden_trabajador=?");
             preparedStatement.setInt(1, iden);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {

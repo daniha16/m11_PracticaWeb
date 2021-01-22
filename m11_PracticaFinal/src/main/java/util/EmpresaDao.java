@@ -30,7 +30,7 @@ public class EmpresaDao {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("insert into empresa(cif,nombre,direccion,codigo_postal,poblacion,provincia,telefono) values (?, ?, ?, ?, ?, ?, ? )");
 // Parameters start with 1 
-            preparedStatement.setInt(1, empresa.getCif());
+            preparedStatement.setString(1, empresa.getCif());
             preparedStatement.setString(2, empresa.getNombre()); 
             preparedStatement.setString(3, empresa.getDireccion());
             preparedStatement.setInt(4, empresa.getCodigoPostal());
@@ -65,7 +65,7 @@ public class EmpresaDao {
             preparedStatement.setString(4, empresa.getPoblacion());
             preparedStatement.setString(5, empresa.getProvincia());
             preparedStatement.setInt(6, empresa.getTelefono());
-            preparedStatement.setInt(7, empresa.getCif());
+            preparedStatement.setString(7, empresa.getCif());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);            
@@ -76,19 +76,31 @@ public class EmpresaDao {
         List<Empresa> empresasdb = new ArrayList<Empresa>();
         if (connection != null)
         {
+            System.out.println("getAllEmpresas");
             try {
                 Statement statement = connection.createStatement();
                 ResultSet rs = statement.executeQuery("select * from empresa;");
                 while (rs.next()) {
                     Empresa empresa = new Empresa();
-                    empresa.setCif(rs.getInt("cif"));
+                    empresa.setCif(rs.getString("cif"));
                     empresa.setNombre(rs.getString("nombre"));
                     empresa.setDireccion(rs.getString("direccion"));
                     empresa.setCodigoPostal(rs.getInt("codigo_postal"));
                     empresa.setPoblacion(rs.getString("poblacion"));
                     empresa.setProvincia(rs.getString("provincia"));
                     empresa.setTelefono(rs.getInt("telefono"));
+                    System.out.println("Empresa: "+empresa.getCif());
+                    System.out.println("Empresa: "+empresa.getNombre());
+                    System.out.println("Empresa: "+empresa.getDireccion());
+                    System.out.println("Empresa: "+empresa.getCodigoPostal());
+                    
+                    System.out.println("Empresa: "+empresa.getPoblacion());
+                    System.out.println("Empresa: "+empresa.getProvincia());
+                    System.out.println("Empresa: "+empresa.getTelefono());
                     empresasdb.add(empresa);
+                }
+                for(Empresa i:empresasdb){
+                    System.out.println(i.getCif());
                 }
             } catch (SQLException e) {
                 Log.logdb.error("SQL Exception: " + e);            
@@ -110,7 +122,7 @@ public class EmpresaDao {
             preparedStatement.setInt(1, empresaCif);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                empresa.setCif(rs.getInt("cif"));
+                empresa.setCif(rs.getString("cif"));
                 empresa.setNombre(rs.getString("nombre"));
                 empresa.setDireccion(rs.getString("direccion"));
                 empresa.setCodigoPostal(rs.getInt("codigo_postal"));

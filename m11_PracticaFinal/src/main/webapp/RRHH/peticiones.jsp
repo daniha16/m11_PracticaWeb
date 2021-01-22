@@ -35,6 +35,7 @@
             <table id="tablaEmpleados" > 
                 <thead> 
                     <tr> 
+                        <th scope="col">ID Peticion</th> 
                         <th scope="col">Empleado</th> 
                         <th scope="col">Concepto</th>
                         <th scope="col">Resolución</th>
@@ -44,7 +45,8 @@
                 <tbody> 
                     <c:forEach items="${listaPeticiones}" var="peticion"> 
                         <tr> 
-                            <td scope="row"><c:out value="${peticion.iden}" /></td> 
+                            <td scope="row"><c:out value="${peticion.reqid}" /></td> 
+                            <td><c:out value="${peticion.iden}" /></td>
                             <td><c:out value="${peticion.concepto}" /></td> 
                             <td><c:out value="${peticion.resolucion}"/></td>  
                             <td> 

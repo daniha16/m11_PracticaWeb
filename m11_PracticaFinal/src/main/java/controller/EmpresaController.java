@@ -65,8 +65,14 @@ public class EmpresaController extends HttpServlet{
                 forward = EMPRESAS_RRHH;
                 request.setAttribute("listaEmpresas", dao.getAllEmpresas());
                 System.out.println(dao.getAllEmpresas());
-                for(Empresa i:dao.getAllEmpresas()){
-                    System.out.println(i.getNombre());
+                for(Empresa elem:dao.getAllEmpresas()){
+                    System.out.println("PARTE2: "+elem.getCif());
+                    System.out.println("PARTE2: "+elem.getNombre());
+                    System.out.println("PARTE2: "+elem.getCodigoPostal());
+                    System.out.println("PARTE2: "+elem.getDireccion());
+                    System.out.println("PARTE2: "+elem.getPoblacion());
+                    System.out.println("PARTE2: "+elem.getProvincia());
+                    System.out.println("PARTE2: "+elem.getTelefono());
                 }
             } else {
                 Log.log.info("Parametro valor vacio vamos a insertar");

@@ -62,7 +62,7 @@
                             <td><c:out value="${empresa.codigo_postal}" /></td>  
                             <td><c:out value="${empresa.poblacion}" /></td>  
                             <td><c:out value="${empresa.provincia}" /></td>  
-                            <td><c:out value="${empresa.telefono}" /></td>  
+                            <td><c:out value="${empresa.telefono}" /></td> 
                         </tr> 
                     </c:forEach> 
                 </tbody> 

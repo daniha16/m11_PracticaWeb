@@ -10,7 +10,7 @@ package model;
  * @author danih
  */
 public class Empresa {
-    private int cif;
+    private String cif;
     private String nombre;
     private String direccion;
     private int codigo_postal;
@@ -18,7 +18,7 @@ public class Empresa {
     private String provincia;
     private int telefono;
     
-    public int getCif(){
+    public String getCif(){
         return cif;
     }
     
@@ -45,7 +45,7 @@ public class Empresa {
         return telefono;
     }
     
-    public void setCif(int cif){
+    public void setCif(String cif){
         this.cif=cif;
     }
     
