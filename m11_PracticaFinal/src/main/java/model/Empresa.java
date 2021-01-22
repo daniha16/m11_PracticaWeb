@@ -29,8 +29,8 @@ public class Empresa {
     public String getDireccion(){
         return direccion;
     }
-    
-    public int getCodigoPostal(){
+
+    public int getCodigo_postal() {
         return codigo_postal;
     }
     
@@ -56,10 +56,11 @@ public class Empresa {
     public void setDireccion(String direccion){
         this.direccion=direccion;
     }
-    
-    public void setCodigoPostal(int cp){
-        this.codigo_postal=cp;
+
+    public void setCodigo_postal(int codigo_postal) {
+        this.codigo_postal = codigo_postal;
     }
+    
     
     public void setPoblacion(String poblacion){
         this.poblacion=poblacion;

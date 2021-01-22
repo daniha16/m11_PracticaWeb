@@ -68,7 +68,7 @@ public class EmpresaController extends HttpServlet{
                 for(Empresa elem:dao.getAllEmpresas()){
                     System.out.println("PARTE2: "+elem.getCif());
                     System.out.println("PARTE2: "+elem.getNombre());
-                    System.out.println("PARTE2: "+elem.getCodigoPostal());
+                    System.out.println("PARTE2: "+elem.getCodigo_postal());
                     System.out.println("PARTE2: "+elem.getDireccion());
                     System.out.println("PARTE2: "+elem.getPoblacion());
                     System.out.println("PARTE2: "+elem.getProvincia());

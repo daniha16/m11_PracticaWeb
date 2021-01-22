@@ -33,7 +33,7 @@ public class EmpresaDao {
             preparedStatement.setString(1, empresa.getCif());
             preparedStatement.setString(2, empresa.getNombre()); 
             preparedStatement.setString(3, empresa.getDireccion());
-            preparedStatement.setInt(4, empresa.getCodigoPostal());
+            preparedStatement.setInt(4, empresa.getCodigo_postal());
             preparedStatement.setString(5, empresa.getPoblacion());
             preparedStatement.setString(6, empresa.getProvincia());
             preparedStatement.setInt(7, empresa.getTelefono());
@@ -61,7 +61,7 @@ public class EmpresaDao {
             
             preparedStatement.setString(1, empresa.getNombre()); 
             preparedStatement.setString(2, empresa.getDireccion());
-            preparedStatement.setInt(3, empresa.getCodigoPostal());
+            preparedStatement.setInt(3, empresa.getCodigo_postal());
             preparedStatement.setString(4, empresa.getPoblacion());
             preparedStatement.setString(5, empresa.getProvincia());
             preparedStatement.setInt(6, empresa.getTelefono());
@@ -85,22 +85,21 @@ public class EmpresaDao {
                     empresa.setCif(rs.getString("cif"));
                     empresa.setNombre(rs.getString("nombre"));
                     empresa.setDireccion(rs.getString("direccion"));
-                    empresa.setCodigoPostal(rs.getInt("codigo_postal"));
+                    empresa.setCodigo_postal(rs.getInt("codigo_postal"));
                     empresa.setPoblacion(rs.getString("poblacion"));
                     empresa.setProvincia(rs.getString("provincia"));
                     empresa.setTelefono(rs.getInt("telefono"));
                     System.out.println("Empresa: "+empresa.getCif());
                     System.out.println("Empresa: "+empresa.getNombre());
                     System.out.println("Empresa: "+empresa.getDireccion());
-                    System.out.println("Empresa: "+empresa.getCodigoPostal());
-                    
+                    System.out.println("Empresa: "+empresa.getCodigo_postal());
                     System.out.println("Empresa: "+empresa.getPoblacion());
                     System.out.println("Empresa: "+empresa.getProvincia());
                     System.out.println("Empresa: "+empresa.getTelefono());
                     empresasdb.add(empresa);
                 }
                 for(Empresa i:empresasdb){
-                    System.out.println(i.getCif());
+                    System.out.println(i.getCodigo_postal());
                 }
             } catch (SQLException e) {
                 Log.logdb.error("SQL Exception: " + e);            
@@ -125,7 +124,7 @@ public class EmpresaDao {
                 empresa.setCif(rs.getString("cif"));
                 empresa.setNombre(rs.getString("nombre"));
                 empresa.setDireccion(rs.getString("direccion"));
-                empresa.setCodigoPostal(rs.getInt("codigo_postal"));
+                empresa.setCodigo_postal(rs.getInt("codigo_postal"));
                 empresa.setPoblacion(rs.getString("poblacion"));
                 empresa.setProvincia(rs.getString("provincia"));
                 empresa.setTelefono(rs.getInt("telefono"));
