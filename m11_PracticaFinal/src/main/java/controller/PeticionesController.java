@@ -64,7 +64,7 @@ private static String INICIO = "index.jsp";
                 request.setAttribute("listaPeticiones", dao.getAllPeticiones());
                 System.out.println(dao.getAllPeticiones());
                 for(Peticion i:dao.getAllPeticiones()){
-                    System.out.println(i.getIden());
+                    System.out.println(i.getReqid());
                 }
             } else {
                 Log.log.info("Parametro valor vacio vamos a insertar");
