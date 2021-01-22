@@ -130,6 +130,7 @@ CREATE TABLE IF NOT EXISTS peticiones(
 	iden integer,
 	concepto text,
     resolucion char(20),
-    fecha date
+    fecha date,
+    CONSTRAINT peticiones_pk PRIMARY KEY (reqid)
 );
 -- ddl-end --

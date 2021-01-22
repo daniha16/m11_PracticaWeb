@@ -29,7 +29,7 @@
     <div class="navbar">
       <a href="<%=request.getContextPath()%>/RRHH/main.jsp">Home  </a>
       <a href="<%=request.getContextPath()%>/RRHH/informacion.jsp">Información</a>
-      <a href="<%=request.getContextPath()%>/RRHH/peticiones.jsp">Peticiones de Trabajadores</a>
+      <a href="<%=request.getContextPath()%>/PeticionesController?action=listPeticiones">Peticiones de Trabajadores</a>
       <a href="<%=request.getContextPath()%>/RRHH/informe.jsp">Solicitar Informe</a>
     </div>
 
