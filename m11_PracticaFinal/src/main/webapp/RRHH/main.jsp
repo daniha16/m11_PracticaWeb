@@ -45,6 +45,9 @@
         <p>
             <img src="<%=request.getContextPath()%>/RRHH/logo1.png" alt="logo texto">
         </p>
+        <button class="boton">
+          <a id="desconectar" onclick='location.href="<%=request.getContextPath()%>/LoginController?action=Logout"'> DESCONECTAR </a>
+        </button>
     </div>
  
   </body>
