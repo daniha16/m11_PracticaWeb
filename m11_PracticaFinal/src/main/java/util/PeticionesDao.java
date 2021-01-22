@@ -42,11 +42,11 @@ public class PeticionesDao {
         }
     }
 
-    public void deletePeticion(String proyectoId) {
+    public void deletePeticion(int peticionId) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("delete from proyecto where id=?");
             // Parameters start with 1 
-            preparedStatement.setString(1, proyectoId);
+            preparedStatement.setInt(1, peticionId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);
@@ -96,11 +96,11 @@ public class PeticionesDao {
        
     }
 
-    public Peticion getPeticionById(String peticionId) {
+    public Peticion getPeticionById(int peticionId) {
         Peticion peticion = new Peticion();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from peticiones where id=?");
-            preparedStatement.setString(1, peticionId);
+            preparedStatement.setInt(1, peticionId);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 peticion.setReqid(rs.getInt("reqid"));

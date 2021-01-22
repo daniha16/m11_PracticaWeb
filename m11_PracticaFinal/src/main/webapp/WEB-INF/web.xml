@@ -20,6 +20,10 @@
         <servlet-name>EmpresaController</servlet-name>
         <servlet-class>controller.EmpresaController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PeticionesController</servlet-name>
+        <servlet-class>controller.PeticionesController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ErrorHandler</servlet-name>
         <url-pattern>/ErrorHandler</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>EmpresaController</servlet-name>
         <url-pattern>/EmpresaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PeticionesController</servlet-name>
+        <url-pattern>/PeticionesController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
