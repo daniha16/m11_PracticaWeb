@@ -31,7 +31,7 @@ insert into m11practicafinal.proyecto values("Proyecto2",0,"Nuevo proyecto","A71
 insert into peticiones values(1,1,"Vacaciones","Pendiente",'2021-12-24');
 select * from peticiones;
 delete from peticiones where reqid=1;
-update peticiones set resolucion="Denegada" where reqid=1;
+update peticiones set resolucion="Pendiente" where reqid=1;
 drop table peticiones;
 
 insert into empresa values("A71356125","Empresa1","C\Mar cantabrico 5, 102",28921,"Rivas","Madrid",217418123);
