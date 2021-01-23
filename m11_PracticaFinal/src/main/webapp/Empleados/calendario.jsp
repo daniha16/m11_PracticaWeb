@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link HREF="<%=request.getContextPath()%>/style_sheet.css" TYPE="text/css" rel="stylesheet">
     <script src="<%=request.getContextPath()%>/funciones.js"></script>
-    <script src="<%=request.getContextPath()%>/scripts.js"></script>
+    
   </head>
 
   <body>
@@ -58,6 +58,7 @@
       
           <div class="calendar__dates" id="dates"></div>
       </div>
+        <script src="<%=request.getContextPath()%>/scripts.js"></script>
     </div>
 
     <div class="pie">
