@@ -47,7 +47,6 @@
             <input type="time" id="hora_entrada" value="00:00" name="salida-end" min="00:00" max="23:59" required> <br>
             <br><label for="fechaseleccionada">Día . . . . . . . </label>
             <input type="date" id="start" name="trip-start" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
-
             <br><button class="boton">
                 <a id="solicitar"> MARCAJE </a>
             </button>
