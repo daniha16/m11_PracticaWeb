@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link HREF="<%=request.getContextPath()%>/style_sheet.css" TYPE="text/css" rel="stylesheet">
     <script src="<%=request.getContextPath()%>/funciones.js"></script>
+    <script src="<%=request.getContextPath()%>/scripts.js"></script>
   </head>
 
   <body>
@@ -37,6 +38,26 @@
 
     <div class="texto1">
         <h2>CALENDARIO </h2>    
+        <div class="calendar">
+          <div class="calendar__info">
+              <div class="calendar__prev" id="prev-month">&#9664;</div>
+              <div class="calendar__month" id="month"></div>
+              <div class="calendar__year" id="year"></div>
+              <div class="calendar__next" id="next-month">&#9654;</div>
+          </div>
+      
+          <div class="calendar__week">
+              <div class="calendar__day calendar__item">L</div>
+              <div class="calendar__day calendar__item">M</div>
+              <div class="calendar__day calendar__item">X</div>
+              <div class="calendar__day calendar__item">J</div>
+              <div class="calendar__day calendar__item">V</div>
+              <div class="calendar__day calendar__item">S</div>
+              <div class="calendar__day calendar__item">D</div>
+          </div>
+      
+          <div class="calendar__dates" id="dates"></div>
+      </div>
     </div>
 
     <div class="pie">
