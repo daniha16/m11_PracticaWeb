@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package model;
+import java.util.Date;
 
 /**
  *
@@ -14,6 +16,8 @@ public class Peticion {
     private int iden;   
     private String concepto;
     private String resolucion;
+    private String tipo;
+    private Date fecha;
 
     public int getReqid() {
         return reqid;
@@ -30,6 +34,12 @@ public class Peticion {
     public String getResolucion() {
         return resolucion;
     }
+    public String getTipo() {
+        return tipo;
+    }
+    public Date getFecha() {
+        return fecha;
+    }
 
     public void setIden(int iden) {
         this.iden = iden;
@@ -45,6 +55,12 @@ public class Peticion {
 
     public void setReqid(int reqid) {
         this.reqid = reqid;
+    }
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
     
     
