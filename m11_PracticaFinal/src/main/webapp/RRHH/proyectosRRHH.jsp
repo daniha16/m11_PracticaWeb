@@ -58,7 +58,7 @@
                             <td><c:out value="${proyecto.descripcion}" /></td> 
                             <td><c:out value="${proyecto.cif_empresa}" /></td>  
                             <td>
-                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/EmpleadoController?action=update&proyectoId=<c:out value="${proyecto.id}" />"' value="Editar">                        
+                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/ProyectoController?action=update&proyectoId=<c:out value="${proyecto.id}" />"' value="Editar">                        
                                 <input type="button" onclick ='location.href="<%=request.getContextPath()%>/ProyectoController?action=delete&proyectoId=<c:out value="${proyecto.id}" />"' value="Eliminar">
                             </td>
                         </tr> 

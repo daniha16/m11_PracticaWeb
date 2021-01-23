@@ -52,6 +52,7 @@
                         <th scope="col">Poblacion</th>
                         <th scope="col">Provincia</th>
                         <th scope="col">Telefono</th>
+                        <th scope="col">Acción</th>
                     </tr> 
                 </thead> 
                 <tbody> 
@@ -64,6 +65,10 @@
                             <td><c:out value="${empresa.poblacion}" /></td>  
                             <td><c:out value="${empresa.provincia}" /></td>  
                             <td><c:out value="${empresa.telefono}" /></td> 
+                            <td>
+                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/EmpresaController?action=update&empresaCif=<c:out value="${empresa.cif}" />"' value="Editar">                        
+                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/EmpresaController?action=delete&empresaCif=<c:out value="${empresa.cif}" />"' value="Eliminar">
+                            </td>
                         </tr> 
                     </c:forEach> 
                 </tbody> 

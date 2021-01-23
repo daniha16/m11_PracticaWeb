@@ -49,14 +49,13 @@ public class EmpresaController extends HttpServlet{
             Log.log.info("Recogemos el parametro action con valor " + action);
             if (action.equalsIgnoreCase("delete")) {
                 Log.log.info("Parametro valor DELETE");
-                int userId = Integer.parseInt(request.getParameter("empresaCIF"));
-                dao.deleteEmpresa(userId);
+                dao.deleteEmpresa(request.getParameter("empresaCif"));
                 forward = EMPRESAS_RRHH;
-                request.setAttribute("empresas", dao.getAllEmpresas());
+                request.setAttribute("listaEmpresas", dao.getAllEmpresas());
             } else if (action.equalsIgnoreCase("edit")) {
                 Log.log.info("Parametro valor EDIT");
                 forward = INSERT_OR_EDIT;
-                int userId = Integer.parseInt(request.getParameter("empresaCIF"));
+                int userId = Integer.parseInt(request.getParameter("empresaCif"));
                 Empresa empresa = dao.getEmpresaByCif(userId);
                 request.setAttribute("empresa", empresa);
             } else if (action.equalsIgnoreCase("listEmpresas")) {
