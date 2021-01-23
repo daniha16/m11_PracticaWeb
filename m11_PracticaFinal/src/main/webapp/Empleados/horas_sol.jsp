@@ -41,6 +41,8 @@
           <input type="time" id="hora_salida" value="00:00" name="salida-start" min="08:30" max="18:00" required> <br>
           <br><label for="horaseleccionada">Selecciona la hora de entrada . . .</label>
           <input type="time" id="hora_entrada" value="00:00" name="salida-end" min="08:30" max="18:00" required> <br>
+          <br><label for="conceptoh">Indique breve conepto:</label>
+          <br><input type="text" id="conceptoh" name="conceptoho"> <br>
           <br><button class="boton">
             <a id="solicitar"> SOLICITAR </a>
           </button>
