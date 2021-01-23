@@ -37,37 +37,18 @@
 
     <div class="texto1">
         <h2>Peticiones </h2>
-        <h3> Dias libres </h2>
-        <form action="">
-          <br><label for="fechaseleccionada">Selecciona el día libre</label>
-          <input type="date" id="start" name="trip-start" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
-          <br><label for="conceptoh">Indique breve conepto:</label>
-          <br><input type="text" id="conceptoh" name="conceptoho"> <br>
+        <h3> Dia libre </h2>
         <b><button class="boton_claro">
-          <a id="solicitar_dia"> Día libre </a>
+          <a  href="dias_libres_sol.jsp"> Día libre </a>
         </button>
         <h3> Horas libres</h2>
         <p>El horario de la oficina es de 08:30h a 18:00h</p>
-        <form action="">
-          <br><label for="horaseleccionada">Selecciona la hora de salida . . . . .</label>
-          <input type="time" id="hora_salida" value="00:00" name="salida-start" min="08:30" max="18:00" required> <br>
-          <br><label for="horaseleccionada">Selecciona la hora de entrada . . .</label>
-          <input type="time" id="hora_entrada" value="00:00" name="salida-end" min="08:30" max="18:00" required> <br>
-          <br><label for="conceptod">Indique breve conepto:</label>
-          <br><input type="text" id="conceptod" name="conceptodi"> <br>
-        <br><br><button class="boton_claro">
-          <a id="solicitar_hora"> Horas libres </a>
+        <b><button class="boton_claro">
+          <a  href="horas_sol.jsp"> Horas libres </a>
         </button>
         <h3> Vacaciones completas </h3>
-        <form action="">
-          <br><label for="fechaseleccionada">Selecciona el <b>primer</b> día de vacaciones</label>
-          <input type="date" id="start" name="trip-start" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
-          <br><label for="fechaseleccionada">Selecciona el <b>último</b> día de vacaciones</label>
-          <input type="date" id="end" name="trip-start" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
-          <br><label for="conceptov">Indique breve conepto:</label>
-          <br><input type="text" id="conceptov" name="conceptova"> <br>
-          <br><br><button class="boton_claro">
-          <a id="solicitar_vacaciones"> Vacaciones </a>
+          <b><button class="boton_claro">
+              <a  href="vacaciones_sol.jsp"> Vacaciones </a>
         </button>
         </form> 
     </div>
