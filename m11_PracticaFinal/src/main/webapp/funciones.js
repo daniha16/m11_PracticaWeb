@@ -191,3 +191,14 @@ function cerrarSesion(){
     document.forms[0].action = "LoginController?action=Logout";
     document.forms[0].submit();
 }
+
+function adminResolucion(res){
+    if(res=="Aceptar"){
+        
+    }
+    else if(res=="Denegar"){
+        formulario = document.getElementById("formId");
+        formulario.submit();
+        
+    }
+}
