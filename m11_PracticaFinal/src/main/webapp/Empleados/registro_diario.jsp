@@ -49,7 +49,7 @@
             <input type="date" id="start" name="trip-start" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
 
             <br><button class="boton">
-                <a id="solicitar"> SOLICITAR </a>
+                <a id="solicitar"> MARCAJE </a>
             </button>
         </form>
         <p>Estado de conexión: CONECTADO</p>
