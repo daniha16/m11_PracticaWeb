@@ -66,6 +66,19 @@ public class PeticionesDao {
         }
     }
     
+    public void aceptarPeticion(int reqId) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("update peticiones set resolucion=?" + "where reqid=?");
+// Parameters start with 1 
+            preparedStatement.setString(1, "Aceptada");
+            preparedStatement.setInt(2, reqId);
+            preparedStatement.executeUpdate();
+            System.out.println("Base de datos supuestamente actualizada");
+        } catch (SQLException e) {
+            Log.logdb.error("SQL Exception: " + e);            
+        }
+    }
+    
     public void updatePeticion(Peticion peticion) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("update peticiones set iden=?, concepto=?, resolucion=?" + "where reqid=?");

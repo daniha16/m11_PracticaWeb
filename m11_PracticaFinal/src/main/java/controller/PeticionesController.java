@@ -79,6 +79,19 @@ private static String INICIO = "index.jsp";
                 for(Peticion i:dao.getAllPeticiones()){
                     System.out.println(i.getReqid());
                 }
+            }else if (action.equalsIgnoreCase("aceptar")) {
+                Log.log.info("Parametro valor LIST");
+                System.out.println("ESTOY EN ACEPTAR");
+                forward = LIST_PETICIONES;
+                System.out.println("Antes de petar");
+                int reqId = Integer.parseInt(request.getParameter("reqId"));
+                System.out.println("REQID: "+reqId);
+                dao.aceptarPeticion(reqId);
+                request.setAttribute("listaPeticiones", dao.getAllPeticiones());
+                System.out.println(dao.getAllPeticiones());
+                for(Peticion i:dao.getAllPeticiones()){
+                    System.out.println(i.getReqid());
+                }
             }else {
                 Log.log.info("Parametro valor vacio vamos a insertar");
                 forward = INSERT_OR_EDIT;

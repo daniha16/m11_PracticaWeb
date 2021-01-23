@@ -53,7 +53,7 @@
                             <td><c:out value="${peticion.concepto}" /></td> 
                             <td><c:out value="${peticion.resolucion}"/></td>  
                             <td> 
-                                <input type="button" onclick = 'location.href="<%=request.getContextPath()%>/PeticionesController?action=aceptar"' value="Aceptar">                        
+                                <input type="button" onclick = 'location.href="<%=request.getContextPath()%>/PeticionesController?action=aceptar&reqId=<c:out value="${peticion.reqid}" />"' value="Aceptar">                        
                                 <input type="button" onclick ='location.href="<%=request.getContextPath()%>/PeticionesController?action=denegar&reqId=<c:out value="${peticion.reqid}" />"'  value="Denegar">
                             </td>  
                         </tr> 
