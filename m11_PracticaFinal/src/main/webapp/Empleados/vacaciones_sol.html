@@ -17,12 +17,11 @@
     <h2>EMPLEADOS</h2>
 
     <div class="navbar">
-      <a href="main.html"> Inicio </a>
-      <a href="registro_diario.html"> Registro diario </a>
-      <a href="proyectos.html"> Proyectos </a>
-      <a href="calendario.html"> Calendario </a>
-      <a href="estadisticas.html"> Estadísticas </a>
-      <a href="solicitudes.html"> Solicitudes </a>
+      <a href="<%=request.getContextPath()%>/Empleados/main.jsp"> Inicio </a>
+      <a href="<%=request.getContextPath()%>/Empleados/registro_diario.jsp"> Registro diario </a>
+      <a href="<%=request.getContextPath()%>/ProyectoController?action=listTrabajadorProyectos"> Proyectos </a>
+      <a href="<%=request.getContextPath()%>/Empleados/calendario.jsp"> Calendario </a>
+      <a href="<%=request.getContextPath()%>/Empleados/solicitudes.jsp"> Solicitudes </a>
     </div>
 
     <div class="texto1">
