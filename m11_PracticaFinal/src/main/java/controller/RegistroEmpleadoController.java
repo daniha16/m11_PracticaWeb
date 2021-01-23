@@ -51,7 +51,7 @@ public class RegistroEmpleadoController extends HttpServlet{
             Log.log.info("Entramos en el doGet");
             String action = request.getParameter("action");
             Log.log.info("Recogemos el parametro action con valor " + action);
-            if (action.equalsIgnoreCase("marcaje")) {
+            if (action.equalsIgnoreCase("entrada")) {
                 Log.log.info("Parametro valor MARCAJE");
                 Date fecha = new Date();
                 long tiempo = fecha.getTime();
