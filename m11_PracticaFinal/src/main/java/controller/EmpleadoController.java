@@ -47,10 +47,14 @@ public class EmpleadoController extends HttpServlet {
             Log.log.info("Recogemos el parametro action con valor " + action);
             if (action.equalsIgnoreCase("delete")) {
                 Log.log.info("Parametro valor DELETE");
+                System.out.println("ENTRANDO EN DELETE");
+                String id = request.getParameter("trabajadorIden");
+                System.out.println(id);
                 int userId = Integer.parseInt(request.getParameter("trabajadorIden"));
+                System.out.println("LA BARRERA");
                 dao.deleteTrabajador(userId);
                 forward = LIST_EMPLEADOS;
-                request.setAttribute("trabajadores", dao.getAllEmpleados());
+                request.setAttribute("listaEmpleados", dao.getAllEmpleados());
             } else if (action.equalsIgnoreCase("edit")) {
                 Log.log.info("Parametro valor EDIT");
                 forward = INSERT_OR_EDIT;

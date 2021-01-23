@@ -50,6 +50,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellidos</th>
                         <th scope="col">Telefono</th>
+                        <th scope="col">Acción</th>
                     </tr> 
                 </thead> 
                 <tbody> 
@@ -60,6 +61,10 @@
                             <td><c:out value="${empleados.nombre}" /></td>  
                             <td><c:out value="${empleados.apellidos}" /></td>  
                             <td><c:out value="${empleados.telefono}" /></td>  
+                            <td>
+                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/EmpleadoController?action=update&trabajadorIden=<c:out value="${empleados.iden}" />"' value="Editar">                        
+                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/EmpleadoController?action=delete&trabajadorIden=<c:out value="${empleados.iden}" />"' value="Eliminar">
+                            </td>
                         </tr> 
                     </c:forEach> 
                 </tbody> 

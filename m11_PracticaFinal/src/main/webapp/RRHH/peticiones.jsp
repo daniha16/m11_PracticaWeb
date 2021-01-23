@@ -61,6 +61,7 @@
                                         <input type="button" onclick ='location.href="<%=request.getContextPath()%>/PeticionesController?action=denegar&reqId=<c:out value="${peticion.reqid}" />"'  value="Denegar">
                                     </c:when> 
                                 </c:choose>
+                            </td>
                         </tr>       
                     </c:forEach> 
                 </tbody> 
