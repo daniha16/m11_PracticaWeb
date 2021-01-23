@@ -12,7 +12,7 @@
 <html lang="en">
   <head>
 
-    <title>Calendario</title>
+    <title>Peticiones</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -36,16 +36,40 @@
     </div>
 
     <div class="texto1">
-        <h2>SOLICITUDES </h2>    
-        <button class="boton_claro">
-          <a href="dias_libres_sol.html"> Día libre </a>
+        <h2>Peticiones </h2>
+        <h3> Dias libres </h2>
+        <form action="">
+          <br><label for="fechaseleccionada">Selecciona el día libre</label>
+          <input type="date" id="start" name="trip-start" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
+          <br><label for="conceptoh">Indique breve conepto:</label>
+          <br><input type="text" id="conceptoh" name="conceptoho"> <br>
+        <b><button class="boton_claro">
+          <a id="solicitar_dia"> Día libre </a>
         </button>
+        <h3> Horas libres</h2>
+        <p>El horario de la oficina es de 08:30h a 18:00h</p>
+        <form action="">
+          <br><label for="horaseleccionada">Selecciona la hora de salida . . . . .</label>
+          <input type="time" id="hora_salida" value="00:00" name="salida-start" min="08:30" max="18:00" required> <br>
+          <br><label for="horaseleccionada">Selecciona la hora de entrada . . .</label>
+          <input type="time" id="hora_entrada" value="00:00" name="salida-end" min="08:30" max="18:00" required> <br>
+          <br><label for="conceptod">Indique breve conepto:</label>
+          <br><input type="text" id="conceptod" name="conceptodi"> <br>
         <br><br><button class="boton_claro">
-          <a href="vacaciones_sol.html"> Vacaciones </a>
+          <a id="solicitar_hora"> Horas libres </a>
         </button>
-        <br><br><button class="boton_claro">
-          <a href="horas_sol.html"> Horas libres </a>
+        <h3> Vacaciones completas </h3>
+        <form action="">
+          <br><label for="fechaseleccionada">Selecciona el <b>primer</b> día de vacaciones</label>
+          <input type="date" id="start" name="trip-start" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
+          <br><label for="fechaseleccionada">Selecciona el <b>último</b> día de vacaciones</label>
+          <input type="date" id="end" name="trip-start" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
+          <br><label for="conceptov">Indique breve conepto:</label>
+          <br><input type="text" id="conceptov" name="conceptova"> <br>
+          <br><br><button class="boton_claro">
+          <a id="solicitar_vacaciones"> Vacaciones </a>
         </button>
+        </form> 
     </div>
 
     <div class="pie">
