@@ -22,7 +22,7 @@ import util.PeticionesDao;
  * @author danih
  */
 public class PeticionesController extends HttpServlet {
-private static String INICIO = "index.jsp";
+    private static String INICIO = "index.jsp";
     private static String LIST_PETICIONES = "/RRHH/peticiones.jsp";
     private static String INSERT_OR_EDIT = "/RRHH/peticiones.jsp";
     private PeticionesDao dao;

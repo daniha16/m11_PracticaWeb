@@ -61,12 +61,6 @@
                 </c:forEach> 
             </tbody> 
         </table> 
-
-        <ul class="listas">
-            <button class="boton">
-              <a id="añadir_p1" onclick="añadirP1()"> Añadir </a>
-            </button>
-        </ul>
         
     </div>
 

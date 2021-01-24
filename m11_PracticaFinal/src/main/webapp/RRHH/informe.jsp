@@ -6,6 +6,8 @@
 
 <%@page import="model.Trabajador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,16 +36,19 @@
 
 
     <div class="texto1">
-        <h1>BLA BLA BLA </h1>
-        <div class="tool">
-        </div>
-        <br><p>BLA BLA BLA</p>
-        <br><p>&nbsp;&nbsp;&nbsp;BLA BLA BLA</p>
-        <br><p>&nbsp;&nbsp;&nbsp;BLA BLA BLA</p>
-        <br><p>&nbsp;&nbsp;&nbsp;BLA BLA BLA</p>
-        <p>
-            <img src=" " alt="logo texto">
-        </p>
+        <h1>INFORME</h1>
+        <p>Introduzca el tipo de informe a solicitar:</p>
+        <select class="custom-select" id="selector1">
+          <option value="empleado">Empleado</option>
+          <option value="proyecto">Proyecto</option>
+          <option value="empresa">Empresa</option>
+        </select>
+        <select class="custom-select" id="selector2">
+          <option value="semanal">Semanal</option>
+          <option value="mensual">Mensual</option>
+          <option value="anual">Anual</option>
+        </select>
+        <input type="button" onclick ='location.href="<%=request.getContextPath()%>/InformeController?action=informe&tipo="document.getElementById("selector1").value+"&periodo="+document.getElementById("selector2").value' value="Aceptar">   
     </div>
 
 
