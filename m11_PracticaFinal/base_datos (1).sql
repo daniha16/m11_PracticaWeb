@@ -134,3 +134,13 @@ CREATE TABLE IF NOT EXISTS peticiones(
     CONSTRAINT peticiones_pk PRIMARY KEY (reqid)
 );
 -- ddl-end --
+CREATE USER 'Admin'@'localhost' identified by 'RRHH';
+grant all on m11practicafinal.* TO 'Admin'@localhost;
+CREATE USER 'Pruebas'@'localhost' identified by 'Pruebas';
+grant all on m11practicafinal.* TO 'Pruebas'@localhost;
+CREATE USER 'Consultas'@'localhost' identified by 'consultas';
+grant select on m11practicafinal.* TO 'Consultas'@localhost;
+CREATE USER 'Modificaciones'@'localhost' identified by 'modificaciones';
+grant insert, delete, alter on m11practicafinal.* TO 'Modificaciones'@localhost;
+CREATE USER 'Empleado'@'localhost' identified by 'empleado';
+grant all on m11practicafinal.* TO 'Empleado'@localhost;
