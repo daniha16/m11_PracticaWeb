@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import model.Trabajador;
 import util.Log;
 import util.EmpleadoDao;
+import util.TrabajadorDao;
 
 /**
  *
@@ -24,11 +25,14 @@ import util.EmpleadoDao;
 public class EmpleadoController extends HttpServlet {
     private static String INICIO = "index.jsp";
     private static String LIST_EMPLEADOS = "/RRHH/trabajadoresRRHH.jsp";
-    private static String INSERT_OR_EDIT = "/RRHH/editTrabajadores.jsp";
+    private static String INSERT_OR_EDIT = "/RRHH/editEmpleado.jsp";
+    private static String SERV_EMPLEADOS = "/EmpleadoController?action=listEmpleados";
     private EmpleadoDao dao;
+    private TrabajadorDao dao2;
     public EmpleadoController() {
         super();
         dao = new EmpleadoDao();
+        dao2 = new TrabajadorDao();
     }
 
     @Override
@@ -47,17 +51,33 @@ public class EmpleadoController extends HttpServlet {
             Log.log.info("Recogemos el parametro action con valor " + action);
             if (action.equalsIgnoreCase("delete")) {
                 Log.log.info("Parametro valor DELETE");
+                System.out.println("ENTRANDO EN DELETE");
+                String id = request.getParameter("trabajadorIden");
+                System.out.println(id);
                 int userId = Integer.parseInt(request.getParameter("trabajadorIden"));
+                System.out.println("LA BARRERA");
                 dao.deleteTrabajador(userId);
                 forward = LIST_EMPLEADOS;
-                request.setAttribute("trabajadores", dao.getAllEmpleados());
+                request.setAttribute("listaEmpleados", dao.getAllEmpleados());
             } else if (action.equalsIgnoreCase("edit")) {
                 Log.log.info("Parametro valor EDIT");
                 forward = INSERT_OR_EDIT;
                 int userId = Integer.parseInt(request.getParameter("trabajadorIden"));
                 Trabajador trabajador = dao.getTrabajadorByIden(userId);
-                request.setAttribute("trabajador", trabajador);
-            } else if (action.equalsIgnoreCase("listEmpleados")) {
+                request.setAttribute("empleado", trabajador);
+            } else if (action.equalsIgnoreCase("update")) {
+                Log.log.info("Parametro valor EDIT");
+                int iden = Integer.parseInt(request.getParameter("iden"));
+                Trabajador empleado = dao2.getTrabajadorByIden(iden);
+                empleado.setDni(request.getParameter("dni"));
+                empleado.setNombre(request.getParameter("nombre"));
+                System.out.println("NOMBRE: "+request.getParameter("nombre"));
+                empleado.setApellidos(request.getParameter("apellidos"));
+                empleado.setTelefono(Integer.parseInt(request.getParameter("telefono")));
+                dao.updateTrabajador(empleado);
+                response.sendRedirect(request.getContextPath()+SERV_EMPLEADOS);
+                return;
+            }else if (action.equalsIgnoreCase("listEmpleados")) {
                 Log.log.info("Parametro valor LIST");
                 System.out.println("ESTOY EN LISTA EMPLEADOS");
                 forward = LIST_EMPLEADOS;

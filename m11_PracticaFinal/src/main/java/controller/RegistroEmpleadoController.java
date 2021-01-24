@@ -6,6 +6,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import model.Proyecto;
 import model.RegistroEmpleado;
 import util.Log;
+import java.util.Date;
+import javax.servlet.http.HttpSession;
+import model.Trabajador;
 import util.RegistroEmpleadoDao;
 
 /**
@@ -22,8 +26,9 @@ import util.RegistroEmpleadoDao;
  */
 public class RegistroEmpleadoController extends HttpServlet{
     private static final long serialVersionUID = 1L;
-    private static String INSERT_OR_EDIT = "/Empleados/registro_diario.html";
-    private static String REGISTROS_EMPLEADOS = "/Empleados/registro_diario.html";
+    private static String MARCAJE_DIARIO = "/Empleados/registro_diario.jsp";
+    private static String REGISTROS_EMPLEADOS = "/Empleados/registro_diario.jsp";
+    private static String INICIO = "index.jsp";
     private RegistroEmpleadoDao dao;
     private Log log;
 
@@ -35,33 +40,31 @@ public class RegistroEmpleadoController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String forward = "";
-        Log.log.info("Entramos en el doGet");
-        String action = request.getParameter("action");
-        Log.log.info("Recogemos el parametro action con valor " + action);
-        if (action.equalsIgnoreCase("delete")) {
-            Log.log.info("Parametro valor DELETE");
-            int proyectoId = Integer.parseInt(request.getParameter("proyectoId"));
-            dao.deleteRegistroEmpleado(proyectoId);
-            forward = REGISTROS_EMPLEADOS;
-            request.setAttribute("proyectos", dao.getAllRegistros());
-        } else if (action.equalsIgnoreCase("edit")) {
-            Log.log.info("Parametro valor EDIT");
-            forward = INSERT_OR_EDIT;
-            int proyectoId = Integer.parseInt(request.getParameter("proyectoId"));
-            RegistroEmpleado registro = dao.getRegistroByIden(proyectoId);
-            request.setAttribute("proyecto", registro);
-        } else if (action.equalsIgnoreCase("listProyecto")) {
-            Log.log.info("Parametro valor LIST");
-            forward = REGISTROS_EMPLEADOS;
-            request.setAttribute("proyectos", dao.getAllRegistros());
-        } else {
-            Log.log.info("Parametro valor vacio vamos a insertar");
-            forward = INSERT_OR_EDIT;
+        HttpSession sesion = request.getSession();
+        System.out.println("Comprobando sesiones");
+        if(sesion.getAttribute("usuario") == null){
+            System.out.println("NO HAY SESIOOOOON");
+            response.sendRedirect(INICIO);
         }
-        RequestDispatcher view = request.getRequestDispatcher(forward);
-        view.forward(request, response);
-        return;
+        else{
+            String forward = "";
+            Log.log.info("Entramos en el doGet");
+            String action = request.getParameter("action");
+            Log.log.info("Recogemos el parametro action con valor " + action);
+            if (action.equalsIgnoreCase("entrada")) {
+                Log.log.info("Parametro valor MARCAJE");
+                Date fecha = new Date();
+                long tiempo = fecha.getTime();
+                Timestamp entrada = new Timestamp(tiempo);
+                Trabajador user = (Trabajador)sesion.getAttribute("usuario");
+                int iden = user.getIden();
+                forward = MARCAJE_DIARIO;
+
+            }
+            RequestDispatcher view = request.getRequestDispatcher(forward);
+            view.forward(request, response);
+            return;
+        }
     }
 
     @Override

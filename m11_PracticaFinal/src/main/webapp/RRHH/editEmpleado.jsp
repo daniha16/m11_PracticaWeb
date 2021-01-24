@@ -1,6 +1,6 @@
 <%-- 
-    Document   : proyectosRRHH
-    Created on : 15-ene-2021, 14:35:29
+    Document   : empleadosRRHH
+    Created on : 15-ene-2021, 14:35:44
     Author     : danih
 --%>
 
@@ -35,7 +35,7 @@
     </div>
 
 
-    <div class="texto1">
+    <div class="menuBar">
         <div class="navbarRRHH">
             <a href="<%=request.getContextPath()%>/EmpleadoController?action=listEmpleados">Trabajadores</a>
             <a href="<%=request.getContextPath()%>/ProyectoController?action=listProyectosRRHH">Proyectos</a>
@@ -45,29 +45,30 @@
             <table id="tablaEmpleados" > 
                 <thead> 
                     <tr> 
-                        <th scope="col">ID</th> 
-                        <th scope="col">Descripción</th>
-                        <th scope="col">CIF Empresa</th>
+                        <th scope="col">Identidicador</th> 
+                        <th scope="col">DNI</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Telefono</th>
                         <th scope="col">Acción</th>
                     </tr> 
                 </thead> 
-                <tbody> 
-                    <c:forEach items="${listaProyectos}" var="proyecto"> 
-                        <tr> 
-                            <td scope="row"><c:out value="${proyecto.id}" /></td> 
-                            <td><c:out value="${proyecto.descripcion}" /></td> 
-                            <td><c:out value="${proyecto.cif_empresa}" /></td>  
-                            <td>
-                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/ProyectoController?action=edit&id=<c:out value="${proyecto.id}" />"' value="Editar">                        
-                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/ProyectoController?action=delete&id=<c:out value="${proyecto.id}" />"' value="Eliminar">
-                            </td>
-                        </tr> 
-                    </c:forEach> 
+                <tbody>  
+                    <tr> 
+                        <td scope="row"><c:out value="${empleado.iden}" /></td> 
+                        <td><input name="dni" id="dni" value="<c:out value="${empleado.dni}" />"></td> 
+                        <td><input name="nombre" id="nombre" value="<c:out value="${empleado.nombre}" />"></td>  
+                        <td><input name="apellidos" id="apellidos" value="<c:out value="${empleado.apellidos}" />"></td>  
+                        <td><input name="telefono" id="telefono" value="<c:out value="${empleado.telefono}" />"></td>  
+                        <td>
+                            <input type="button" onclick ='location.href="<%=request.getContextPath()%>/EmpleadoController?action=update&iden=<c:out value="${empleado.iden}" />"+"&dni="+document.getElementById("dni").value+"&nombre="+document.getElementById("nombre").value+"&apellidos="+document.getElementById("apellidos").value+"&telefono="+document.getElementById("telefono").value' value="Confirmar">                        
+                            <input type="button" onclick ='location.href="<%=request.getContextPath()%>/EmpleadoController?action=listEmpleados"' value="Cancelar">
+                        </td>
+                    </tr> 
                 </tbody> 
             </table> 
         </div>
-    </div>
         
-    
+    </div>
   </body>
 </html>

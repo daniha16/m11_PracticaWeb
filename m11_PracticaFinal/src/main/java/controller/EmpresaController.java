@@ -25,6 +25,7 @@ import util.EmpresaDao;
 public class EmpresaController extends HttpServlet{
     private static String INICIO = "index.jsp";
     private static String EMPRESAS_RRHH = "/RRHH/empresasRRHH.jsp";
+    private static String DELETE_EMPRESAS = "/RRHH/empresasRRHH.jsp";
     private static String INSERT_OR_EDIT = "/RRHH/editEmpresas.jsp";
     private EmpresaDao dao;
     
@@ -49,14 +50,14 @@ public class EmpresaController extends HttpServlet{
             Log.log.info("Recogemos el parametro action con valor " + action);
             if (action.equalsIgnoreCase("delete")) {
                 Log.log.info("Parametro valor DELETE");
-                int userId = Integer.parseInt(request.getParameter("empresaCIF"));
-                dao.deleteEmpresa(userId);
-                forward = EMPRESAS_RRHH;
-                request.setAttribute("empresas", dao.getAllEmpresas());
+                System.out.println("ESTOY EN DELETE");
+                dao.deleteEmpresa(request.getParameter("empresaCif"));
+                forward = DELETE_EMPRESAS;
+                request.setAttribute("listaEmpresas", dao.getAllEmpresas());
             } else if (action.equalsIgnoreCase("edit")) {
                 Log.log.info("Parametro valor EDIT");
                 forward = INSERT_OR_EDIT;
-                int userId = Integer.parseInt(request.getParameter("empresaCIF"));
+                int userId = Integer.parseInt(request.getParameter("empresaCif"));
                 Empresa empresa = dao.getEmpresaByCif(userId);
                 request.setAttribute("empresa", empresa);
             } else if (action.equalsIgnoreCase("listEmpresas")) {

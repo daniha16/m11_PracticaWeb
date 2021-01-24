@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     
@@ -26,17 +26,29 @@
     </div>
 
     <div class="texto1">
-        <h2>MARCAJE DIARIO </h2>
-        <div class="tool">
-        </div>
-        <p>Estado de conexión: CONECTADO</p>
-        <br><p>
-          <img src="logout.png" alt="Conectado" width="65" height="65">
-        </p>
-        <br><button class="boton">
-          <a id="desconectar" onclick="cambiarDesconectar()"> DESCONECTAR </a>
-        </button>
-    </div>
+          <h2>MARCAJE DIARIO </h2>
+          <div class="tool">
+          </div>
+          <p>Introduzca la hora de entrada y salida de la empresa</p>
+          <br>
+
+          <a class="boton" href="<%=request.getContextPath()%>/RegistroEmpleadoController?action=entrada/"> ENTRADA </a>
+          <br>
+          <br>
+
+
+          <a class="boton" href="<%=request.getContextPath()%>/RegistroEmpleadoController?action=salida/"> SALIDA </a>
+          <br>
+          <br>
+          <p>Estado de conexión: CONECTADO</p>
+          <br><p>
+              <img src="logout.png" alt="Conectado" width="65" height="65">
+          </p>
+
+          <br><button class="boton">
+              <a id="desconectar" onclick="cambiarDesconectar()"> DESCONECTAR </a>
+          </button>
+      </div>
 
     <div class="pie">
       <p>Ingenieros al peso S.A.</p>

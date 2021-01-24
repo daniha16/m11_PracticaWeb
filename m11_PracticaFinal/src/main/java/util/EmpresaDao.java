@@ -43,11 +43,11 @@ public class EmpresaDao {
         }
     }
 
-    public void deleteEmpresa(int empresaCif) {
+    public void deleteEmpresa(String empresaCif) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("delete from empresa where cif=?");
             // Parameters start with 1 
-            preparedStatement.setInt(1, empresaCif);
+            preparedStatement.setString(1, empresaCif);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);

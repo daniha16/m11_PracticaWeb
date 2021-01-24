@@ -41,6 +41,7 @@
                         <th scope="col">ID Peticion</th> 
                         <th scope="col">Empleado</th> 
                         <th scope="col">Concepto</th>
+                        <th scope="col">Fecha</th>
                         <th scope="col">Resolución</th>
                         <th scope="col">Acción</th>
                     </tr> 
@@ -51,20 +52,21 @@
                             <td scope="row"><c:out value="${peticion.reqid}" /></td> 
                             <td><c:out value="${peticion.iden}" /></td>
                             <td><c:out value="${peticion.concepto}" /></td> 
+                            <td><c:out value="${peticion.fecha}"/></td>
                             <td><c:out value="${peticion.resolucion}"/></td>  
-                            <td> 
-                                <input type="button" onclick = 'location.href="<%=request.getContextPath()%>/PeticionesController?action=aceptar&reqId=<c:out value="${peticion.reqid}" />"' value="Aceptar">                        
-                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/PeticionesController?action=denegar&reqId=<c:out value="${peticion.reqid}" />"'  value="Denegar">
-                            </td>  
-                        </tr> 
+                            <td>
+                                <c:choose>
+                                    <c:when test="${peticion.resolucion == 'Pendiente'}">
+                                        <input type="button" onclick = 'location.href="<%=request.getContextPath()%>/PeticionesController?action=aceptar&reqId=<c:out value="${peticion.reqid}" />"' value="Aceptar">                        
+                                        <input type="button" onclick ='location.href="<%=request.getContextPath()%>/PeticionesController?action=denegar&reqId=<c:out value="${peticion.reqid}" />"'  value="Denegar">
+                                    </c:when> 
+                                </c:choose>
+                            </td>
+                        </tr>       
                     </c:forEach> 
                 </tbody> 
             </table> 
         </div>
     </div>
-
-
-    
-
   </body>
 </html>

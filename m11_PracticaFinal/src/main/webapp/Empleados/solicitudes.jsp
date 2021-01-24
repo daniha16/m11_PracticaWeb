@@ -12,7 +12,7 @@
 <html lang="en">
   <head>
 
-    <title>Calendario</title>
+    <title>Peticiones</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -32,21 +32,25 @@
       <a href="<%=request.getContextPath()%>/Empleados/registro_diario.jsp"> Registro diario </a>
       <a href="<%=request.getContextPath()%>/ProyectoController?action=listTrabajadorProyectos"> Proyectos </a>
       <a href="<%=request.getContextPath()%>/Empleados/calendario.jsp"> Calendario </a>
-      <a href="<%=request.getContextPath()%>/Empleados/estadisticas.jsp"> Estadísticas </a>
       <a href="<%=request.getContextPath()%>/Empleados/solicitudes.jsp"> Solicitudes </a>
     </div>
 
     <div class="texto1">
-        <h2>SOLICITUDES </h2>    
-        <button class="boton_claro">
-          <a href="dias_libres_sol.html"> Día libre </a>
+        <h2>Peticiones </h2>
+        <h3> Dia libre </h2>
+        <b><button class="boton_claro">
+          <a  href="dias_libres_sol.jsp"> Día libre </a>
         </button>
-        <br><br><button class="boton_claro">
-          <a href="vacaciones_sol.html"> Vacaciones </a>
+        <h3> Horas libres</h2>
+        <p>El horario de la oficina es de 08:30h a 18:00h</p>
+        <b><button class="boton_claro">
+          <a  href="horas_sol.jsp"> Horas libres </a>
         </button>
-        <br><br><button class="boton_claro">
-          <a href="horas_sol.html"> Horas libres </a>
+        <h3> Vacaciones completas </h3>
+          <b><button class="boton_claro">
+              <a  href="vacaciones_sol.jsp"> Vacaciones </a>
         </button>
+        </form> 
     </div>
 
     <div class="pie">

@@ -32,7 +32,6 @@
       <a href="<%=request.getContextPath()%>/Empleados/registro_diario.jsp"> Registro diario </a>
       <a href="<%=request.getContextPath()%>/ProyectoController?action=listTrabajadorProyectos"> Proyectos </a>
       <a href="<%=request.getContextPath()%>/Empleados/calendario.jsp"> Calendario </a>
-      <a href="<%=request.getContextPath()%>/Empleados/estadisticas.jsp"> Estadísticas </a>
       <a href="<%=request.getContextPath()%>/Empleados/solicitudes.jsp"> Solicitudes </a>
     </div>
 
@@ -43,6 +42,8 @@
           <input type="date" id="start" name="trip-start" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
           <br><label for="fechaseleccionada">Selecciona el <b>último</b> día de vacaciones</label>
           <input type="date" id="end" name="trip-start" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
+          <br><label for="conceptov">Indique breve conepto:</label>
+          <br><input type="text" id="conceptov" name="conceptova"> <br>
           <br><button class="boton">
             <a id="solicitar"> SOLICITAR </a>
           </button>

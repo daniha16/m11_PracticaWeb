@@ -32,20 +32,32 @@
       <a href="<%=request.getContextPath()%>/Empleados/registro_diario.jsp"> Registro diario </a>
       <a href="<%=request.getContextPath()%>/ProyectoController?action=listTrabajadorProyectos"> Proyectos </a>
       <a href="<%=request.getContextPath()%>/Empleados/calendario.jsp"> Calendario </a>
-      <a href="<%=request.getContextPath()%>/Empleados/estadisticas.jsp"> Estadísticas </a>
       <a href="<%=request.getContextPath()%>/Empleados/solicitudes.jsp"> Solicitudes </a>
     </div>
 
-    <div class="texto1">
+      <div class="texto1">
         <h2>MARCAJE DIARIO </h2>
         <div class="tool">
         </div>
+        <p>Introduzca la hora de entrada y salida de la empresa</p>
+          <form action="">
+            <br><label for="horaseleccionada"> Hora de salida . . . . .</label>
+            <input type="time" id="hora_salida" value="00:00" name="salida-start" min="00:00" max="23:59" required> <br>
+            <br><label for="horaseleccionada"> Hora de entrada . . .</label>
+            <input type="time" id="hora_entrada" value="00:00" name="salida-end" min="00:00" max="23:59" required> <br>
+            <br><label for="fechaseleccionada">Día . . . . . . . </label>
+            <input type="date" id="start" name="trip-start" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
+            <br><button class="boton">
+                <a id="solicitar"> MARCAJE </a>
+            </button>
+        </form>
         <p>Estado de conexión: CONECTADO</p>
         <br><p>
-          <img src="logout.png" alt="Conectado" width="65" height="65">
+            <img src="logout.png" alt="Conectado" width="65" height="65">
         </p>
+        
         <br><button class="boton">
-          <a id="desconectar" onclick='location.href="<%=request.getContextPath()%>/LoginController?action=Logout"'> DESCONECTAR </a>
+            <a id="desconectar" onclick="cambiarDesconectar()"> DESCONECTAR </a>
         </button>
     </div>
 

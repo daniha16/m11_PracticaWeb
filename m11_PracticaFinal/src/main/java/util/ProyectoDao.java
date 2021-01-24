@@ -42,10 +42,22 @@ public class ProyectoDao {
 
     public void deleteProyecto(String proyectoId) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("delete from proyecto where id=?");
-            // Parameters start with 1 
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from proyecto_trabajadores where id_proyecto=?");
+            System.out.println("ID: "+proyectoId);
             preparedStatement.setString(1, proyectoId);
             preparedStatement.executeUpdate();
+            List<Proyecto> proyectos = getAllProyectos();
+            for(Proyecto elem: proyectos){
+                System.out.println(elem.getId());
+            }
+            preparedStatement = connection.prepareStatement("delete from proyecto where id=?");
+            preparedStatement.setString(1, proyectoId);
+            preparedStatement.executeUpdate();
+            proyectos = getAllProyectos();
+            System.out.println("NEW LISTA");
+            for(Proyecto elem: proyectos){
+                System.out.println(elem.getId());
+            }
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);
         }
@@ -53,9 +65,9 @@ public class ProyectoDao {
 
     public void updateProyecto(Proyecto proyecto) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("update proyecto tiempo=?, descripcion=?, cif_empresa=?" + "where id=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update proyecto set tiempo=?, descripcion=?, cif_empresa=?" + "where id=?");
 // Parameters start with 1 
-            
+            System.out.println("INSIDE updateProyecto");
             preparedStatement.setInt(1, proyecto.getTiempo());            
             preparedStatement.setString(2, proyecto.getDescripcion());
             preparedStatement.setString(3, proyecto.getCif_empresa());

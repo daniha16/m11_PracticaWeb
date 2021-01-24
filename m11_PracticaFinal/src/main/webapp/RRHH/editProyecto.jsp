@@ -1,6 +1,6 @@
 <%-- 
-    Document   : proyectosRRHH
-    Created on : 15-ene-2021, 14:35:29
+    Document   : empleadosRRHH
+    Created on : 15-ene-2021, 14:35:44
     Author     : danih
 --%>
 
@@ -35,7 +35,7 @@
     </div>
 
 
-    <div class="texto1">
+    <div class="menuBar">
         <div class="navbarRRHH">
             <a href="<%=request.getContextPath()%>/EmpleadoController?action=listEmpleados">Trabajadores</a>
             <a href="<%=request.getContextPath()%>/ProyectoController?action=listProyectosRRHH">Proyectos</a>
@@ -51,23 +51,20 @@
                         <th scope="col">Acción</th>
                     </tr> 
                 </thead> 
-                <tbody> 
-                    <c:forEach items="${listaProyectos}" var="proyecto"> 
-                        <tr> 
-                            <td scope="row"><c:out value="${proyecto.id}" /></td> 
-                            <td><c:out value="${proyecto.descripcion}" /></td> 
-                            <td><c:out value="${proyecto.cif_empresa}" /></td>  
-                            <td>
-                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/ProyectoController?action=edit&id=<c:out value="${proyecto.id}" />"' value="Editar">                        
-                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/ProyectoController?action=delete&id=<c:out value="${proyecto.id}" />"' value="Eliminar">
-                            </td>
-                        </tr> 
-                    </c:forEach> 
+                <tbody>  
+                    <tr> 
+                        <td scope="row"><c:out value="${proyecto.id}" /></td> 
+                        <td><input name="desc" id="desc" value="<c:out value="${proyecto.descripcion}" />"></td> 
+                        <td><input name="cif" id="cif" value="<c:out value="${proyecto.cif_empresa}" />"></td>  
+                        <td>
+                            <input type="button" onclick ='location.href="<%=request.getContextPath()%>/ProyectoController?action=update&id=<c:out value="${proyecto.id}" />"+"&desc="+document.getElementById("desc").value+"&cif="+document.getElementById("cif").value' value="Confirmar">                        
+                            <input type="button" onclick ='location.href="<%=request.getContextPath()%>/ProyectoController?action=listProyectosRRHH"' value="Cancelar">
+                        </td>
+                    </tr> 
                 </tbody> 
             </table> 
         </div>
-    </div>
         
-    
+    </div>
   </body>
 </html>
