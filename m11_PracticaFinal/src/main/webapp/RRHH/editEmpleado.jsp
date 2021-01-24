@@ -53,20 +53,18 @@
                         <th scope="col">Acción</th>
                     </tr> 
                 </thead> 
-                <tbody> 
-                    <c:forEach items="${listaEmpleados}" var="empleados"> 
-                        <tr> 
-                            <td scope="row"><c:out value="${empleados.iden}" /></td> 
-                            <td><c:out value="${empleados.dni}" /></td> 
-                            <td><c:out value="${empleados.nombre}" /></td>  
-                            <td><c:out value="${empleados.apellidos}" /></td>  
-                            <td><c:out value="${empleados.telefono}" /></td>  
-                            <td>
-                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/EmpleadoController?action=edit&trabajadorIden=<c:out value="${empleados.iden}" />"' value="Editar">                        
-                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/EmpleadoController?action=delete&trabajadorIden=<c:out value="${empleados.iden}" />"' value="Eliminar">
-                            </td>
-                        </tr> 
-                    </c:forEach> 
+                <tbody>  
+                    <tr> 
+                        <td scope="row"><c:out value="${empleado.iden}" /></td> 
+                        <td><input name="dni" id="dni" value="<c:out value="${empleado.dni}" />"></td> 
+                        <td><input name="nombre" id="nombre" value="<c:out value="${empleado.nombre}" />"></td>  
+                        <td><input name="apellidos" id="apellidos" value="<c:out value="${empleado.apellidos}" />"></td>  
+                        <td><input name="telefono" id="telefono" value="<c:out value="${empleado.telefono}" />"></td>  
+                        <td>
+                            <input type="button" onclick ='location.href="<%=request.getContextPath()%>/EmpleadoController?action=update&iden=<c:out value="${empleado.iden}" />"+"&dni="+document.getElementById("dni").value+"&nombre="+document.getElementById("nombre").value+"&apellidos="+document.getElementById("apellidos").value+"&telefono="+document.getElementById("telefono").value' value="Confirmar">                        
+                            <input type="button" onclick ='location.href="<%=request.getContextPath()%>/EmpleadoController?action=listEmpleados"' value="Cancelar">
+                        </td>
+                    </tr> 
                 </tbody> 
             </table> 
         </div>

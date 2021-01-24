@@ -25,6 +25,7 @@ import util.EmpresaDao;
 public class EmpresaController extends HttpServlet{
     private static String INICIO = "index.jsp";
     private static String EMPRESAS_RRHH = "/RRHH/empresasRRHH.jsp";
+    private static String DELETE_EMPRESAS = "/RRHH/empresasRRHH.jsp";
     private static String INSERT_OR_EDIT = "/RRHH/editEmpresas.jsp";
     private EmpresaDao dao;
     
@@ -49,8 +50,9 @@ public class EmpresaController extends HttpServlet{
             Log.log.info("Recogemos el parametro action con valor " + action);
             if (action.equalsIgnoreCase("delete")) {
                 Log.log.info("Parametro valor DELETE");
+                System.out.println("ESTOY EN DELETE");
                 dao.deleteEmpresa(request.getParameter("empresaCif"));
-                forward = EMPRESAS_RRHH;
+                forward = DELETE_EMPRESAS;
                 request.setAttribute("listaEmpresas", dao.getAllEmpresas());
             } else if (action.equalsIgnoreCase("edit")) {
                 Log.log.info("Parametro valor EDIT");
