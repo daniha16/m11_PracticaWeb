@@ -36,7 +36,7 @@ public class TrabajadorProyectoDao {
             while (rs.next()) {
                 TrabajadorProyecto trabajadorProyecto = new TrabajadorProyecto();
                 trabajadorProyecto.setId_proyecto(rs.getString("id_proyecto"));
-                trabajadorProyecto.setIden_trabajador(rs.getString("iden_trabajador"));
+                trabajadorProyecto.setIden_trabajador(rs.getInt("iden_trabajador"));
                 trabajadorProyecto.setHoras(rs.getInt("horas"));
                 tpdb.add(trabajadorProyecto);
             }
@@ -45,5 +45,58 @@ public class TrabajadorProyectoDao {
         }
         
         return tpdb;
+    }
+    
+    public TrabajadorProyecto getTrabajadorProyecto(int iden, String id){
+        TrabajadorProyecto tp = new TrabajadorProyecto();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from proyecto_trabajadores where iden_trabajador=? and id_proyecto=?");
+            preparedStatement.setInt(1, iden);
+            preparedStatement.setString(2, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println("...............getTrabajadorProyecto............");
+            while(rs.next()){
+                tp.setIden_trabajador(rs.getInt("iden_trabajador"));
+                System.out.println(rs.getInt("iden_trabajador"));
+                tp.setId_proyecto(rs.getString("id_proyecto"));
+                System.out.println(rs.getString("id_proyecto"));
+                tp.setHoras(rs.getFloat("horas"));
+                System.out.println(rs.getFloat("horas"));
+            }
+        }catch (SQLException e) {
+            Log.logdb.error("SQL Exception: " + e);
+        }
+        return tp;
+    }
+    
+    public float getTimeProyectoIden(int iden, String id) {
+        float horas = 0;
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement("select horas from proyecto_trabajadores where iden_trabajador=? and id_proyecto=?");
+            preparedStatement.setInt(1, iden);
+            preparedStatement.setString(2, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next()){
+                horas = rs.getFloat("horas");
+            }
+        }catch (SQLException e) {
+            Log.logdb.error("SQL Exception: " + e);
+        }
+        return horas;
+    }
+
+    public void updateTimeTrabajadorProyecto(TrabajadorProyecto tp) {
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement("update proyecto_trabajadores set horas=? where iden_trabajador=? and id_proyecto=?");
+            preparedStatement.setFloat(1, tp.getHoras());
+            System.out.println("Horas2: "+tp.getHoras());
+            preparedStatement.setInt(2, tp.getIden_trabajador());
+            System.out.println("Iden2: "+tp.getIden_trabajador());
+            preparedStatement.setString(3, tp.getId_proyecto());
+            System.out.println("Id2: "+tp.getId_proyecto());
+            preparedStatement.executeUpdate();
+        }catch (SQLException e) {
+            Log.logdb.error("SQL Exception: " + e);
+        }
     }
 }

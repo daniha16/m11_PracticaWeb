@@ -30,10 +30,11 @@ public class ProyectoController extends HttpServlet{
     private static String EDIT = "/RRHH/editProyecto.jsp";
     private static String PROYECTOS_RRHH = "/RRHH/proyectosRRHH.jsp";
     private static String TIME_PROYECTO = "/Empleados/proyectos.jsp";
-    private static String ADD_TIME = "/Empleados/proyectos.jsp";
+    private static String ADD_TIME = "/Empleados/addTimeProyectos.jsp";
     private static String LISTA_TPROYECTOS = "/Empleados/proyectos.jsp";
     private static String LISTA_PROYECTOS = "/Empleados/proyectos.jsp";
-    private static String SERV_PROYECTOS = "/ProyectoController?action=listProyectosRRHH";
+    private static String SERV_PROYECTOS_RRHH = "/ProyectoController?action=listProyectosRRHH";
+    private static String SERV_PROYECTOS = "/ProyectoController?action=listTrabajadorProyectos";
     private static String INICIO = "index.jsp";
     private ProyectoDao dao;
     private TrabajadorProyectoDao dao2;
@@ -86,7 +87,7 @@ public class ProyectoController extends HttpServlet{
                 System.out.println("desc: "+request.getParameter("desc"));
                 System.out.println("cif: "+request.getParameter("cif"));
                 dao.updateProyecto(proyecto);
-                response.sendRedirect(request.getContextPath()+SERV_PROYECTOS);
+                response.sendRedirect(request.getContextPath()+SERV_PROYECTOS_RRHH);
                 return;
             }else if (action.equalsIgnoreCase("listProyectosRRHH")) {
                 System.out.println("POS 3");
@@ -95,12 +96,42 @@ public class ProyectoController extends HttpServlet{
                 forward = PROYECTOS_RRHH;
                 System.out.println(dao.getAllProyectos());
                 request.setAttribute("listaProyectos", dao.getAllProyectos());
-            }else if (action.equalsIgnoreCase("timeProyecto")) {
-                System.out.println("POS 4");
-                Log.log.info("Parámetro valor GETTIME");
-                forward = TIME_PROYECTO;
-                request.setAttribute("timeProyecto", dao.getTimeProyecto("id"));
-            System.out.println("Hello there 2");
+            }else if (action.equalsIgnoreCase("addTime")) {
+                System.out.println("ESTOY EN ADDTIME");
+                Log.log.info("Parámetro valor ADDTIME");
+                forward = ADD_TIME;
+                String id = request.getParameter("id");
+                Trabajador user = (Trabajador)sesion.getAttribute("usuario");
+                int iden = user.getIden();
+                Proyecto proyecto = dao.getProyectoById(id);
+                System.out.println("ID: "+proyecto.getId());
+                float horas = dao2.getTimeProyectoIden(iden,id);
+                System.out.println("HORAS: "+horas);
+                proyecto.setTiempo(horas);
+                request.setAttribute("proyecto", proyecto);   
+            }else if (action.equalsIgnoreCase("updateTime")) {
+                Log.log.info("Parametro valor UPDATE");
+                System.out.println("ENTRO EN PROYECTOS UPDATE");
+                String id = request.getParameter("id");
+                System.out.println("ID: "+id);
+                Trabajador user = (Trabajador)sesion.getAttribute("usuario");
+                int iden = user.getIden();
+                System.out.println("IDEN: "+iden);
+                float horas = Float.parseFloat(request.getParameter("horas"));
+                System.out.println("HORAS: "+horas);
+                float addedTime = Float.parseFloat(request.getParameter("addedTime"));
+                System.out.println("ADDED: "+addedTime);
+                float result = horas+addedTime;
+                System.out.println("RESULT: "+result);
+                TrabajadorProyecto tp = dao2.getTrabajadorProyecto(iden,id);
+                System.out.println("TP: "+tp);
+                System.out.println("TP: "+tp.getId_proyecto());
+                System.out.println("TP: "+tp.getIden_trabajador());
+                System.out.println("TP: "+tp.getHoras());
+                tp.setHoras(result);
+                dao2.updateTimeTrabajadorProyecto(tp);
+                response.sendRedirect(request.getContextPath()+SERV_PROYECTOS);
+                return;
             }else if (action.equalsIgnoreCase("listTrabajadorProyectos")){
                 System.out.println("POS 5");
                 Log.log.info("Parámetro valor LIST PROYECTOS TRABAJADOR");
@@ -113,7 +144,9 @@ public class ProyectoController extends HttpServlet{
                 System.out.println("FLAG2");
                 List<Proyecto> listaProyectos = new  ArrayList<Proyecto>();
                 for(TrabajadorProyecto elem:idenList){
-                    listaProyectos.add(dao.getProyectoById(elem.getId_proyecto()));
+                    Proyecto proyecto = dao.getProyectoById(elem.getId_proyecto());
+                    proyecto.setTiempo(elem.getHoras());
+                    listaProyectos.add(proyecto);
                 }
                 request.setAttribute("proyectosTrabajador", listaProyectos);
             }

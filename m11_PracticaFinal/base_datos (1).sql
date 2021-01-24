@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS empresa(
 -- DROP TABLE IF EXISTS public.proyecto CASCADE;
 CREATE TABLE IF NOT EXISTS proyecto(
 	id char(30) NOT NULL,
-	tiempo integer,
+	tiempo float,
 	descripcion text,
 	cif_empresa char(10),
 	CONSTRAINT proyecto_pk PRIMARY KEY (id)
@@ -103,6 +103,7 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 CREATE TABLE m11practicafinal.proyecto_trabajadores(
 	id_proyecto char(30) NOT NULL,
 	iden_trabajador integer NOT NULL,
+    horas float NOT NULL,
 	CONSTRAINT proyecto_trabajadores_pk PRIMARY KEY (id_proyecto,iden_trabajador)
 
 );
@@ -122,7 +123,6 @@ REFERENCES m11practicafinal.trabajador (iden) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
-alter table proyecto_trabajadores add column horas integer;
 
 
 CREATE TABLE IF NOT EXISTS peticiones(

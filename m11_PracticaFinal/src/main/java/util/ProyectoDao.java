@@ -30,7 +30,7 @@ public class ProyectoDao {
             PreparedStatement preparedStatement = connection.prepareStatement("insert into proyecto(id,tiempo,descripcion,cif_empresa) values (?, ?, ?, ? )");
 // Parameters start with 1 
             
-            preparedStatement.setInt(1, proyecto.getTiempo());            
+            preparedStatement.setFloat(1, proyecto.getTiempo());            
             preparedStatement.setString(2, proyecto.getDescripcion());
             preparedStatement.setString(3, proyecto.getCif_empresa());
             preparedStatement.setString(4, proyecto.getId());
@@ -68,7 +68,7 @@ public class ProyectoDao {
             PreparedStatement preparedStatement = connection.prepareStatement("update proyecto set tiempo=?, descripcion=?, cif_empresa=?" + "where id=?");
 // Parameters start with 1 
             System.out.println("INSIDE updateProyecto");
-            preparedStatement.setInt(1, proyecto.getTiempo());            
+            preparedStatement.setFloat(1, proyecto.getTiempo());            
             preparedStatement.setString(2, proyecto.getDescripcion());
             preparedStatement.setString(3, proyecto.getCif_empresa());
             preparedStatement.setString(4, proyecto.getId());
@@ -144,7 +144,7 @@ public class ProyectoDao {
             PreparedStatement preparedStatement = connection.prepareStatement("update proyecto tiempo=?, descripcion=?, cif_empresa=?" + "where id=?");
 // Parameters start with 1 
             
-            preparedStatement.setInt(1, proyecto.getTiempo()+tiempo);            
+            preparedStatement.setFloat(1, proyecto.getTiempo()+tiempo);            
             preparedStatement.setString(2, proyecto.getDescripcion());
             preparedStatement.setString(3, proyecto.getCif_empresa());
             preparedStatement.setString(4, proyecto.getId());

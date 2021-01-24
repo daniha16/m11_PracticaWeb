@@ -1,6 +1,6 @@
 <%-- 
-    Document   : proyectos
-    Created on : 13-ene-2021, 11:45:49
+    Document   : addTimeProyectos
+    Created on : 24-ene-2021, 20:45:48
     Author     : danih
 --%>
 
@@ -39,35 +39,12 @@
     <div class="texto1">
         <h2> PROYECTOS </h2>
         
-        <table id="tablaProyectos" > 
-            <thead> 
-                <tr> 
-                    <th scope="col">Id</th> 
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">CIF</th>
-                    <th scope="col">Horas</th>
-                    <th scope="col">Accion</th>
-                </tr> 
-            </thead> 
-            <tbody> 
-                <c:forEach items="${proyectosTrabajador}" var="proyecto"> 
-                    <tr> 
-                        <td scope="row"><c:out value="${proyecto.id}" /></td> 
-                        <td><c:out value="${proyecto.descripcion}" /></td> 
-                        <td><c:out value="${proyecto.cif_empresa}" /></td>  
-                        <td><c:out value="${proyecto.tiempo}" /></td>
-                        <td><input type="button" onclick ='location.href="<%=request.getContextPath()%>/ProyectoController?action=addTime&id=<c:out value="${proyecto.id}" />"' value="Añadir Horas"></td>   
-                    </tr> 
-                </c:forEach> 
-            </tbody> 
-        </table> 
+        <p>Introduzca el número de horas que ha trabajado en el proyecto:</p>
+        <p>Id de Proyecto: <c:out value="${proyecto.id}" /></p>
+        <p>Añadir horas: <input type="number" step="0.01" name="addedTime" id="addedTime" size="10"></p>
+        <input type="button" onclick ='location.href="<%=request.getContextPath()%>/ProyectoController?action=updateTime&id=<c:out value="${proyecto.id}" />&horas=<c:out value="${proyecto.tiempo}" />&addedTime="+document.getElementById("addedTime").value' value="Añadir">   
+        <input type="button" onclick ='location.href="<%=request.getContextPath()%>/ProyectoController?action=listTrabajadorProyectos"' value="Cancelar">
 
-        <ul class="listas">
-            <button class="boton">
-              <a id="añadir_p1" onclick="añadirP1()"> Añadir </a>
-            </button>
-        </ul>
-        
     </div>
 
     <div class="pie">

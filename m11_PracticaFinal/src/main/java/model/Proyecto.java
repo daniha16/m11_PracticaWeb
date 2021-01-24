@@ -11,7 +11,7 @@ package model;
  */
 public class Proyecto {
     private String id;
-    private int tiempo;
+    private float tiempo;
     private String descripcion;
     private String cif_empresa;
 
@@ -19,7 +19,7 @@ public class Proyecto {
         return id;
     }
 
-    public int getTiempo() {
+    public float getTiempo() {
         return tiempo;
     }
 
@@ -35,7 +35,7 @@ public class Proyecto {
         this.id = id;
     }
 
-    public void setTiempo(int tiempo) {
+    public void setTiempo(float tiempo) {
         this.tiempo = tiempo;
     }
 
