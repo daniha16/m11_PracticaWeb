@@ -65,9 +65,9 @@ public class ProyectoDao {
 
     public void updateProyecto(Proyecto proyecto) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("update proyecto tiempo=?, descripcion=?, cif_empresa=?" + "where id=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update proyecto set tiempo=?, descripcion=?, cif_empresa=?" + "where id=?");
 // Parameters start with 1 
-            
+            System.out.println("INSIDE updateProyecto");
             preparedStatement.setInt(1, proyecto.getTiempo());            
             preparedStatement.setString(2, proyecto.getDescripcion());
             preparedStatement.setString(3, proyecto.getCif_empresa());
