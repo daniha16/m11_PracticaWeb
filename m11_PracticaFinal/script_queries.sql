@@ -33,6 +33,9 @@ select * from proyecto_trabajadores;
 
 select * from empresa;
 insert into m11practicafinal.proyecto values("Proyecto2",0,"Nuevo proyecto","A71356125");
+update empresa set nombre=3 where cif='A11111111';
+update empresa set nombre="Empresa2", direccion="C\unisiona 1, 111",codigo_postal=11111, poblacion="Madrid",provincia="Madrid",telefono=111111111 where cif="A11111111";
+
 
 insert into peticiones values(1,1,"Vacaciones","Pendiente",'2021-12-24');
 select * from peticiones;

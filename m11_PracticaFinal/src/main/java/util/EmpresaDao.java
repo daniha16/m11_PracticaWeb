@@ -56,9 +56,9 @@ public class EmpresaDao {
 
     public void updateEmpresa(Empresa empresa) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("update empresa nombre=?, direccion=?, codigo_postal=?, poblacion=?, provincia=?, telefono=?" + "where cif=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update empresa set nombre=?, direccion=?, codigo_postal=?, poblacion=?, provincia=? ,telefono=? where cif=?");
 // Parameters start with 1 
-            
+            System.out.println("INSIDE updateEmpresa");
             preparedStatement.setString(1, empresa.getNombre()); 
             preparedStatement.setString(2, empresa.getDireccion());
             preparedStatement.setInt(3, empresa.getCodigo_postal());
@@ -114,11 +114,12 @@ public class EmpresaDao {
        
     }
 
-    public Empresa getEmpresaByCif(int empresaCif) {
+    public Empresa getEmpresaByCif(String empresaCif) {
         Empresa empresa = new Empresa();
+        System.out.println("DENTRO DE getEmpresaByCif");
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from empresa where cif=?");
-            preparedStatement.setInt(1, empresaCif);
+            preparedStatement.setString(1, empresaCif);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 empresa.setCif(rs.getString("cif"));

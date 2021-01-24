@@ -26,7 +26,8 @@ public class EmpresaController extends HttpServlet{
     private static String INICIO = "index.jsp";
     private static String EMPRESAS_RRHH = "/RRHH/empresasRRHH.jsp";
     private static String DELETE_EMPRESAS = "/RRHH/empresasRRHH.jsp";
-    private static String INSERT_OR_EDIT = "/RRHH/editEmpresas.jsp";
+    private static String INSERT_OR_EDIT = "/RRHH/editEmpresa.jsp";
+    private static String SERV_EMPRESA = "/EmpresaController?action=listEmpresas";
     private EmpresaDao dao;
     
     public EmpresaController() {
@@ -57,10 +58,26 @@ public class EmpresaController extends HttpServlet{
             } else if (action.equalsIgnoreCase("edit")) {
                 Log.log.info("Parametro valor EDIT");
                 forward = INSERT_OR_EDIT;
-                int userId = Integer.parseInt(request.getParameter("empresaCif"));
-                Empresa empresa = dao.getEmpresaByCif(userId);
+                String cif = request.getParameter("empresaCif");
+                System.out.println("ESTOY EN EDIT EMPRESAS");
+                Empresa empresa = dao.getEmpresaByCif(cif);
                 request.setAttribute("empresa", empresa);
-            } else if (action.equalsIgnoreCase("listEmpresas")) {
+            } else if (action.equalsIgnoreCase("update")) {
+                Log.log.info("Parametro valor EDIT");
+                String cif = request.getParameter("cif");
+                System.out.println("CIF: "+cif);
+                Empresa empresa = dao.getEmpresaByCif(cif);
+                empresa.setNombre(request.getParameter("nombre"));
+                empresa.setDireccion(request.getParameter("dir"));
+                System.out.println("NOMBRE: "+request.getParameter("nombre"));
+                empresa.setCodigo_postal(Integer.parseInt(request.getParameter("cp")));
+                empresa.setPoblacion(request.getParameter("pob"));
+                empresa.setProvincia(request.getParameter("prov"));
+                empresa.setTelefono(Integer.parseInt(request.getParameter("tel")));
+                dao.updateEmpresa(empresa);
+                response.sendRedirect(request.getContextPath()+SERV_EMPRESA);
+                return;
+            }else if (action.equalsIgnoreCase("listEmpresas")) {
                 Log.log.info("Parametro valor LIST");
                 System.out.println("ESTOY EN LISTA EMPRESAS");
                 forward = EMPRESAS_RRHH;
