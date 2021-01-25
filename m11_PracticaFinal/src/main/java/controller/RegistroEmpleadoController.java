@@ -69,14 +69,21 @@ public class RegistroEmpleadoController extends HttpServlet{
                 int iden = user.getIden();
                 System.out.println("DATE: "+localdate);
                 List<RegistroEmpleado> listaRegistros = new ArrayList<RegistroEmpleado>();
+                listaRegistros = dao.getAllRegistros();
+                System.out.println("ANTES DEL FOR");
                 for(RegistroEmpleado elem: listaRegistros){
+                    System.out.println("DESPUES DEL FOR");
                     String stringFecha = elem.getEntrada().toString();
+                    System.out.println(stringFecha);
                     String[] fecha_tiempo = stringFecha.split(" ");
+                    System.out.println(fecha_tiempo[0]+"=="+localdate.toString());
                     if(elem.getIden_trabajador()==iden && fecha_tiempo[0].equals(localdate.toString())){
                         System.out.println("YA HAS REALIZADO EL MARCAJE DIARIO");
+                        response.sendRedirect(request.getContextPath()+REGISTROS_EMPLEADOS);
                         return;
                     }
                 }
+                System.out.println("ME LO HE SALTADO");
                 RegistroEmpleado reg = new RegistroEmpleado();
                 reg.setEntrada(entrada);
                 reg.setIden_trabajador(iden);
@@ -97,6 +104,7 @@ public class RegistroEmpleadoController extends HttpServlet{
                 listaRegistros = dao.getAllRegistros();
                 RegistroEmpleado reg = new RegistroEmpleado();
                 for(RegistroEmpleado elem: listaRegistros){
+                    System.out.println("DESPUES DEL FOR");
                     String stringFecha = elem.getEntrada().toString();
                     String[] fecha_tiempo = stringFecha.split(" ");
                     if(elem.getIden_trabajador()==iden && fecha_tiempo[0].equals(localdate.toString())){
