@@ -37,15 +37,17 @@
         <h2> SOLICITUD DE HORAS LIBRES </h2>
         <p>El horario de la oficina es de 08:30h a 18:00h</p>
         <form action="">
-          <br><label for="horaseleccionada">Selecciona la hora de salida . . . . .</label>
-          <input type="time" id="hora_salida" value="00:00" name="salida-start" min="08:30" max="18:00" required> <br>
-          <br><label for="horaseleccionada">Selecciona la hora de entrada . . .</label>
-          <input type="time" id="hora_entrada" value="00:00" name="salida-end" min="08:30" max="18:00" required> <br>
-          <br><label for="conceptoh">Indique breve conepto:</label>
-          <br><input type="text" id="conceptoh" name="conceptoho"> <br>
+          <br><label for="horaseleccionada">Selecciona la hora de inicio . . . . .</label>
+          <input type="time" id="hora_entrada" value="00:00" name="hora_entrada" min="08:30" max="18:00" required> <br>
+          <br><label for="horaseleccionada">Selecciona la hora de fin . . .</label>
+          <input type="time" id="hora_salida" value="00:00" name="hora_salida" min="08:30" max="18:00" required> <br>
+          <br><label for="fechaseleccionada">Selecciona el día libre</label>
+          <br><input type="date" id="fecha" name="fecha" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
+          <br><label for="concepto">Indique breve conepto:</label>
+          <br><input type="text" id="concepto" name="concepto"> <br>
           <br><button class="boton">
-            <a id="solicitar"> SOLICITAR </a>
-          </button>
+            <a id="solicitarFecha" onclick='location.href="<%=request.getContextPath()%>/PeticionesController?action=solicitarHoras&entrada="+document.getElementById("hora_entrada").value+"&salida="+document.getElementById("hora_salida").value+"&concepto="+document.getElementById("concepto").value+"&fecha="+document.getElementById("fecha").value'> Solicitar</a>
+            </button>
         </form> 
     </div>
 

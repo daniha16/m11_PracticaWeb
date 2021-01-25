@@ -107,6 +107,47 @@ public class PeticionesController extends HttpServlet {
                 for(Peticion i:dao.getAllPeticiones()){
                     System.out.println(i.getReqid());
                 }
+            }else if(action.equalsIgnoreCase("solicitarHoras")){
+                System.out.println("QUE PACHAAAA");
+                System.out.println("TIEMPO: "+request.getParameter("entrada").toString());
+                Time entrada = Time.valueOf(request.getParameter("entrada")+":00");
+                System.out.println("ENTRADA: "+entrada);
+                Time salida = Time.valueOf(request.getParameter("salida")+":00");
+                System.out.println("SALIDA: "+salida);
+                String concepto=request.getParameter("concepto");
+                Date date = Date.valueOf(request.getParameter("fecha"));
+                System.out.println("DATE: "+date);
+                Trabajador user = (Trabajador)sesion.getAttribute("usuario");
+                int iden = user.getIden();
+                List<Peticion> listaPeticiones = new ArrayList<Peticion>();
+                listaPeticiones = dao.getAllPeticiones();
+                int reqid=0;
+                if (listaPeticiones==null){
+                    reqid=1;      
+                }
+                else{
+                    int max = 0;
+                    for(Peticion elem: listaPeticiones){
+                        if(elem.getReqid()>max){
+                            max=elem.getReqid();
+                        }
+                    }
+                    reqid=max+1;
+                }
+                Peticion peticion=new Peticion();
+                peticion.setReqid(reqid);
+                peticion.setIden(iden);
+                peticion.setFecha(date);
+                peticion.setResolucion("Pendiente");
+                peticion.setInicio(entrada);
+                System.out.println("LA MAGIA: "+peticion.getInicio());
+                peticion.setFin(salida);
+                peticion.setConcepto(concepto);
+                peticion.setTipo("Horas");
+                dao.addPeticion(peticion);
+                System.out.println("HORA: "+Time.valueOf("00:00:00"));
+                response.sendRedirect(request.getContextPath()+SOLICITAR_DIAS);
+                return;
             }else if(action.equalsIgnoreCase("solicitarDia")){
                 System.out.println("YA ETOY");
                 forward = SOLICITAR_DIAS;
@@ -118,13 +159,6 @@ public class PeticionesController extends HttpServlet {
                 List<Peticion> listaPeticiones = new ArrayList<Peticion>();
                 listaPeticiones = dao.getAllPeticiones();
                 int iden = user.getIden();
-                DateFormat formatter = new SimpleDateFormat("HH:mm");
-                try {
-                    Time tiempo = new Time(formatter.parse("00:00").getTime());
-                    System.out.println("HORA: "+tiempo);
-                } catch (ParseException ex) {
-                    Logger.getLogger(PeticionesController.class.getName()).log(Level.SEVERE, null, ex);
-                }
                 int reqid=0;
                 if (listaPeticiones==null){
                     reqid=1;      
