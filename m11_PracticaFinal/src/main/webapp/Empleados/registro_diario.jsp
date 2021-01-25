@@ -40,8 +40,8 @@
          <h2>MARCAJE DIARIO </h2>
         <div class="tool">
         </div>
-        <p>Introduzca la hora de entrada y salida de la empresa</p>
-        
+        <p>Por favor, realiza el marcaje de entrada al iniciar sesión.</p>
+        <p>Una vez acabada la jornada laboral, realice el marcaje de salida</p>
 
             <br><button class="boton">
                 <a id="marcarEntrada" onclick='location.href="<%=request.getContextPath()%>/RegistroEmpleadoController?action=entrada"'> MARCAR ENTRADA</a>
@@ -55,7 +55,7 @@
 
         <p>Estado de conexión: CONECTADO</p>
         <br><p>
-            <img src="logout.png" alt="Conectado" width="65" height="65">
+            <img src="<%=request.getContextPath()%>/Empleados/logout.png" alt="Conectado" width="65" height="65">
         </p>
         <button class="boton">
           <a id="desconectar" onclick='location.href="<%=request.getContextPath()%>/LoginController?action=Logout"'> DESCONECTAR </a>

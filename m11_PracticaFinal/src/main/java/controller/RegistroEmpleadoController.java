@@ -116,7 +116,9 @@ public class RegistroEmpleadoController extends HttpServlet{
                     String stringFecha = elem.getEntrada().toString();
                     String[] fecha_tiempo = stringFecha.split(" ");
                     if(elem.getIden_trabajador()==iden && fecha_tiempo[0].equals(localdate.toString())){
-                        if(elem.getSalida()==null){
+                        System.out.println("PRIMER IF");
+                        System.out.println(elem.getSalida());
+                        if(elem.getSalida()!=null){
                             System.out.println("YA HAY SALIDA");
                             response.setContentType("text/html");
                             PrintWriter pw=response.getWriter();
