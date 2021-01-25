@@ -55,12 +55,11 @@ public class RegistroEmpleadoDao {
 
     public void updateRegistroEmpleados(RegistroEmpleado registro) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("update registroEmpleado entrada=?, salida=?, fecha=?" + "where iden_trabajador=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update registroEmpleado set salida=? where iden_trabajador=? and entrada=?");
 // Parameters start with 1 
-            preparedStatement.setTimestamp(1, registro.getEntrada());
-            preparedStatement.setTimestamp(2, registro.getSalida());
-            preparedStatement.setDate(3, registro.getFecha());
-            preparedStatement.setInt(4, registro.getIden_trabajador());
+            preparedStatement.setTimestamp(1, registro.getSalida());
+            preparedStatement.setInt(2, registro.getIden_trabajador());
+            preparedStatement.setTimestamp(3, registro.getEntrada());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);

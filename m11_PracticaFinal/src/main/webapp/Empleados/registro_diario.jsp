@@ -44,12 +44,12 @@
         
 
             <br><button class="boton">
-                <a id="marcarEntrada" onclick='location.href="<%=request.getContextPath()%>/RegistroEmpleadoController?action=marcaje"'> MARCAR ENTRADA</a>
+                <a id="marcarEntrada" onclick='location.href="<%=request.getContextPath()%>/RegistroEmpleadoController?action=entrada"'> MARCAR ENTRADA</a>
                 
             </button>
             <br>
             <br><button class="boton">
-                <a id="marcarEntrada" onclick='location.href="<%=request.getContextPath()%>/RegistroEmpleadoController?action=marcaje"'> MARCAR SALIDA</a>
+                <a id="marcarEntrada" onclick='location.href="<%=request.getContextPath()%>/RegistroEmpleadoController?action=salida"'> MARCAR SALIDA</a>
             </button>
         
 

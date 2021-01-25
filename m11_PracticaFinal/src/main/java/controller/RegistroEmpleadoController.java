@@ -7,6 +7,11 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +21,9 @@ import model.Proyecto;
 import model.RegistroEmpleado;
 import util.Log;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import model.Trabajador;
 import util.RegistroEmpleadoDao;
@@ -52,12 +60,57 @@ public class RegistroEmpleadoController extends HttpServlet{
             String action = request.getParameter("action");
             Log.log.info("Recogemos el parametro action con valor " + action);
             if (action.equalsIgnoreCase("entrada")) {
-                Log.log.info("Parametro valor MARCAJE");
+                Log.log.info("Parametro valor ENTRADA");
+                LocalDate localdate = LocalDate.now();
                 Date fecha = new Date();
                 long tiempo = fecha.getTime();
                 Timestamp entrada = new Timestamp(tiempo);
                 Trabajador user = (Trabajador)sesion.getAttribute("usuario");
                 int iden = user.getIden();
+                System.out.println("DATE: "+localdate);
+                List<RegistroEmpleado> listaRegistros = new ArrayList<RegistroEmpleado>();
+                for(RegistroEmpleado elem: listaRegistros){
+                    String stringFecha = elem.getEntrada().toString();
+                    String[] fecha_tiempo = stringFecha.split(" ");
+                    if(elem.getIden_trabajador()==iden && fecha_tiempo[0].equals(localdate.toString())){
+                        System.out.println("YA HAS REALIZADO EL MARCAJE DIARIO");
+                        return;
+                    }
+                }
+                RegistroEmpleado reg = new RegistroEmpleado();
+                reg.setEntrada(entrada);
+                reg.setIden_trabajador(iden);
+                dao.addRegistroEmpleado(reg);
+                System.out.println("TIMESTAMP: "+entrada);
+                forward = MARCAJE_DIARIO;
+
+            }else if (action.equalsIgnoreCase("salida")) {
+                Log.log.info("Parametro valor SALIDA");
+                Date fecha = new Date();
+                long tiempo = fecha.getTime();
+                Timestamp salida = new Timestamp(tiempo);
+                LocalDate localdate = LocalDate.now();
+                Trabajador user = (Trabajador)sesion.getAttribute("usuario");
+                int iden = user.getIden();
+                //System.out.println("FECHA: "+fecha_tiempo[0]+", TIEMPO: "+fecha_tiempo[1]);
+                List<RegistroEmpleado> listaRegistros = new ArrayList<RegistroEmpleado>();
+                listaRegistros = dao.getAllRegistros();
+                RegistroEmpleado reg = new RegistroEmpleado();
+                for(RegistroEmpleado elem: listaRegistros){
+                    String stringFecha = elem.getEntrada().toString();
+                    String[] fecha_tiempo = stringFecha.split(" ");
+                    if(elem.getIden_trabajador()==iden && fecha_tiempo[0].equals(localdate.toString())){
+                        reg.setEntrada(elem.getEntrada());
+                        reg.setSalida(salida);
+                        reg.setIden_trabajador(iden);
+                        reg.setFecha(elem.getFecha());
+                        dao.updateRegistroEmpleados(reg);
+                        response.sendRedirect(request.getContextPath()+REGISTROS_EMPLEADOS);
+                        return;
+                    }
+                }
+                System.out.println("TIMESTAMP: "+salida);
+                
                 forward = MARCAJE_DIARIO;
 
             }
