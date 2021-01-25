@@ -25,7 +25,7 @@
     %>
     <h1>LOGO INGENIEROS AL PESO</h1>
     <h2>EMPLEADOS</h2>
-    <p>BIENVENIDO! ${sessionScope.usuario}</p>
+    <p>BIENVENIDO! <%=usuario.getNombre()%></p>
     <div class="navbar">
       <a href="<%=request.getContextPath()%>/Empleados/main.jsp"> Inicio </a>
       <a href="<%=request.getContextPath()%>/Empleados/registro_diario.jsp"> Registro diario </a>
@@ -36,15 +36,13 @@
 
     <div class="texto1">
         <h2> SOLICITUD DE DÍAS LIBRES </h2>
-        <form action="">
-          <br><label for="fechaseleccionada">Selecciona el día libre</label>
-          <input type="date" id="start" name="trip-start" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
-           <br><label for="conceptod">Indique breve conepto:</label>
-          <br><input type="text" id="conceptod" name="conceptodi"> <br>
-          <br><button class="boton">
-            <a id="solicitar"> SOLICITAR </a>
-          </button>
-        </form> 
+        <br><label for="fechaseleccionada">Selecciona el día libre</label>
+        <input type="date" id="start" name="fecha" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
+        <br><label for="concepto">Indique breve conepto:</label>
+        <br><input type="text" id="concepto" name="concepto"> <br>
+        <br><button class="boton">
+            <a id="solicitarFecha" onclick='location.href="<%=request.getContextPath()%>/PeticionesController?action=solicitarDia&fecha="+document.getElementById("start").value+"&concepto="+document.getElementById("concepto").value'> Solicitar</a>
+            </button>
     </div>
 
     <div class="pie">

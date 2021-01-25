@@ -11,18 +11,18 @@ package model;
  */
 public class TrabajadorProyecto {
     private String id_proyecto;
-    private String iden_trabajador;
-    private int horas;
+    private int iden_trabajador;
+    private float horas;
 
     public String getId_proyecto() {
         return id_proyecto;
     }
 
-    public String getIden_trabajador() {
+    public int getIden_trabajador() {
         return iden_trabajador;
     }
 
-    public int getHoras() {
+    public float getHoras() {
         return horas;
     }
 
@@ -30,11 +30,11 @@ public class TrabajadorProyecto {
         this.id_proyecto = id_proyecto;
     }
 
-    public void setIden_trabajador(String iden_trabajador) {
+    public void setIden_trabajador(int iden_trabajador) {
         this.iden_trabajador = iden_trabajador;
     }
 
-    public void setHoras(int horas) {
+    public void setHoras(float horas) {
         this.horas = horas;
     }
     

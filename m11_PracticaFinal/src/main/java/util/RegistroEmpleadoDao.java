@@ -6,6 +6,7 @@
 package util;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +20,7 @@ import model.RegistroEmpleado;
  * @author danih
  */
 public class RegistroEmpleadoDao {
+
     private Connection connection;
 
     public RegistroEmpleadoDao() {
@@ -27,11 +29,13 @@ public class RegistroEmpleadoDao {
 
     public void addRegistroEmpleado(RegistroEmpleado registro) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into registroEmpleado(entrada, salida, iden_trabajador) values (?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into registroEmpleado(entrada, salida, iden_trabajador,fecha) values (?, ?, ?, ?)");
 // Parameters start with 1 
             preparedStatement.setTimestamp(1, registro.getEntrada());
-            preparedStatement.setTimestamp(2, registro.getSalida()); 
+            preparedStatement.setTimestamp(2, registro.getSalida());
             preparedStatement.setInt(3, registro.getIden_trabajador());
+            preparedStatement.setDate(4, registro.getFecha());
+
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);
@@ -51,21 +55,20 @@ public class RegistroEmpleadoDao {
 
     public void updateRegistroEmpleados(RegistroEmpleado registro) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("update registroEmpleado entrada=?, salida=?" + "where iden_trabajador=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update registroEmpleado set salida=? where iden_trabajador=? and entrada=?");
 // Parameters start with 1 
-            preparedStatement.setTimestamp(1, registro.getEntrada());
-            preparedStatement.setTimestamp(2, registro.getSalida()); 
-            preparedStatement.setInt(3, registro.getIden_trabajador());
+            preparedStatement.setTimestamp(1, registro.getSalida());
+            preparedStatement.setInt(2, registro.getIden_trabajador());
+            preparedStatement.setTimestamp(3, registro.getEntrada());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            Log.logdb.error("SQL Exception: " + e);            
+            Log.logdb.error("SQL Exception: " + e);
         }
     }
 
     public List<RegistroEmpleado> getAllRegistros() {
         List<RegistroEmpleado> registrosdb = new ArrayList<RegistroEmpleado>();
-        if (connection != null)
-        {
+        if (connection != null) {
             try {
                 Statement statement = connection.createStatement();
                 ResultSet rs = statement.executeQuery("select * from registroEmpleado;");
@@ -77,16 +80,14 @@ public class RegistroEmpleadoDao {
                     registrosdb.add(registro);
                 }
             } catch (SQLException e) {
-                Log.logdb.error("SQL Exception: " + e);            
+                Log.logdb.error("SQL Exception: " + e);
             }
             return registrosdb;
-        }
-        else
-        {
+        } else {
             Log.logdb.error("No hay conexion con la bbdd");
             return null;
         }
-       
+
     }
 
     public RegistroEmpleado getRegistroByIden(int trabajadorIden) {
@@ -105,4 +106,21 @@ public class RegistroEmpleadoDao {
         }
         return registro;
     }
+      public RegistroEmpleado getRegistroByDate(Date fecha) {
+        RegistroEmpleado registro = new RegistroEmpleado();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from registroEmpleado where fecha=?");
+            preparedStatement.setDate(1,fecha);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                registro.setEntrada(rs.getTimestamp("entrada"));
+                registro.setSalida(rs.getTimestamp("salida"));
+                registro.setIden_trabajador(rs.getInt("iden_trabajador"));
+            }
+        } catch (SQLException e) {
+            Log.logdb.error("SQL Exception: " + e);
+        }
+        return registro;
+    }
 }
+

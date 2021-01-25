@@ -37,7 +37,6 @@ public class RegistroEmpleado {
 
     public void setEntrada(Timestamp entrada) {
         this.entrada = entrada;
-        this.fecha=new Date(entrada.getTime());
     }
 
     public void setSalida(Timestamp salida) {
@@ -47,7 +46,10 @@ public class RegistroEmpleado {
     public void setIden_trabajador(int iden_trabajador) {
         this.iden_trabajador = iden_trabajador;
     }
-
+    
+    public void setFecha(Date fecha){
+        this.fecha = fecha;
+    }
     
 
 }
