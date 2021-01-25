@@ -19,9 +19,9 @@ CREATE DATABASE IF NOT EXISTS m11practicafinal;
 USE m11practicafinal;
 CREATE TABLE IF NOT EXISTS empresa(
 	cif char(10) NOT NULL,
-	nombre char(20),
+	nombre char(30),
 	direccion char(50),
-	codigo_postal char(10),
+	codigo_postal integer,
 	poblacion char(10),
 	provincia char(10),
 	telefono integer,
@@ -36,16 +36,14 @@ CREATE TABLE IF NOT EXISTS empresa(
 -- DROP TABLE IF EXISTS public.proyecto CASCADE;
 
 CREATE TABLE IF NOT EXISTS proyecto(
-	id char(5) NOT NULL,
-	tiempo integer,
+	id char(30) NOT NULL,
+	tiempo float,
 	descripcion text,
 	cif_empresa char(10),
 	CONSTRAINT proyecto_pk PRIMARY KEY (id)
-
 );
 -- ddl-end --
 
--- ddl-end --
 
 -- object: empresa_fk | type: CONSTRAINT --
 -- ALTER TABLE public.proyecto DROP CONSTRAINT IF EXISTS empresa_fk CASCADE;
@@ -64,36 +62,26 @@ CREATE TABLE IF NOT EXISTS trabajador(
 	correo char(20),
 	contrasena char(40),
 	telefono integer,
-	id_proyecto char(5),
-	horas float,
 	tipo char(20),
 	CONSTRAINT trabajador_pk PRIMARY KEY (iden)
 
 );
 -- ddl-end --
--- ddl-end --
-
--- object: proyecto_fk | type: CONSTRAINT --
--- ALTER TABLE public.trabajador DROP CONSTRAINT IF EXISTS proyecto_fk CASCADE;
-ALTER TABLE public.trabajador ADD CONSTRAINT proyecto_fk FOREIGN KEY (id_proyecto)
-REFERENCES public.proyecto (id) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
 
 -- object: public.vacaciones | type: TABLE --
 -- DROP TABLE IF EXISTS public.vacaciones CASCADE;
 CREATE TABLE IF NOT EXISTS vacaciones(
-	startdate timestamp,
-	enddate timestamp,
-	iden_trabajador integer
+	fecha timestamp,
+	iden_trabajador integer,
+    tipo char(20)
 );
 -- ddl-end --
 -- ddl-end --
 
 -- object: trabajador_fk | type: CONSTRAINT --
 -- ALTER TABLE public.vacaciones DROP CONSTRAINT IF EXISTS trabajador_fk CASCADE;
-ALTER TABLE public.vacaciones ADD CONSTRAINT trabajador_fk FOREIGN KEY (iden_trabajador)
-REFERENCES public.trabajador (iden) MATCH FULL
+ALTER TABLE m11practicafinal.vacaciones ADD CONSTRAINT trabajador_fk FOREIGN KEY (iden_trabajador)
+REFERENCES m11practicafinal.trabajador (iden) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
@@ -120,6 +108,7 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 CREATE TABLE m11practicafinal.proyecto_trabajadores(
 	id_proyecto char(30) NOT NULL,
 	iden_trabajador integer NOT NULL,
+    horas float NOT NULL,
 	CONSTRAINT proyecto_trabajadores_pk PRIMARY KEY (id_proyecto,iden_trabajador)
 
 );
@@ -138,8 +127,6 @@ ALTER TABLE m11practicafinal.proyecto_trabajadores ADD CONSTRAINT proyecto_traba
 REFERENCES m11practicafinal.trabajador (iden) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
-
-alter table proyecto_trabajadores add column horas integer;
 
 
 CREATE TABLE IF NOT EXISTS peticiones(
