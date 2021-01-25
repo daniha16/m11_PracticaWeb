@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +19,14 @@ import model.Peticion;
 import model.Trabajador;
 import util.Log;
 import util.PeticionesDao;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -99,17 +107,51 @@ public class PeticionesController extends HttpServlet {
             }else if(action.equalsIgnoreCase("solicitarDia")){
                 System.out.println("YA ETOY");
                 forward = SOLICITAR_DIAS;
-                LocalDate localdate = LocalDate.parse(request.getParameter("fecha"));
-                System.out.println(localdate);
+                Date date = Date.valueOf(request.getParameter("fecha"));
+                System.out.println(date);
                 Trabajador user = (Trabajador)sesion.getAttribute("usuario");
                 String concepto=request.getParameter("concepto");
                 System.out.println(concepto);
+                List<Peticion> listaPeticiones = new ArrayList<Peticion>();
+                listaPeticiones = dao.getAllPeticiones();
                 int iden = user.getIden();
-                if (dao.getAllPeticiones()==null){
-                    int requid=1;
-                    
+                DateFormat formatter = new SimpleDateFormat("HH:mm");
+                try {
+                    Time tiempo = new Time(formatter.parse("00:00").getTime());
+                    System.out.println("HORA: "+tiempo);
+                } catch (ParseException ex) {
+                    Logger.getLogger(PeticionesController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }else {
+                int reqid=0;
+                if (listaPeticiones==null){
+                    reqid=1;      
+                }
+                else{
+                    int max = 0;
+                    for(Peticion elem: listaPeticiones){
+                        if(elem.getReqid()>max){
+                            max=elem.getReqid();
+                        }
+                    }
+                    reqid=max+1;
+                Peticion peticion=new Peticion();
+                peticion.setReqid(reqid);
+                peticion.setIden(iden);
+                peticion.setFecha(date);
+                peticion.setResolucion("Pendiente");
+                peticion.setInicio(Time.valueOf("00:00:00"));
+                System.out.println("LA MAGIA: "+peticion.getInicio());
+                peticion.setFin(Time.valueOf("23:59:59"));
+                peticion.setConcepto(concepto);
+                peticion.setTipo("Dia");
+                dao.addPeticion(peticion);
+                System.out.println("HORA: "+Time.valueOf("00:00:00"));
+                response.sendRedirect(request.getContextPath()+SOLICITAR_DIAS);
+                return;
+                }
+            }else if(action.equalsIgnoreCase("solicitarVacaciones")){
+                
+            } else {
                 Log.log.info("Parametro valor vacio vamos a insertar");
                 forward = INSERT_OR_EDIT;
             }

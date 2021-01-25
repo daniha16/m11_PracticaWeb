@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Proyecto;
 import model.RegistroEmpleado;
 import util.Log;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +38,7 @@ public class RegistroEmpleadoController extends HttpServlet{
     private static final long serialVersionUID = 1L;
     private static String MARCAJE_DIARIO = "/Empleados/registro_diario.jsp";
     private static String REGISTROS_EMPLEADOS = "/Empleados/registro_diario.jsp";
+    private static String ADD_HORAS = "/ProyectoController?action=listTrabajadorProyectos";
     private static String INICIO = "index.jsp";
     private RegistroEmpleadoDao dao;
     private Log log;
@@ -64,9 +65,11 @@ public class RegistroEmpleadoController extends HttpServlet{
             if (action.equalsIgnoreCase("entrada")) {
                 Log.log.info("Parametro valor ENTRADA");
                 LocalDate localdate = LocalDate.now();
-                Date fecha = new Date();
+                long millis=System.currentTimeMillis();
+                Date fecha = new Date(millis);
                 long tiempo = fecha.getTime();
                 Timestamp entrada = new Timestamp(tiempo);
+                Date onlyDate = new Date(entrada.getTime());
                 Trabajador user = (Trabajador)sesion.getAttribute("usuario");
                 int iden = user.getIden();
                 System.out.println("DATE: "+localdate);
@@ -95,13 +98,17 @@ public class RegistroEmpleadoController extends HttpServlet{
                 RegistroEmpleado reg = new RegistroEmpleado();
                 reg.setEntrada(entrada);
                 reg.setIden_trabajador(iden);
+                reg.setFecha(onlyDate);
+                System.out.println("FECHA: "+reg.getFecha());
                 dao.addRegistroEmpleado(reg);
                 System.out.println("TIMESTAMP: "+entrada);
-                forward = MARCAJE_DIARIO;
+                response.sendRedirect(request.getContextPath()+ADD_HORAS);
+                return;
 
             }else if (action.equalsIgnoreCase("salida")) {
                 Log.log.info("Parametro valor SALIDA");
-                Date fecha = new Date();
+                long millis=System.currentTimeMillis();
+                Date fecha = new Date(millis);
                 long tiempo = fecha.getTime();
                 Timestamp salida = new Timestamp(tiempo);
                 LocalDate localdate = LocalDate.now();

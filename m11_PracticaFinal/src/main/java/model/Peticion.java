@@ -6,6 +6,7 @@
 
 package model;
 import java.sql.Date;
+import java.sql.Time;
 
 /**
  *
@@ -17,6 +18,8 @@ public class Peticion {
     private String concepto;
     private String resolucion;
     private String tipo;
+    private Time inicio;
+    private Time fin;
     private Date fecha;
 
     public int getReqid() {
@@ -41,6 +44,14 @@ public class Peticion {
         return fecha;
     }
 
+    public Time getInicio() {
+        return inicio;
+    }
+
+    public Time getFin() {
+        return fin;
+    }
+
     public void setIden(int iden) {
         this.iden = iden;
     }
@@ -59,8 +70,17 @@ public class Peticion {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public void setInicio(Time inicio) {
+        this.inicio = inicio;
+    }
+
+    public void setFin(Time fin) {
+        this.fin = fin;
     }
     
     

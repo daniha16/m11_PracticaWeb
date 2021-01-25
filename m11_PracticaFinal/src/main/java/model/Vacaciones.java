@@ -5,39 +5,60 @@
  */
 package model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 /**
  *
  * @author danih
  */
 public class Vacaciones {
-    private Timestamp startdate;
-    private Timestamp enddate;
+    private Timestamp inicio;
+    private Timestamp fin;
+    private Date fecha;
     private int iden_trabajador;
+    private String tipo;
 
-    public Timestamp getStartdate() {
-        return startdate;
+    public Timestamp getInicio() {
+        return inicio;
     }
 
-    public Timestamp getEnddate() {
-        return enddate;
+    public Timestamp getFin() {
+        return fin;
+    }
+
+    public Date getFecha() {
+        return fecha;
     }
 
     public int getIden_trabajador() {
         return iden_trabajador;
     }
 
-    public void setStartdate(Timestamp startdate) {
-        this.startdate = startdate;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setEnddate(Timestamp enddate) {
-        this.enddate = enddate;
+    public void setInicio(Timestamp inicio) {
+        this.inicio = inicio;
+    }
+
+    public void setFin(Timestamp fion) {
+        this.fin = fion;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public void setIden_trabajador(int iden_trabajador) {
         this.iden_trabajador = iden_trabajador;
     }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    
     
     
 }

@@ -30,15 +30,17 @@ public class PeticionesDao {
 
     public void addPeticion(Peticion peticion) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into peticiones(reqid,iden,concepto,resolucion,tipo,fecha) values (?, ?, ?, ? )");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into peticiones(reqid,iden,concepto,resolucion,fecha,inicio,fin,tipo) values (?, ?, ?, ?, ?, ?, ?, ? )");
 // Parameters start with 1 
             
             preparedStatement.setInt(1, peticion.getReqid());            
             preparedStatement.setInt(2, peticion.getIden());
             preparedStatement.setString(3, peticion.getConcepto());
             preparedStatement.setString(4, peticion.getResolucion());
-            preparedStatement.setString(5, peticion.getTipo());
-            preparedStatement.setDate(6, peticion.getFecha());
+            preparedStatement.setDate(5, peticion.getFecha());
+            preparedStatement.setTime(6, peticion.getInicio());
+            preparedStatement.setTime(7, peticion.getFin());
+            preparedStatement.setString(8, peticion.getTipo());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);

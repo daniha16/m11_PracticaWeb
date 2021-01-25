@@ -137,6 +137,8 @@ CREATE TABLE IF NOT EXISTS peticiones(
 	concepto text,
     resolucion char(20),
     fecha date,
+    inicio time,
+    fin time,
     tipo char(20),
     CONSTRAINT peticiones_pk PRIMARY KEY (reqid)
 );
