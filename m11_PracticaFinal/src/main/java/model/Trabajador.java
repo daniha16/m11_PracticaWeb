@@ -5,84 +5,49 @@
  */
 package model;
 
+import java.sql.Timestamp;
+import java.sql.Date;
+
 /**
  *
  * @author danih
  */
-public class Trabajador {
-    private int iden;
-    private String dni;
-    private String nombre;
-    private String apellidos;
-    private String correo;
-    private String contraseña;
-    private int telefono;
-    private String tipo;
+public class RegistroEmpleado {
 
-    public int getIden() {
-        return iden;
+    private Timestamp entrada;
+    private Timestamp salida;
+    private Date fecha;
+    private int iden_trabajador;
+
+    public Timestamp getEntrada() {
+        return entrada;
     }
 
-    public String getDni() {
-        return dni;
+    public Timestamp getSalida() {
+        return salida;
     }
 
-    public String getNombre() {
-        return nombre;
+    public int getIden_trabajador() {
+        return iden_trabajador;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public String getCorreo() {
-        return correo;
+    public void setEntrada(Timestamp entrada) {
+        this.entrada = entrada;
+        this.fecha=new Date(entrada.getTime());
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public void setSalida(Timestamp salida) {
+        this.salida = salida;
     }
 
-    public int getTelefono() {
-        return telefono;
+    public void setIden_trabajador(int iden_trabajador) {
+        this.iden_trabajador = iden_trabajador;
     }
 
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setIden(int iden) {
-        this.iden = iden;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-   
     
+
 }
