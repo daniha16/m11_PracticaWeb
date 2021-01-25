@@ -62,7 +62,6 @@ CREATE TABLE IF NOT EXISTS trabajador(
 	correo char(20),
 	contrasena char(40),
 	telefono integer,
-	horas float,
 	tipo char(20),
 	CONSTRAINT trabajador_pk PRIMARY KEY (iden)
 

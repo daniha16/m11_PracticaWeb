@@ -36,30 +36,29 @@
     </div>
 
       <div class="texto1">
-        <h2>MARCAJE DIARIO </h2>
-        <div class="tool">
-        </div>
-        <p>Introduzca la hora de entrada y salida de la empresa</p>
-          <form action="">
-            <br><label for="horaseleccionada"> Hora de salida . . . . .</label>
-            <input type="time" id="hora_salida" value="00:00" name="salida-start" min="00:00" max="23:59" required> <br>
-            <br><label for="horaseleccionada"> Hora de entrada . . .</label>
-            <input type="time" id="hora_entrada" value="00:00" name="salida-end" min="00:00" max="23:59" required> <br>
-            <br><label for="fechaseleccionada">Día . . . . . . . </label>
-            <input type="date" id="start" name="trip-start" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
-            <br><button class="boton">
-                <a id="solicitar"> MARCAJE </a>
-            </button>
-        </form>
-        <p>Estado de conexión: CONECTADO</p>
-        <br><p>
-            <img src="logout.png" alt="Conectado" width="65" height="65">
-        </p>
-        
-        <br><button class="boton">
-            <a id="desconectar" onclick="cambiarDesconectar()"> DESCONECTAR </a>
+          <h2>MARCAJE DIARIO </h2>
+          <div class="tool">
+          </div>
+          <p>Introduzca la hora de entrada y salida de la empresa</p>
+          <br>
+
+          <a class="boton" href="<%=request.getContextPath()%>/RegistroEmpleadoController?action=entrada/"> ENTRADA </a>
+          <br>
+          <br>
+
+
+          <a class="boton" href="<%=request.getContextPath()%>/RegistroEmpleadoController?action=salida/"> SALIDA </a>
+          <br>
+          <br>
+          <p>Estado de conexión: CONECTADO</p>
+          <br><p>
+              <img src="logout.png" alt="Conectado" width="65" height="65">
+          </p>
+
+          <button class="boton">
+            <a id="desconectar" onclick='location.href="<%=request.getContextPath()%>/LoginController?action=Logout"'> DESCONECTAR </a>
         </button>
-    </div>
+      </div>
 
     <div class="pie">
       <p>Ingenieros al peso S.A.</p>
