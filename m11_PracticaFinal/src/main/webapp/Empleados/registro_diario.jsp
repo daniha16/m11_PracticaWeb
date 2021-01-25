@@ -36,27 +36,29 @@
     </div>
 
       <div class="texto1">
-          <h2>MARCAJE DIARIO </h2>
-          <div class="tool">
-          </div>
-          <p>Introduzca la hora de entrada y salida de la empresa</p>
-          <br>
 
-          <a class="boton" href="<%=request.getContextPath()%>/RegistroEmpleadoController?action=entrada/"> ENTRADA </a>
-          <br>
-          <br>
+         <h2>MARCAJE DIARIO </h2>
+        <div class="tool">
+        </div>
+        <p>Introduzca la hora de entrada y salida de la empresa</p>
+        
 
+            <br><button class="boton">
+                <a id="marcarEntrada" onclick=location.href="<%=request.getContextPath()%>/RegistroEmpleadoController?action=marcaje/>" > MARCAR ENTRADA</a>
+                
+            </button>
+            <br>
+            <br><button class="boton">
+                <a id="marcarEntrada" onclick=location.href="<%=request.getContextPath()%>/RegistroEmpleadoController?action=marcaje/>" > MARCAR SALIDA</a>
+            </button>
+        
 
-          <a class="boton" href="<%=request.getContextPath()%>/RegistroEmpleadoController?action=salida/"> SALIDA </a>
-          <br>
-          <br>
-          <p>Estado de conexión: CONECTADO</p>
-          <br><p>
-              <img src="logout.png" alt="Conectado" width="65" height="65">
-          </p>
-
-          <button class="boton">
-            <a id="desconectar" onclick='location.href="<%=request.getContextPath()%>/LoginController?action=Logout"'> DESCONECTAR </a>
+        <p>Estado de conexión: CONECTADO</p>
+        <br><p>
+            <img src="logout.png" alt="Conectado" width="65" height="65">
+        </p>
+        <button class="boton">
+          <a id="desconectar" onclick='location.href="<%=request.getContextPath()%>/LoginController?action=Logout"'> DESCONECTAR </a>
         </button>
       </div>
 
