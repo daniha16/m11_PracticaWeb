@@ -6,6 +6,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -79,7 +81,13 @@ public class RegistroEmpleadoController extends HttpServlet{
                     System.out.println(fecha_tiempo[0]+"=="+localdate.toString());
                     if(elem.getIden_trabajador()==iden && fecha_tiempo[0].equals(localdate.toString())){
                         System.out.println("YA HAS REALIZADO EL MARCAJE DIARIO");
-                        response.sendRedirect(request.getContextPath()+REGISTROS_EMPLEADOS);
+                        response.setContentType("text/html");
+                        PrintWriter pw=response.getWriter();
+                        pw.println("<script type=\"text/javascript\">");
+                        pw.println("alert('Ya has realizado el marcaje de entrada hoy');");
+                        pw.println("</script>");
+                        RequestDispatcher rd=request.getRequestDispatcher(REGISTROS_EMPLEADOS);
+                        rd.include(request, response);
                         return;
                     }
                 }
@@ -108,13 +116,27 @@ public class RegistroEmpleadoController extends HttpServlet{
                     String stringFecha = elem.getEntrada().toString();
                     String[] fecha_tiempo = stringFecha.split(" ");
                     if(elem.getIden_trabajador()==iden && fecha_tiempo[0].equals(localdate.toString())){
-                        reg.setEntrada(elem.getEntrada());
-                        reg.setSalida(salida);
-                        reg.setIden_trabajador(iden);
-                        reg.setFecha(elem.getFecha());
-                        dao.updateRegistroEmpleados(reg);
-                        response.sendRedirect(request.getContextPath()+REGISTROS_EMPLEADOS);
-                        return;
+                        if(elem.getSalida()==null){
+                            System.out.println("YA HAY SALIDA");
+                            response.setContentType("text/html");
+                            PrintWriter pw=response.getWriter();
+                            pw.println("<script type=\"text/javascript\">");
+                            pw.println("alert('Ya has realizado el marcaje de salida hoy');");
+                            pw.println("</script>");
+                            RequestDispatcher rd=request.getRequestDispatcher(REGISTROS_EMPLEADOS);
+                            rd.include(request, response);
+                            return;
+                        }
+                        else{
+                            reg.setEntrada(elem.getEntrada());
+                            reg.setSalida(salida);
+                            reg.setIden_trabajador(iden);
+                            reg.setFecha(elem.getFecha());
+                            dao.updateRegistroEmpleados(reg);
+                            response.sendRedirect(request.getContextPath()+REGISTROS_EMPLEADOS);
+                            return;
+                        }
+                        
                     }
                 }
                 System.out.println("TIMESTAMP: "+salida);
