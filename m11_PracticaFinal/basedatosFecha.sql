@@ -68,14 +68,6 @@ CREATE TABLE IF NOT EXISTS trabajador(
 
 );
 -- ddl-end --
--- ddl-end --
-
--- object: proyecto_fk | type: CONSTRAINT --
--- ALTER TABLE public.trabajador DROP CONSTRAINT IF EXISTS proyecto_fk CASCADE;
-ALTER TABLE public.trabajador ADD CONSTRAINT proyecto_fk FOREIGN KEY (id_proyecto)
-REFERENCES public.proyecto (id) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
 
 -- object: public.vacaciones | type: TABLE --
 -- DROP TABLE IF EXISTS public.vacaciones CASCADE;
@@ -89,8 +81,8 @@ CREATE TABLE IF NOT EXISTS vacaciones(
 
 -- object: trabajador_fk | type: CONSTRAINT --
 -- ALTER TABLE public.vacaciones DROP CONSTRAINT IF EXISTS trabajador_fk CASCADE;
-ALTER TABLE public.vacaciones ADD CONSTRAINT trabajador_fk FOREIGN KEY (iden_trabajador)
-REFERENCES public.trabajador (iden) MATCH FULL
+ALTER TABLE m11practicafinal.vacaciones ADD CONSTRAINT trabajador_fk FOREIGN KEY (iden_trabajador)
+REFERENCES m11practicafinal.trabajador (iden) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
