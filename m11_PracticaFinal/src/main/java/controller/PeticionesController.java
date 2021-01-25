@@ -150,7 +150,12 @@ public class PeticionesController extends HttpServlet {
                 return;
                 }
             }else if(action.equalsIgnoreCase("solicitarVacaciones")){
-                
+                Date inicio = Date.valueOf(request.getParameter("start"));
+                System.out.println("INI: "+inicio);
+                Date fin = Date.valueOf(request.getParameter("end"));
+                System.out.println("FIN: "+fin);
+                String concepto = request.getParameter("concepto");
+                System.out.println("CON: "+concepto);
             } else {
                 Log.log.info("Parametro valor vacio vamos a insertar");
                 forward = INSERT_OR_EDIT;
