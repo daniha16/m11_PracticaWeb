@@ -6,6 +6,7 @@
 package util;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,39 +30,70 @@ public class PeticionesDao {
 
     public void addPeticion(Peticion peticion) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into peticiones(reqid,iden,concepto,resolucion) values (?, ?, ?, ? )");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into peticiones(reqid,iden,concepto,resolucion,tipo,fecha) values (?, ?, ?, ? )");
 // Parameters start with 1 
             
             preparedStatement.setInt(1, peticion.getReqid());            
             preparedStatement.setInt(2, peticion.getIden());
             preparedStatement.setString(3, peticion.getConcepto());
             preparedStatement.setString(4, peticion.getResolucion());
+            preparedStatement.setString(5, peticion.getTipo());
+            preparedStatement.setDate(6, peticion.getFecha());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);
         }
     }
 
-    public void deletePeticion(String proyectoId) {
+    public void deletePeticion(int peticionId) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("delete from proyecto where id=?");
             // Parameters start with 1 
-            preparedStatement.setString(1, proyectoId);
+            preparedStatement.setInt(1, peticionId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);
         }
     }
-
+    
+    public void denegarPeticion(int reqId) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("update peticiones set resolucion=?" + "where reqid=?");
+// Parameters start with 1 
+            preparedStatement.setString(1, "Denegada");
+            preparedStatement.setInt(2, reqId);
+            preparedStatement.executeUpdate();
+            System.out.println("Base de datos supuestamente actualizada");
+        } catch (SQLException e) {
+            Log.logdb.error("SQL Exception: " + e);            
+        }
+    }
+    
+    public void aceptarPeticion(int reqId) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("update peticiones set resolucion=?" + "where reqid=?");
+// Parameters start with 1 
+            preparedStatement.setString(1, "Aceptada");
+            preparedStatement.setInt(2, reqId);
+            preparedStatement.executeUpdate();
+            System.out.println("Base de datos supuestamente actualizada");
+        } catch (SQLException e) {
+            Log.logdb.error("SQL Exception: " + e);            
+        }
+    }
+    
     public void updatePeticion(Peticion peticion) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("update peticiones iden=?, concepto=?, resolucion=?" + "where reqid=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update peticiones set iden=?, concepto=?, resolucion=?" + "where reqid=?");
 // Parameters start with 1 
 
             preparedStatement.setInt(1, peticion.getIden());
             preparedStatement.setString(2, peticion.getConcepto());
             preparedStatement.setString(3, peticion.getResolucion());
-            preparedStatement.setInt(4, peticion.getReqid());   
+            preparedStatement.setInt(4, peticion.getReqid());
+            preparedStatement.setString(5, peticion.getTipo());
+            preparedStatement.setDate(6, peticion.getFecha());
+            preparedStatement.executeUpdate();
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);            
@@ -81,6 +113,9 @@ public class PeticionesDao {
                     peticion.setIden(rs.getInt("iden"));
                     peticion.setConcepto(rs.getString("concepto"));
                     peticion.setResolucion(rs.getString("resolucion"));
+                    peticon.setTipo(rs.getString("tipo"));
+                    peticion.setFecha(rs.getDate("fecha"));
+            preparedStatement.executeUpdate();
                     peticiondb.add(peticion);
                 }
             } catch (SQLException e) {
@@ -96,11 +131,11 @@ public class PeticionesDao {
        
     }
 
-    public Peticion getPeticionById(String peticionId) {
+    public Peticion getPeticionById(int peticionId) {
         Peticion peticion = new Peticion();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from peticiones where id=?");
-            preparedStatement.setString(1, peticionId);
+            preparedStatement.setInt(1, peticionId);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 peticion.setReqid(rs.getInt("reqid"));
