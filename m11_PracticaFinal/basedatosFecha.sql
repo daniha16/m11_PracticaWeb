@@ -71,6 +71,8 @@ CREATE TABLE IF NOT EXISTS trabajador(
 -- object: public.vacaciones | type: TABLE --
 -- DROP TABLE IF EXISTS public.vacaciones CASCADE;
 CREATE TABLE IF NOT EXISTS vacaciones(
+	inicio timestamp,
+    fin timestamp,
 	fecha date,
 	iden_trabajador integer,
     tipo char(20)
