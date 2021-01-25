@@ -92,6 +92,48 @@ public class PeticionesController extends HttpServlet {
                 for(Peticion i:dao.getAllPeticiones()){
                     System.out.println(i.getReqid());
                 }
+            }else if(action.equalsIgnoreCase("solicitarDia")){
+                Log.log.info("Parametro valor LIST");
+                system.out.println("ESTOY EN SOLICITAR DIA");
+                forward = SOLICITAR_DIAS;
+                if (dao.getAllPeticiones()==null){
+                    int requid=1;
+                    int iden=1;
+                    String concepto=request.getParameter("concepto");
+                    String resolucion="espera";
+                    String tipo="horas";
+                    //Date fecha=
+                    Peticion peticion=new Peticion();
+                    peticion.setRequid(requid);
+                    peticon.setIden(iden);
+                    peticon.setConcepto(concepto);
+                    peticion.setResolucion(resolucion);
+                    peticion.setTipo(tipo);
+                    peticion.setFecha(fecha);
+                    dao.addPeticion(peticion);
+                }else{
+                    List<Peticion> listaPeticiones = new ArrayList<Peticion>();
+                    listaPeticiones=dao.getAllPeticiones();
+                    for(Peticion elem: listaPeticiones){
+                        if(elem.getRequid()>max){
+                            max=elem.getRequid();
+                        }
+                    }
+                    int requid=max+1;
+                    int iden=max+1;
+                    String concepto=request.getParameter("concepto");
+                    String resolucion="espera";
+                    String tipo="horas";
+                    //Date fecha=
+                    Peticion peticion=new Peticion();
+                    peticion.setRequid(requid);
+                    peticon.setIden(iden);
+                    peticon.setConcepto(concepto);
+                    peticion.setResolucion(resolucion);
+                    peticion.setTipo(tipo);
+                    peticion.setFecha(fecha);
+                    dao.addPeticion(peticion);
+                    }
             }else {
                 Log.log.info("Parametro valor vacio vamos a insertar");
                 forward = INSERT_OR_EDIT;
