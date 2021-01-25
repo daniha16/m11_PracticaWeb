@@ -28,6 +28,10 @@
         <servlet-name>InformeController</servlet-name>
         <servlet-class>controller.InformeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegistroEmpleadoController</servlet-name>
+        <servlet-class>controller.RegistroEmpleadoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ErrorHandler</servlet-name>
         <url-pattern>/ErrorHandler</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>InformeController</servlet-name>
         <url-pattern>/InformeController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistroEmpleadoController</servlet-name>
+        <url-pattern>/RegistroEmpleadoController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
