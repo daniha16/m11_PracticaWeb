@@ -24,6 +24,9 @@ import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -134,6 +137,7 @@ public class PeticionesController extends HttpServlet {
                         }
                     }
                     reqid=max+1;
+                }
                 Peticion peticion=new Peticion();
                 peticion.setReqid(reqid);
                 peticion.setIden(iden);
@@ -148,14 +152,66 @@ public class PeticionesController extends HttpServlet {
                 System.out.println("HORA: "+Time.valueOf("00:00:00"));
                 response.sendRedirect(request.getContextPath()+SOLICITAR_DIAS);
                 return;
-                }
             }else if(action.equalsIgnoreCase("solicitarVacaciones")){
-                Date inicio = Date.valueOf(request.getParameter("start"));
+                System.out.println("YA ETOY");
+                forward = SOLICITAR_DIAS;
+                Trabajador user = (Trabajador)sesion.getAttribute("usuario");
+                String concepto=request.getParameter("concepto");
+                System.out.println(concepto);
+                int iden = user.getIden();
+                java.util.Date inicio = Date.valueOf(request.getParameter("start"));
                 System.out.println("INI: "+inicio);
-                Date fin = Date.valueOf(request.getParameter("end"));
+                java.util.Date fin = Date.valueOf(request.getParameter("end"));
                 System.out.println("FIN: "+fin);
-                String concepto = request.getParameter("concepto");
                 System.out.println("CON: "+concepto);
+                List<java.util.Date> datesInRange = new ArrayList<>();
+                Calendar calendar = new GregorianCalendar();
+                calendar.setTime(inicio);
+                Calendar endCalendar = new GregorianCalendar();
+                endCalendar.setTime(fin);
+                while (calendar.before(endCalendar)) {
+                    java.util.Date result = calendar.getTime();
+                    datesInRange.add(result);
+                    calendar.add(Calendar.DATE, 1);
+                }
+                List<Date> sqlDates = new ArrayList<Date>();
+                for(java.util.Date elem:datesInRange){
+                    Date newDate = new Date(elem.getTime());
+                    sqlDates.add(newDate);
+                }
+                sqlDates.add(Date.valueOf(request.getParameter("end")));
+                for(Date elem:sqlDates){
+                    System.out.println(elem);
+                    List<Peticion> listaPeticiones = new ArrayList<Peticion>();
+                    listaPeticiones = dao.getAllPeticiones();
+                    int reqid=0;
+                    if (listaPeticiones==null){
+                        reqid=1;      
+                    }
+                    else{
+                        int max = 0;
+                        for(Peticion pet: listaPeticiones){
+                            if(pet.getReqid()>max){
+                                max=pet.getReqid();
+                            }
+                        }
+                        reqid=max+1;
+                    }
+                    Peticion peticion=new Peticion();
+                    peticion.setReqid(reqid);
+                    peticion.setIden(iden);
+                    peticion.setFecha(elem);
+                    peticion.setResolucion("Pendiente");
+                    peticion.setInicio(Time.valueOf("00:00:00"));
+                    System.out.println("LA MAGIA: "+peticion.getInicio());
+                    peticion.setFin(Time.valueOf("23:59:59"));
+                    peticion.setConcepto(concepto);
+                    peticion.setTipo("Vacaciones");
+                    dao.addPeticion(peticion);
+                }
+                response.sendRedirect(request.getContextPath()+SOLICITAR_DIAS);
+                return;
+                
             } else {
                 Log.log.info("Parametro valor vacio vamos a insertar");
                 forward = INSERT_OR_EDIT;
