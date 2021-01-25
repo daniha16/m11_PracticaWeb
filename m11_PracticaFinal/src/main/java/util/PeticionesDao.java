@@ -113,9 +113,8 @@ public class PeticionesDao {
                     peticion.setIden(rs.getInt("iden"));
                     peticion.setConcepto(rs.getString("concepto"));
                     peticion.setResolucion(rs.getString("resolucion"));
-                    peticon.setTipo(rs.getString("tipo"));
+                    peticion.setTipo(rs.getString("tipo"));
                     peticion.setFecha(rs.getDate("fecha"));
-            preparedStatement.executeUpdate();
                     peticiondb.add(peticion);
                 }
             } catch (SQLException e) {

@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS trabajador(
 -- object: public.vacaciones | type: TABLE --
 -- DROP TABLE IF EXISTS public.vacaciones CASCADE;
 CREATE TABLE IF NOT EXISTS vacaciones(
-	fecha timestamp,
+	fecha date,
 	iden_trabajador integer,
     tipo char(20)
 );
@@ -135,6 +135,7 @@ CREATE TABLE IF NOT EXISTS peticiones(
 	concepto text,
     resolucion char(20),
     fecha date,
+    tipo char(20),
     CONSTRAINT peticiones_pk PRIMARY KEY (reqid)
 );
 -- ddl-end --

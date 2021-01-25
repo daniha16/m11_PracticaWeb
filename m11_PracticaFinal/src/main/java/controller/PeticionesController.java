@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,8 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Peticion;
+import model.Trabajador;
 import util.Log;
 import util.PeticionesDao;
+import java.util.Date;
 
 /**
  *
@@ -25,6 +28,7 @@ public class PeticionesController extends HttpServlet {
     private static String INICIO = "index.jsp";
     private static String LIST_PETICIONES = "/RRHH/peticiones.jsp";
     private static String INSERT_OR_EDIT = "/RRHH/peticiones.jsp";
+    private static String SOLICITAR_DIAS = "/Empleados/solicitudes.jsp";
     private PeticionesDao dao;
     public PeticionesController() {
         super();
@@ -93,47 +97,18 @@ public class PeticionesController extends HttpServlet {
                     System.out.println(i.getReqid());
                 }
             }else if(action.equalsIgnoreCase("solicitarDia")){
-                Log.log.info("Parametro valor LIST");
-                system.out.println("ESTOY EN SOLICITAR DIA");
+                System.out.println("YA ETOY");
                 forward = SOLICITAR_DIAS;
+                LocalDate localdate = LocalDate.parse(request.getParameter("fecha"));
+                System.out.println(localdate);
+                Trabajador user = (Trabajador)sesion.getAttribute("usuario");
+                String concepto=request.getParameter("concepto");
+                System.out.println(concepto);
+                int iden = user.getIden();
                 if (dao.getAllPeticiones()==null){
                     int requid=1;
-                    int iden=1;
-                    String concepto=request.getParameter("concepto");
-                    String resolucion="espera";
-                    String tipo="horas";
-                    //Date fecha=
-                    Peticion peticion=new Peticion();
-                    peticion.setRequid(requid);
-                    peticon.setIden(iden);
-                    peticon.setConcepto(concepto);
-                    peticion.setResolucion(resolucion);
-                    peticion.setTipo(tipo);
-                    peticion.setFecha(fecha);
-                    dao.addPeticion(peticion);
-                }else{
-                    List<Peticion> listaPeticiones = new ArrayList<Peticion>();
-                    listaPeticiones=dao.getAllPeticiones();
-                    for(Peticion elem: listaPeticiones){
-                        if(elem.getRequid()>max){
-                            max=elem.getRequid();
-                        }
-                    }
-                    int requid=max+1;
-                    int iden=max+1;
-                    String concepto=request.getParameter("concepto");
-                    String resolucion="espera";
-                    String tipo="horas";
-                    //Date fecha=
-                    Peticion peticion=new Peticion();
-                    peticion.setRequid(requid);
-                    peticon.setIden(iden);
-                    peticon.setConcepto(concepto);
-                    peticion.setResolucion(resolucion);
-                    peticion.setTipo(tipo);
-                    peticion.setFecha(fecha);
-                    dao.addPeticion(peticion);
-                    }
+                    
+                }
             }else {
                 Log.log.info("Parametro valor vacio vamos a insertar");
                 forward = INSERT_OR_EDIT;
