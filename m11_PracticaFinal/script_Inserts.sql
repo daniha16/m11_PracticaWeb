@@ -1,6 +1,8 @@
 INSERT INTO `m11practicafinal`.`trabajador`
 (`iden`,`dni`,`nombre`,`apellidos`,`correo`,`contrasena`,`telefono`,`tipo`)
 VALUES
+(10,"10101010","Pruebas","Pruebas","Pruebas@alpeso.com","RRHH",000000,"Empleado"),
+(100,"100100100","Admin","Admin","Admin@alpeso.com","Pruebas",1111111,"RRHH"),
 (1,"06549887P","trabajador1","apellido1","trabajador1@alpeso.com","trabajador1",681298765,"RRHH"),
 (2,"06549923L","trabajador2","apellido2","trabajador2@alpeso.com","trabajador2",681777654,"Empleado"),
 (3,"09119887P","trabajador3","apellido3","trabajador3@alpeso.com","trabajador3",771293765,"RRHH"),
