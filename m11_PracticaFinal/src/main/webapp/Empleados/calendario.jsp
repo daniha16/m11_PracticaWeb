@@ -41,11 +41,7 @@
         <div id="container"></div>
 
         <script type="text/javascript">
-            $(document).ready(function(){
-                $("#container").simpleCalendar({
-                    
-                });
-            });
+            $(document).ready(function(){$("#container").simpleCalendar({});});
         </script>
     </div>
 

@@ -32,6 +32,10 @@
         <servlet-name>RegistroEmpleadoController</servlet-name>
         <servlet-class>controller.RegistroEmpleadoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CalendarioController</servlet-name>
+        <servlet-class>controller.CalendarioController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ErrorHandler</servlet-name>
         <url-pattern>/ErrorHandler</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>RegistroEmpleadoController</servlet-name>
         <url-pattern>/RegistroEmpleadoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalendarioController</servlet-name>
+        <url-pattern>/CalendarioController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
