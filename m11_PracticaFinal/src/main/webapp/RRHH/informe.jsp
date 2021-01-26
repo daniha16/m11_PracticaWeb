@@ -34,7 +34,29 @@
       <a href="<%=request.getContextPath()%>/RRHH/informe.jsp">Solicitar Informe</a>
     </div>
 
-
+    <script type="text/javascript"> 
+        function validarEntrada(){
+            var selector1 = document.getElementById("selector1").value;
+            var selector2 = document.getElementById("selector2").value;
+            var iden = document.getElementById("identificador").value;
+            if(iden === null || iden.length===0){
+                 alert("El campo esta vacío");
+            }
+            else if(selector1==="empleado" && !Number.isInteger(parseInt(iden,10))){
+                alert("El valor introducido no se corresponde con el tipo seleccionado");       
+            }
+            else if(selector1==="proyecto" && Number.isInteger(parseInt(iden,10))){
+                alert("El valor introducido no se corresponde con el tipo seleccionado");
+            }
+            else if(selector1==="empresa" && Number.isInteger(parseInt(iden,10))){
+                alert("El valor introducido no se corresponde con el tipo seleccionado");
+            }
+            else{
+                location.href="<%=request.getContextPath()%>/InformeController?action=informe&tipo="+document.getElementById("selector1").value+"&periodo="+document.getElementById("selector2").value+"&identificador="+document.getElementById("identificador").value
+            }
+        }
+    </script>
+    
     <div class="texto1">
         <h1>INFORME</h1>
         <p>Introduzca el tipo de informe a solicitar:</p>
@@ -50,7 +72,7 @@
           <option value="anual">Anual</option>
         </select>
         <input type="text" id="identificador"> 
-        <input type="button" onclick ='location.href="<%=request.getContextPath()%>/InformeController?action=informe&tipo="+document.getElementById("selector1").value+"&periodo="+document.getElementById("selector2").value+"&identificador="+document.getElementById("identificador").value' value="Aceptar">   
+        <input type="button" onclick ='validarEntrada()' value="Aceptar">   
     </div>
 
 
