@@ -7,6 +7,8 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Peticion;
+import model.RegistroEmpleado;
+import model.DatosInforme;
 import util.Log;
+import util.RegistroEmpleadoDao;
 import util.TrabajadorDao;
 import util.TrabajadorProyectoDao;
 
@@ -29,9 +34,11 @@ public class InformeController extends HttpServlet {
     private static String INSERT_OR_EDIT = "/RRHH/peticiones.jsp";
     private TrabajadorDao daoT;
     private TrabajadorProyectoDao daoTP;
+    private RegistroEmpleadoDao daoReg;
     public InformeController() {
         super();
         daoT = new TrabajadorDao();
+        daoReg = new RegistroEmpleadoDao();
         
         
     }
@@ -53,6 +60,9 @@ public class InformeController extends HttpServlet {
             if (action.equalsIgnoreCase("informe")) {
                 String tipo = request.getParameter("tipo");
                 String periodo = request.getParameter("periodo");
+                List<RegistroEmpleado> listaRegistros = new ArrayList<RegistroEmpleado>(); 
+                List<DatosInforme> datosInforme = new ArrayList<DatosInforme>();
+                listaRegistros = daoReg.getAllRegistros();
                 if(tipo.equals("Empleado")){
                     
                 }

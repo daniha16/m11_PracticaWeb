@@ -66,7 +66,7 @@ public class ProyectoController extends HttpServlet{
             if (action.equalsIgnoreCase("delete")) {
                 System.out.println("POS 1");
                 Log.log.info("Parametro valor DELETE");
-                dao.deleteProyecto(request.getParameter("proyectoId"));
+                dao.deleteProyecto(request.getParameter("id"));
                 forward = PROYECTOS_RRHH;
                 request.setAttribute("listaProyectos", dao.getAllProyectos());
             } else if (action.equalsIgnoreCase("edit")) {
