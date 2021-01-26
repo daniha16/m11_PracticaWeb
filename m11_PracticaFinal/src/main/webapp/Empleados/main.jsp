@@ -24,7 +24,10 @@
       
     <h1>LOGO INGENIEROS AL PESO</h1>
     <h2>EMPLEADOS</h2>
-
+    <%
+    Trabajador usuario = (Trabajador)request.getSession().getAttribute("usuario");
+    %>
+    <p>BIENVENIDO <%=usuario.getNombre()%>! </p>
     <div class="navbar">
       <a href="<%=request.getContextPath()%>/Empleados/main.jsp"> Inicio </a>
       <a href="<%=request.getContextPath()%>/Empleados/registro_diario.jsp"> Registro diario </a>
@@ -32,11 +35,6 @@
       <a href="<%=request.getContextPath()%>/CalendarioController?action=calendario"> Calendario </a>
       <a href="<%=request.getContextPath()%>/Empleados/solicitudes.jsp"> Solicitudes </a>
     </div>
-       
-    <%
-    Trabajador usuario = (Trabajador)request.getSession().getAttribute("usuario");
-    %>
-    <p>BIENVENIDO <%=usuario.getNombre()%>! </p>
     <!-- <input type="hidden" name="iden" value="${iden}" /> -->
     <!-- <form  method="GET" id="enviarForm">
         <input type="hidden" name="action" value="" />
