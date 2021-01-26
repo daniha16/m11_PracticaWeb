@@ -7,6 +7,8 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Trabajador;
+import model.Vacaciones;
 import util.Log;
 import util.TrabajadorDao;
 
@@ -59,11 +62,8 @@ public class CalendarioController extends HttpServlet {
             String action = request.getParameter("action");
             Log.log.info("Recogemos el parametro action con valor " + action);
             if (action.equalsIgnoreCase("calendario")) {
-                response.setContentType("text/html");
-                PrintWriter pw=response.getWriter();
-                pw.println("<script type=\"text/javascript\">");
-                pw.println("$(document).ready(function(){$(\"#container\").simpleCalendar({});});");
-                pw.println("</script>");
+                List<Vacaciones> vacaciones = new ArrayList<>();
+                request.setAttribute("listaEventos", listaEventos);
                 RequestDispatcher rd=request.getRequestDispatcher(SHOW_CALENDAR);
                 rd.include(request, response);
                 return;

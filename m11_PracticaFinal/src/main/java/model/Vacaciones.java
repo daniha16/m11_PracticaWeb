@@ -14,7 +14,6 @@ import java.sql.Timestamp;
 public class Vacaciones {
     private Timestamp inicio;
     private Timestamp fin;
-    private Date fecha;
     private int iden_trabajador;
     private String tipo;
 
@@ -24,10 +23,6 @@ public class Vacaciones {
 
     public Timestamp getFin() {
         return fin;
-    }
-
-    public Date getFecha() {
-        return fecha;
     }
 
     public int getIden_trabajador() {
@@ -44,10 +39,6 @@ public class Vacaciones {
 
     public void setFin(Timestamp fion) {
         this.fin = fion;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
     }
 
     public void setIden_trabajador(int iden_trabajador) {

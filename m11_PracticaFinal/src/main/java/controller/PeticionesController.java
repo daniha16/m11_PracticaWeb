@@ -106,19 +106,25 @@ public class PeticionesController extends HttpServlet {
                 System.out.println("Antes de petar");
                 int reqId = Integer.parseInt(request.getParameter("reqId"));
                 System.out.println("REQID: "+reqId);
+                System.out.println("DE AQUI NO PASA");
                 dao.aceptarPeticion(reqId);
+                System.out.println("SORPRESA");
                 request.setAttribute("listaPeticiones", dao.getAllPeticiones());
+                System.out.println("DOBLE SORPRESA");
                 System.out.println(dao.getAllPeticiones());
                 for(Peticion i:dao.getAllPeticiones()){
                     System.out.println(i.getReqid());
                 }
                 Peticion peticion = dao.getPeticionById(reqId);
+                System.out.println("KILLTACULAR");
                 Vacaciones vacaciones = new Vacaciones();
-                //vacaciones.setInicio(peticion.getInicio());
-                //vacaciones.setFin(peticion.getFin());
+                vacaciones.setInicio(peticion.getInicio());
+                vacaciones.setFin(peticion.getFin());
                 vacaciones.setIden_trabajador(peticion.getIden());
                 vacaciones.setTipo(peticion.getTipo());
+                System.out.println("TIPO: "+vacaciones.getTipo());
                 dao2.addVacaciones(vacaciones);
+                request.setAttribute("listaPeticiones", dao.getAllPeticiones());
             }else if(action.equalsIgnoreCase("solicitarHoras")){
                 System.out.println("QUE PACHAAAA");
                 System.out.println("TIEMPO: "+request.getParameter("entrada").toString());
@@ -152,11 +158,10 @@ public class PeticionesController extends HttpServlet {
                 Peticion peticion=new Peticion();
                 peticion.setReqid(reqid);
                 peticion.setIden(iden);
-                peticion.setFecha(date);
                 peticion.setResolucion("Pendiente");
-                peticion.setInicio(entrada);
+                peticion.setInicio(inicio);
                 System.out.println("LA MAGIA: "+peticion.getInicio());
-                peticion.setFin(salida);
+                peticion.setFin(fin);
                 peticion.setConcepto(concepto);
                 peticion.setTipo("Horas");
                 dao.addPeticion(peticion);
@@ -190,18 +195,59 @@ public class PeticionesController extends HttpServlet {
                 Peticion peticion=new Peticion();
                 peticion.setReqid(reqid);
                 peticion.setIden(iden);
-                peticion.setFecha(date);
                 peticion.setResolucion("Pendiente");
-                peticion.setInicio(Time.valueOf("00:00:00"));
+                peticion.setInicio(Timestamp.valueOf(date+" 00:00:00"));
                 System.out.println("LA MAGIA: "+peticion.getInicio());
-                peticion.setFin(Time.valueOf("23:59:59"));
+                peticion.setFin(Timestamp.valueOf(date+" 23:59:59"));
+                System.out.println("LA MAGIA 2: "+peticion.getFin());
                 peticion.setConcepto(concepto);
                 peticion.setTipo("Dia");
                 dao.addPeticion(peticion);
                 System.out.println("HORA: "+Time.valueOf("00:00:00"));
                 response.sendRedirect(request.getContextPath()+SOLICITAR_DIAS);
                 return;
-            }else if(action.equalsIgnoreCase("solicitarVacaciones")){
+            }else if(action.equalsIgnoreCase("necesitoVacaciones")){
+                System.out.println("YA ETOY");
+                forward = SOLICITAR_DIAS;
+                Trabajador user = (Trabajador)sesion.getAttribute("usuario");
+                String concepto=request.getParameter("concepto");
+                System.out.println(concepto);
+                int iden = user.getIden();
+                java.util.Date inicio = Date.valueOf(request.getParameter("start"));
+                System.out.println("INI: "+inicio);
+                java.util.Date fin = Date.valueOf(request.getParameter("end"));
+                System.out.println("FIN: "+fin);
+                System.out.println("CON: "+concepto);
+                List<Peticion> listaPeticiones = new ArrayList<Peticion>();
+                listaPeticiones = dao.getAllPeticiones();
+                int reqid=0;
+                if (listaPeticiones==null){
+                    reqid=1;      
+                }
+                else{
+                    int max = 0;
+                    for(Peticion elem: listaPeticiones){
+                        if(elem.getReqid()>max){
+                            max=elem.getReqid();
+                        }
+                    }
+                    reqid=max+1;
+                }
+                Peticion peticion=new Peticion();
+                peticion.setReqid(reqid);
+                peticion.setIden(iden);
+                peticion.setResolucion("Pendiente");
+                peticion.setInicio(Timestamp.valueOf(inicio+" 00:00:00"));
+                System.out.println("LA MAGIA: "+peticion.getInicio());
+                peticion.setFin(Timestamp.valueOf(fin+" 23:59:59"));
+                System.out.println("LA MAGIA 2: "+peticion.getFin());
+                peticion.setConcepto(concepto);
+                peticion.setTipo("Dia");
+                dao.addPeticion(peticion);
+                System.out.println("HORA: "+Time.valueOf("00:00:00"));
+                response.sendRedirect(request.getContextPath()+SOLICITAR_DIAS);
+                return;
+            } else if(action.equalsIgnoreCase("solicitarVacaciones")){
                 System.out.println("YA ETOY");
                 forward = SOLICITAR_DIAS;
                 Trabajador user = (Trabajador)sesion.getAttribute("usuario");
@@ -249,11 +295,10 @@ public class PeticionesController extends HttpServlet {
                     Peticion peticion=new Peticion();
                     peticion.setReqid(reqid);
                     peticion.setIden(iden);
-                    peticion.setFecha(elem);
                     peticion.setResolucion("Pendiente");
-                    peticion.setInicio(Time.valueOf("00:00:00"));
+                    peticion.setInicio(Timestamp.valueOf(elem+" 00:00:00"));
                     System.out.println("LA MAGIA: "+peticion.getInicio());
-                    peticion.setFin(Time.valueOf("23:59:59"));
+                    peticion.setFin(Timestamp.valueOf(elem+" 23:59:59"));
                     peticion.setConcepto(concepto);
                     peticion.setTipo("Vacaciones");
                     dao.addPeticion(peticion);

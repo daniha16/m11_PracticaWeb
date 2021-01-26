@@ -27,13 +27,12 @@ public class VacacionesDao {
 
     public void addVacaciones(Vacaciones vacaciones) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into vacaciones(inicio,fin,fecha,iden_trabajador,tipo) values (?, ?, ?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into vacaciones(inicio,fin,iden_trabajador,tipo) values (?, ?, ?, ?)");
 // Parameters start with 1 
             preparedStatement.setTimestamp(1, vacaciones.getInicio());
             preparedStatement.setTimestamp(2, vacaciones.getFin()); 
-            preparedStatement.setDate(3, vacaciones.getFecha());
-            preparedStatement.setInt(4, vacaciones.getIden_trabajador());
-            preparedStatement.setString(5, vacaciones.getTipo());
+            preparedStatement.setInt(3, vacaciones.getIden_trabajador());
+            preparedStatement.setString(4, vacaciones.getTipo());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);
@@ -57,10 +56,8 @@ public class VacacionesDao {
 // Parameters start with 1 
             preparedStatement.setTimestamp(1, vacaciones.getInicio());
             preparedStatement.setTimestamp(2, vacaciones.getFin()); 
-            preparedStatement.setDate(3, vacaciones.getFecha());
             preparedStatement.setString(4, vacaciones.getTipo());
             preparedStatement.setInt(5, vacaciones.getIden_trabajador());
-            preparedStatement.setDate(6, vacaciones.getFecha());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);            
@@ -76,9 +73,8 @@ public class VacacionesDao {
                 ResultSet rs = statement.executeQuery("select * from vacaciones;");
                 while (rs.next()) {
                     Vacaciones vacaciones = new Vacaciones();
-                    vacaciones.setInicio(rs.getTimestamp("startdate"));
-                    vacaciones.setFin(rs.getTimestamp("enddate"));
-                    vacaciones.setFecha(rs.getDate("fecha"));
+                    vacaciones.setInicio(rs.getTimestamp("inicio"));
+                    vacaciones.setFin(rs.getTimestamp("fin"));
                     vacaciones.setIden_trabajador(rs.getInt("iden_trabajador"));
                     vacaciones.setTipo(rs.getString("tipo"));
                 }
@@ -102,9 +98,8 @@ public class VacacionesDao {
             preparedStatement.setInt(1, trabajadorIden);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                vacaciones.setInicio(rs.getTimestamp("startdate"));
-                vacaciones.setFin(rs.getTimestamp("enddate"));
-                vacaciones.setFecha(rs.getDate("fecha"));
+                vacaciones.setInicio(rs.getTimestamp("inicio"));
+                vacaciones.setFin(rs.getTimestamp("fin"));
                 vacaciones.setIden_trabajador(rs.getInt("iden_trabajador"));
                 vacaciones.setTipo(rs.getString("tipo"));
             }

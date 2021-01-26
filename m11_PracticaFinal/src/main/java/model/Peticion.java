@@ -7,6 +7,7 @@
 package model;
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  *
@@ -18,9 +19,8 @@ public class Peticion {
     private String concepto;
     private String resolucion;
     private String tipo;
-    private Time inicio;
-    private Time fin;
-    private Date fecha;
+    private Timestamp inicio;
+    private Timestamp fin;
 
     public int getReqid() {
         return reqid;
@@ -40,15 +40,12 @@ public class Peticion {
     public String getTipo() {
         return tipo;
     }
-    public Date getFecha() {
-        return fecha;
-    }
 
-    public Time getInicio() {
+    public Timestamp getInicio() {
         return inicio;
     }
 
-    public Time getFin() {
+    public Timestamp getFin() {
         return fin;
     }
 
@@ -70,16 +67,12 @@ public class Peticion {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
 
-    public void setInicio(Time inicio) {
+    public void setInicio(Timestamp inicio) {
         this.inicio = inicio;
     }
 
-    public void setFin(Time fin) {
+    public void setFin(Timestamp fin) {
         this.fin = fin;
     }
     

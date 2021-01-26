@@ -44,7 +44,7 @@
         <br><label for="concepto">Indique breve conepto:</label>
         <br><input type="text" id="concepto" name="concepto"> <br>
         <br><button class="boton">
-            <a id="solicitarFecha" onclick='location.href="<%=request.getContextPath()%>/PeticionesController?action=solicitarVacaciones&start="+document.getElementById("start").value+"&end="+document.getElementById("end").value+"&concepto="+document.getElementById("concepto").value'> Solicitar</a>
+            <a id="solicitarFecha" onclick='location.href="<%=request.getContextPath()%>/PeticionesController?action=necesitoVacaciones&start="+document.getElementById("start").value+"&end="+document.getElementById("end").value+"&concepto="+document.getElementById("concepto").value'> Solicitar</a>
             </button>
     </div>
 

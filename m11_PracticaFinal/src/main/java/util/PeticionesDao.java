@@ -30,17 +30,16 @@ public class PeticionesDao {
 
     public void addPeticion(Peticion peticion) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into peticiones(reqid,iden,concepto,resolucion,fecha,inicio,fin,tipo) values (?, ?, ?, ?, ?, ?, ?, ? )");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into peticiones(reqid,iden,concepto,resolucion,inicio,fin,tipo) values (?, ?, ?, ?, ?, ?, ? )");
 // Parameters start with 1 
             
             preparedStatement.setInt(1, peticion.getReqid());            
             preparedStatement.setInt(2, peticion.getIden());
             preparedStatement.setString(3, peticion.getConcepto());
             preparedStatement.setString(4, peticion.getResolucion());
-            preparedStatement.setDate(5, peticion.getFecha());
-            preparedStatement.setTime(6, peticion.getInicio());
-            preparedStatement.setTime(7, peticion.getFin());
-            preparedStatement.setString(8, peticion.getTipo());
+            preparedStatement.setTimestamp(5, peticion.getInicio());
+            preparedStatement.setTimestamp(6, peticion.getFin());
+            preparedStatement.setString(7, peticion.getTipo());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);
@@ -49,7 +48,7 @@ public class PeticionesDao {
 
     public void deletePeticion(int peticionId) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("delete from proyecto where id=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from peticion where reqid=?");
             // Parameters start with 1 
             preparedStatement.setInt(1, peticionId);
             preparedStatement.executeUpdate();
@@ -93,8 +92,6 @@ public class PeticionesDao {
             preparedStatement.setString(2, peticion.getConcepto());
             preparedStatement.setString(3, peticion.getResolucion());
             preparedStatement.setInt(4, peticion.getReqid());
-            preparedStatement.setString(5, peticion.getTipo());
-            preparedStatement.setDate(6, peticion.getFecha());
             preparedStatement.executeUpdate();
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -113,10 +110,11 @@ public class PeticionesDao {
                     Peticion peticion = new Peticion();
                     peticion.setReqid(rs.getInt("reqid"));
                     peticion.setIden(rs.getInt("iden"));
+                    peticion.setInicio(rs.getTimestamp("inicio"));
+                    peticion.setFin(rs.getTimestamp("fin"));
                     peticion.setConcepto(rs.getString("concepto"));
                     peticion.setResolucion(rs.getString("resolucion"));
                     peticion.setTipo(rs.getString("tipo"));
-                    peticion.setFecha(rs.getDate("fecha"));
                     peticiondb.add(peticion);
                 }
             } catch (SQLException e) {
@@ -135,7 +133,7 @@ public class PeticionesDao {
     public Peticion getPeticionById(int peticionId) {
         Peticion peticion = new Peticion();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from peticiones where id=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from peticiones where reqid=?");
             preparedStatement.setInt(1, peticionId);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
@@ -143,6 +141,10 @@ public class PeticionesDao {
                 peticion.setIden(rs.getInt("iden"));
                 peticion.setConcepto(rs.getString("concepto"));
                 peticion.setResolucion(rs.getString("resolucion"));
+                peticion.setInicio(rs.getTimestamp("inicio"));
+                peticion.setFin(rs.getTimestamp("fin"));
+                peticion.setTipo(rs.getString("tipo"));
+                
             }
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);

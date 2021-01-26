@@ -41,7 +41,8 @@
                         <th scope="col">ID Peticion</th> 
                         <th scope="col">Empleado</th> 
                         <th scope="col">Concepto</th>
-                        <th scope="col">Fecha</th>
+                        <th scope="col">Inicio</th>
+                        <th scope="col">Fin</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Resolución</th>
                         <th scope="col">Acción</th>
@@ -53,7 +54,8 @@
                             <td scope="row"><c:out value="${peticion.reqid}" /></td> 
                             <td><c:out value="${peticion.iden}" /></td>
                             <td><c:out value="${peticion.concepto}" /></td> 
-                            <td><c:out value="${peticion.fecha}"/></td>
+                            <td><c:out value="${peticion.inicio}"/></td>
+                            <td><c:out value="${peticion.fin}"/></td>
                             <td><c:out value="${peticion.tipo}"/></td> 
                             <td><c:out value="${peticion.resolucion}"/></td>  
                             <td>
