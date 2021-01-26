@@ -45,12 +45,6 @@
             else if(selector1==="empleado" && !Number.isInteger(parseInt(iden,10))){
                 alert("El valor introducido no se corresponde con el tipo seleccionado");       
             }
-            else if(selector1==="proyecto" && Number.isInteger(parseInt(iden,10))){
-                alert("El valor introducido no se corresponde con el tipo seleccionado");
-            }
-            else if(selector1==="empresa" && Number.isInteger(parseInt(iden,10))){
-                alert("El valor introducido no se corresponde con el tipo seleccionado");
-            }
             else{
                 location.href="<%=request.getContextPath()%>/InformeController?action=informe&tipo="+document.getElementById("selector1").value+"&periodo="+document.getElementById("selector2").value+"&identificador="+document.getElementById("identificador").value
             }
@@ -70,8 +64,10 @@
           <option value="semanal">Semanal</option>
           <option value="mensual">Mensual</option>
           <option value="anual">Anual</option>
+          <option value="otro">Otro</option>
         </select>
         <input type="text" id="identificador"> 
+        <input type="{$tipo}" id="tipo"> 
         <input type="button" onclick ='validarEntrada()' value="Aceptar">   
     </div>
 
