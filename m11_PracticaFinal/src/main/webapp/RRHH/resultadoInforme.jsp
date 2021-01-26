@@ -36,11 +36,7 @@
 
 
     <div class="menuBar">
-        <div class="navbarRRHH">
-            <a href="<%=request.getContextPath()%>/EmpleadoController?action=listEmpleados">Trabajadores</a>
-            <a href="<%=request.getContextPath()%>/ProyectoController?action=listProyectosRRHH">Proyectos</a>
-            <a href="<%=request.getContextPath()%>/EmpresaController?action=listEmpresas">Empresas</a>
-        </div> 
+
         <div class="infoTable">
             <table id="tablaEmpleados" > 
                 <thead> 
@@ -49,7 +45,6 @@
                         <th scope="col">DNI</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellidos</th>
-                        <th scope="col">Fecha</th>
                         <th scope="col">Entrada</th>
                         <th scope="col">Salida</th>
                     </tr> 
@@ -57,15 +52,12 @@
                 <tbody> 
                     <c:forEach items="${resultadoInforme}" var="informe"> 
                         <tr> 
-                            <td scope="row"><c:out value="${empleados.iden}" /></td> 
-                            <td><c:out value="${empleados.dni}" /></td> 
-                            <td><c:out value="${empleados.nombre}" /></td>  
-                            <td><c:out value="${empleados.apellidos}" /></td>  
-                            <td><c:out value="${empleados.telefono}" /></td>  
-                            <td>
-                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/EmpleadoController?action=edit&trabajadorIden=<c:out value="${empleados.iden}" />"' value="Editar">                        
-                                <input type="button" onclick ='location.href="<%=request.getContextPath()%>/EmpleadoController?action=delete&trabajadorIden=<c:out value="${empleados.iden}" />"' value="Eliminar">
-                            </td>
+                            <td scope="row"><c:out value="${informe.iden}" /></td>
+                            <td><c:out value="${informe.dni}" /></td>
+                            <td><c:out value="${informe.nombre}" /></td>
+                            <td><c:out value="${informe.apellidos}" /></td>
+                            <td><c:out value="${informe.entrada}" /></td>
+                            <td><c:out value="${informe.salida}" /></td>
                         </tr> 
                     </c:forEach> 
                 </tbody> 

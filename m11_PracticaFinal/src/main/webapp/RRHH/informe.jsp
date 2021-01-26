@@ -38,6 +38,7 @@
     <div class="texto1">
         <h1>INFORME</h1>
         <p>Introduzca el tipo de informe a solicitar:</p>
+        <p>Introduzca identificador de usuario, de proyecto o el cif de empresa según corresponda<p>
         <select class="custom-select" id="selector1">
           <option value="empleado">Empleado</option>
           <option value="proyecto">Proyecto</option>
@@ -48,7 +49,8 @@
           <option value="mensual">Mensual</option>
           <option value="anual">Anual</option>
         </select>
-        <input type="button" onclick ='location.href="<%=request.getContextPath()%>/InformeController?action=informe&tipo="document.getElementById("selector1").value+"&periodo="+document.getElementById("selector2").value' value="Aceptar">   
+        <input type="text" id="identificador"> 
+        <input type="button" onclick ='location.href="<%=request.getContextPath()%>/InformeController?action=informe&tipo="+document.getElementById("selector1").value+"&periodo="+document.getElementById("selector2").value+"&identificador="+document.getElementById("identificador").value' value="Aceptar">   
     </div>
 
 

@@ -26,7 +26,32 @@ public class TrabajadorProyectoDao {
         connection = DbUtil.getConnection();
         System.out.println("Hello there");
     }
-
+    
+    public List<TrabajadorProyecto> getTPByIdProyecto(String id){
+        System.out.println("IN HERE");
+        List<TrabajadorProyecto> tpdb = new ArrayList<TrabajadorProyecto>();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from proyecto_trabajadores where id_proyecto=?");
+            preparedStatement.setString(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                System.out.println("IN HERE");
+                TrabajadorProyecto trabajadorProyecto = new TrabajadorProyecto();
+                trabajadorProyecto.setId_proyecto(rs.getString("id_proyecto"));
+                System.out.println(trabajadorProyecto.getId_proyecto());
+                trabajadorProyecto.setIden_trabajador(rs.getInt("iden_trabajador"));
+                System.out.println(trabajadorProyecto.getIden_trabajador());
+                trabajadorProyecto.setHoras(rs.getInt("horas"));
+                System.out.println(trabajadorProyecto.getHoras());
+                tpdb.add(trabajadorProyecto);
+            }
+        }catch (SQLException e) {
+            Log.logdb.error("SQL Exception: " + e);
+        }
+        
+        return tpdb;
+    }
+    
     public List<TrabajadorProyecto> getProyectoByIden(int iden){
          List<TrabajadorProyecto> tpdb = new ArrayList<TrabajadorProyecto>();
         try{
@@ -99,4 +124,6 @@ public class TrabajadorProyectoDao {
             Log.logdb.error("SQL Exception: " + e);
         }
     }
+    
+    
 }

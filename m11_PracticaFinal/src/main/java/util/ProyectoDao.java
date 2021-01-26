@@ -105,7 +105,37 @@ public class ProyectoDao {
         }
        
     }
-
+    
+     public List<Proyecto> getAllProyectosByCif(String cif) {
+        List<Proyecto> proyectodb = new ArrayList<Proyecto>();
+        if (connection != null)
+        {
+            try {
+                Statement statement = connection.createStatement();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement("select * from proyecto where cif_empresa=?");
+                preparedStatement.setString(1, cif);
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()) {
+                    Proyecto proyecto = new Proyecto();
+                    proyecto.setId(rs.getString("id"));
+                    proyecto.setTiempo(rs.getInt("tiempo"));
+                    proyecto.setDescripcion(rs.getString("descripcion"));
+                    proyecto.setCif_empresa(rs.getString("cif_empresa"));
+                    proyectodb.add(proyecto);
+                }
+            } catch (SQLException e) {
+                Log.logdb.error("SQL Exception: " + e);            
+            }
+            return proyectodb;
+        }
+        else
+        {
+            Log.logdb.error("No hay conexion con la bbdd");
+            return null;
+        }
+       
+    }
     public Proyecto getProyectoById(String proyectoId) {
         Proyecto proyecto = new Proyecto();
         try {

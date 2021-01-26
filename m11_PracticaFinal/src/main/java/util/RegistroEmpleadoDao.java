@@ -77,6 +77,7 @@ public class RegistroEmpleadoDao {
                     registro.setEntrada(rs.getTimestamp("entrada"));
                     registro.setSalida(rs.getTimestamp("salida"));
                     registro.setIden_trabajador(rs.getInt("iden_trabajador"));
+                    registro.setFecha(rs.getDate("fecha"));
                     registrosdb.add(registro);
                 }
             } catch (SQLException e) {
@@ -100,6 +101,7 @@ public class RegistroEmpleadoDao {
                 registro.setEntrada(rs.getTimestamp("entrada"));
                 registro.setSalida(rs.getTimestamp("salida"));
                 registro.setIden_trabajador(rs.getInt("iden_trabajador"));
+                registro.setFecha(rs.getDate("fecha"));
             }
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);
@@ -116,6 +118,7 @@ public class RegistroEmpleadoDao {
                 registro.setEntrada(rs.getTimestamp("entrada"));
                 registro.setSalida(rs.getTimestamp("salida"));
                 registro.setIden_trabajador(rs.getInt("iden_trabajador"));
+                registro.setFecha(rs.getDate("fecha"));
             }
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);
