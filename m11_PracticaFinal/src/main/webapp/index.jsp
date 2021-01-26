@@ -24,7 +24,7 @@
     }
     %>
     
-    <h1>LOGO INGENIEROS AL PESO</h1>
+    <h1>INGENIEROS AL PESO</h1>
     
     <div class="navbar">
       <a href="<%=request.getContextPath()%>/Empleados/main.jsp"> Empleados </a>

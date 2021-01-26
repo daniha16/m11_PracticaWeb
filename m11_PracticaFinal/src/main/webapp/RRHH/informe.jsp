@@ -24,8 +24,7 @@
     Trabajador usuario = (Trabajador)request.getSession().getAttribute("usuario");
     %>
     
-    <h1>LOGO RRHH</h1>
-    <h2>Recursos Humanos</h2>
+    <h1>RECURSOS HUMANOS</h1>
     <p>BIENVENIDO <%=usuario.getNombre()%>! </p>
     <div class="navbar">
       <a href="<%=request.getContextPath()%>/RRHH/main.jsp">Home  </a>

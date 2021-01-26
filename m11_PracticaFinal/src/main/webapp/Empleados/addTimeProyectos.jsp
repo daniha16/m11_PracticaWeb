@@ -25,8 +25,7 @@
     <% 
     Trabajador usuario = (Trabajador)request.getSession().getAttribute("usuario");
     %>
-    <h1>LOGO INGENIEROS AL PESO</h1>
-    <h2>EMPLEADOS</h2>
+    <h1>EMPLEADOS</h1>
     <p>Usuario: <%=usuario.getNombre()%> </p>
     <div class="navbar">
       <a href="<%=request.getContextPath()%>/Empleados/main.jsp"> Inicio </a>

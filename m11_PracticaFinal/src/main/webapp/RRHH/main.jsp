@@ -23,9 +23,7 @@
     <% 
     Trabajador usuario = (Trabajador)request.getSession().getAttribute("usuario");
     %>
-    <img src="<%=request.getContextPath()%>/RRHH/logo2.jpg" alt="logo pagina">
-
-
+    <h1>RECURSOS HUMANOS</h1>
     <div class="navbar">
       <a href="<%=request.getContextPath()%>/RRHH/main.jsp">Home  </a>
       <a href="<%=request.getContextPath()%>/RRHH/informacion.jsp">Información</a>
@@ -35,7 +33,7 @@
 
 
     <div class="texto1">
-        <h1>RECURSOS HUMANOS</h1>
+        <h2>Recursos Humanos</h2>
         <div class="tool">
         </div>
         <br><p>Aqui podras acceder a toda la informacion relevante de nuestra aplicación:</p>
