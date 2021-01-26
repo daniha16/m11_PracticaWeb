@@ -77,7 +77,7 @@
           <option value="otro">Otro</option>
         </select>
         <input type="text" id="identificador" placeholder="identificador"> 
-        <input type="hidden" id="tipo" placeholder="fecha: 2021-01-01"> 
+        <input type="hidden" id="tipo"> 
         <input type="button" onclick ='validarEntrada()' value="Aceptar">   
     </div>
 
