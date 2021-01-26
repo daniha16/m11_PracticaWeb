@@ -76,6 +76,8 @@ public class InformeController extends HttpServlet {
                     return;
                 }
                 forward = INFORME;
+                String otraFecha = request.getParameter("otraFecha");
+                Date fechaAlt = Date.valueOf(otraFecha);
                 String tipo = request.getParameter("tipo");
                 String periodo = request.getParameter("periodo");
                 List<RegistroEmpleado> listaRegistros = new ArrayList<RegistroEmpleado>(); 
@@ -92,16 +94,20 @@ public class InformeController extends HttpServlet {
                     fechaFinal = new Date(date.getTime());
                     System.out.println(fechaFinal);
                 }
-                if(periodo.equals("anual")){
+                else if(periodo.equals("anual")){
                     calendar.add(Calendar.YEAR, -1);
                     date = (calendar.getTime());
                     fechaFinal = new Date(date.getTime());
                     System.out.println(fechaFinal);
                 }
-                if(periodo.equals("semanal")){
+                else if(periodo.equals("semanal")){
                     calendar.add(Calendar.DAY_OF_YEAR, -7);
                     date = (calendar.getTime());
                     fechaFinal = new Date(date.getTime());
+                    System.out.println(fechaFinal);
+                }
+                else if(periodo.equals("otro")){
+                    fechaFinal=fechaAlt;
                     System.out.println(fechaFinal);
                 }
                 String[] datePlusTime = fechaFinal.toString().split(" ");

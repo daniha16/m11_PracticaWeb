@@ -46,11 +46,21 @@
                 alert("El valor introducido no se corresponde con el tipo seleccionado");       
             }
             else{
-                location.href="<%=request.getContextPath()%>/InformeController?action=informe&tipo="+document.getElementById("selector1").value+"&periodo="+document.getElementById("selector2").value+"&identificador="+document.getElementById("identificador").value
+                location.href="<%=request.getContextPath()%>/InformeController?action=informe&tipo="+document.getElementById("selector1").value+"&periodo="+document.getElementById("selector2").value+"&identificador="+document.getElementById("identificador").value+"&otraFecha="+document.getElementById("tipo").value;
             }
         }
     </script>
-    
+    <script type="text/javascript">
+        function comprobarTipo(){
+            var opcion = document.getElementById("selector2").value;
+            if(opcion==="otro"){
+                document.getElementById("tipo").type="text";
+            }
+            else{
+                document.getElementById("tipo").type="hidden";
+            }
+        }
+    </script>
     <div class="texto1">
         <h1>INFORME</h1>
         <p>Introduzca el tipo de informe a solicitar:</p>
@@ -60,14 +70,14 @@
           <option value="proyecto">Proyecto</option>
           <option value="empresa">Empresa</option>
         </select>
-        <select class="custom-select" id="selector2">
+            <select class="custom-select" id="selector2" onchange="comprobarTipo()">
           <option value="semanal">Semanal</option>
           <option value="mensual">Mensual</option>
           <option value="anual">Anual</option>
           <option value="otro">Otro</option>
         </select>
-        <input type="text" id="identificador"> 
-        <input type="{$tipo}" id="tipo"> 
+        <input type="text" id="identificador" placeholder="identificador"> 
+        <input type="hidden" id="tipo" placeholder="fecha: 2021-01-01"> 
         <input type="button" onclick ='validarEntrada()' value="Aceptar">   
     </div>
 
