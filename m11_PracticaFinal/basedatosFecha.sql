@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS trabajador(
 	dni char(10),
 	nombre char(10),
 	apellidos char(25),
-	correo char(20),
+	correo char(40),
 	contrasena char(40),
 	telefono integer,
 	tipo char(20),
