@@ -1,8 +1,9 @@
 <%-- 
-    Document   : calendario
-    Created on : 13-ene-2021, 11:44:13
+    Document   : masterCalendar
+    Created on : 25-ene-2021, 21:22:32
     Author     : danih
 --%>
+
 <%@page import="model.Trabajador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
@@ -16,10 +17,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link HREF="<%=request.getContextPath()%>/style_sheet.css" TYPE="text/css" rel="stylesheet">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/animated-event-calendar/dist/simple-calendar.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/animated-event-calendar/dist/jquery.simple-calendar.js"></script>
-
+    <script src="<%=request.getContextPath()%>/funciones.js"></script>
+    
   </head>
 
   <body>
@@ -36,17 +35,30 @@
       <a href="<%=request.getContextPath()%>/Empleados/calendario.jsp"> Calendario </a>
       <a href="<%=request.getContextPath()%>/Empleados/solicitudes.jsp"> Solicitudes </a>
     </div>
+
     <div class="texto1">
         <h2>CALENDARIO </h2>    
-        <div id="container"></div>
-
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $("#container").simpleCalendar({
-                    
-                });
-            });
-        </script>
+        <div class="calendar">
+          <div class="calendar__info">
+              <div class="calendar__prev" id="prev-month">&#9664;</div>
+              <div class="calendar__month" id="month"></div>
+              <div class="calendar__year" id="year"></div>
+              <div class="calendar__next" id="next-month">&#9654;</div>
+          </div>
+      
+          <div class="calendar__week">
+              <div class="calendar__day calendar__item">L</div>
+              <div class="calendar__day calendar__item">M</div>
+              <div class="calendar__day calendar__item">X</div>
+              <div class="calendar__day calendar__item">J</div>
+              <div class="calendar__day calendar__item">V</div>
+              <div class="calendar__day calendar__item">S</div>
+              <div class="calendar__day calendar__item">D</div>
+          </div>
+      
+          <div class="calendar__dates" id="dates"></div>
+      </div>
+        <script src="<%=request.getContextPath()%>/scripts.js"></script>
     </div>
 
     <div class="pie">
@@ -55,3 +67,4 @@
   </body>
 
 </html>
+
