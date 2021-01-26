@@ -54,7 +54,7 @@
         function comprobarTipo(){
             var opcion = document.getElementById("selector2").value;
             if(opcion==="otro"){
-                document.getElementById("tipo").type="text";
+                document.getElementById("tipo").type="date";
             }
             else{
                 document.getElementById("tipo").type="hidden";
