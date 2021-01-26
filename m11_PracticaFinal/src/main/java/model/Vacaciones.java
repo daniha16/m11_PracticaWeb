@@ -16,6 +16,7 @@ public class Vacaciones {
     private Timestamp fin;
     private int iden_trabajador;
     private String tipo;
+    private String concepto;
 
     public Timestamp getInicio() {
         return inicio;
@@ -31,6 +32,10 @@ public class Vacaciones {
 
     public String getTipo() {
         return tipo;
+    }
+
+    public String getConcepto() {
+        return concepto;
     }
 
     public void setInicio(Timestamp inicio) {
@@ -49,7 +54,10 @@ public class Vacaciones {
         this.tipo = tipo;
     }
 
-    
+    public void setConcepto(String concepto) {
+        this.concepto = concepto;
+    }
+
     
     
 }

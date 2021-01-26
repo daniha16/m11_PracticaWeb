@@ -27,12 +27,13 @@ public class VacacionesDao {
 
     public void addVacaciones(Vacaciones vacaciones) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into vacaciones(inicio,fin,iden_trabajador,tipo) values (?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into vacaciones(inicio,fin,iden_trabajador,tipo,concepto) values (?, ?, ?, ?, ?)");
 // Parameters start with 1 
             preparedStatement.setTimestamp(1, vacaciones.getInicio());
             preparedStatement.setTimestamp(2, vacaciones.getFin()); 
             preparedStatement.setInt(3, vacaciones.getIden_trabajador());
             preparedStatement.setString(4, vacaciones.getTipo());
+            preparedStatement.setString(5, vacaciones.getConcepto());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             Log.logdb.error("SQL Exception: " + e);
@@ -74,9 +75,16 @@ public class VacacionesDao {
                 while (rs.next()) {
                     Vacaciones vacaciones = new Vacaciones();
                     vacaciones.setInicio(rs.getTimestamp("inicio"));
+                    System.out.println(vacaciones.getInicio());
                     vacaciones.setFin(rs.getTimestamp("fin"));
+                    System.out.println(vacaciones.getFin());
                     vacaciones.setIden_trabajador(rs.getInt("iden_trabajador"));
+                    System.out.println(vacaciones.getIden_trabajador());
                     vacaciones.setTipo(rs.getString("tipo"));
+                    System.out.println(vacaciones.getTipo());
+                    vacaciones.setConcepto(rs.getString("concepto"));
+                    System.out.println(vacaciones.getConcepto());
+                    vacacionesdb.add(vacaciones);
                 }
             } catch (SQLException e) {
                 Log.logdb.error("SQL Exception: " + e);            

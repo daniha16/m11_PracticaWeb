@@ -122,6 +122,7 @@ public class PeticionesController extends HttpServlet {
                 vacaciones.setFin(peticion.getFin());
                 vacaciones.setIden_trabajador(peticion.getIden());
                 vacaciones.setTipo(peticion.getTipo());
+                vacaciones.setConcepto(peticion.getConcepto());
                 System.out.println("TIPO: "+vacaciones.getTipo());
                 dao2.addVacaciones(vacaciones);
                 request.setAttribute("listaPeticiones", dao.getAllPeticiones());
@@ -242,7 +243,7 @@ public class PeticionesController extends HttpServlet {
                 peticion.setFin(Timestamp.valueOf(fin+" 23:59:59"));
                 System.out.println("LA MAGIA 2: "+peticion.getFin());
                 peticion.setConcepto(concepto);
-                peticion.setTipo("Dia");
+                peticion.setTipo("Vacaciones");
                 dao.addPeticion(peticion);
                 System.out.println("HORA: "+Time.valueOf("00:00:00"));
                 response.sendRedirect(request.getContextPath()+SOLICITAR_DIAS);

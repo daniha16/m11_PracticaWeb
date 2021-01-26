@@ -3,6 +3,7 @@
     Created on : 13-ene-2021, 11:44:13
     Author     : danih
 --%>
+<%@page import="java.util.List"%>
 <%@page import="model.Trabajador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
@@ -37,6 +38,10 @@
       <a href="<%=request.getContextPath()%>/Empleados/solicitudes.jsp"> Solicitudes </a>
     </div>
     <div class="texto1">
+        <%
+            Object listaEventos = request.getAttribute("listaEventos");
+        %>
+
         <h2>CALENDARIO </h2>    
         <div id="container"></div>
 
@@ -52,7 +57,7 @@
                     displayEvent: true,             // Display existing event
                     disableEventDetails: false, // disable showing event details
                     disableEmptyDetails: true, // disable showing empty date details
-                    events:lista,
+                    events:${listaEventos},
                     onInit: function (calendar) {}, // Callback after first initialization
                     onMonthChange: function (month, year) {}, // Callback on month change
                     onDateSelect: function (date, events) {}, // Callback on date selection

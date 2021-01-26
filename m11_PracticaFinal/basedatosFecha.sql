@@ -74,7 +74,8 @@ CREATE TABLE IF NOT EXISTS vacaciones(
 	inicio timestamp,
     fin timestamp,
 	iden_trabajador integer,
-    tipo char(20)
+    tipo char(20),
+    concepto text
 );
 -- ddl-end --
 -- ddl-end --

@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import model.Trabajador;
 import model.Vacaciones;
 import util.Log;
-import util.TrabajadorDao;
+import util.VacacionesDao;
 
 /**
  *
@@ -30,12 +30,12 @@ public class CalendarioController extends HttpServlet {
     private static String SHOW_CALENDAR = "/Empleados/calendario.jsp";
     private static String LIST_USER = "/listUser.jsp";
     private static String INICIO = "index.jsp";
-    private TrabajadorDao dao;
+    private VacacionesDao dao;
     private Log log;
 
     public CalendarioController() {
         super();
-        dao = new TrabajadorDao();
+        dao = new VacacionesDao();
     }
    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,7 +62,23 @@ public class CalendarioController extends HttpServlet {
             String action = request.getParameter("action");
             Log.log.info("Recogemos el parametro action con valor " + action);
             if (action.equalsIgnoreCase("calendario")) {
+                System.out.println("CALENDARIO");
                 List<Vacaciones> vacaciones = new ArrayList<>();
+                System.out.println("VACAS");
+                vacaciones = dao.getAllVacaciones();
+                System.out.println(vacaciones);
+                Trabajador user = (Trabajador) sesion.getAttribute("usuario");
+                int iden = user.getIden();
+                List<String> listaEventos = new ArrayList<String>();
+                for(Vacaciones elem:vacaciones){
+                    if(elem.getIden_trabajador()==iden){
+                        System.out.println("iden1: "+elem.getIden_trabajador()+"/ iden2: "+iden);
+                        listaEventos.add("{startDate:\""+elem.getInicio()+"\",endDate:\""+elem.getFin()+"\",summary:\""+elem.getConcepto()+"\"}");
+                    }
+                }
+                for(String elem:listaEventos){
+                    System.out.println(elem);
+                }
                 request.setAttribute("listaEventos", listaEventos);
                 RequestDispatcher rd=request.getRequestDispatcher(SHOW_CALENDAR);
                 rd.include(request, response);
@@ -93,23 +109,7 @@ public class CalendarioController extends HttpServlet {
         if(sesion.getAttribute("usuario") == null){
             response.sendRedirect(INICIO);
         }
-/*        processRequest(request, response); */
-        Trabajador user = new Trabajador();
-        user.setNombre(request.getParameter("firstName"));
-        user.setApellidos(request.getParameter("lastName"));                
-        user.setCorreo(request.getParameter("email"));
-        String userid = request.getParameter("userid");
-        if (userid == null || userid.isEmpty()) {
-            Log.log.info("Vamos a añadir el usuario");
-            dao.addTrabajador(user);
-        } else {
-            user.setIden(Integer.parseInt(userid));
-            dao.updateTrabajador(user);
-        }
-        request.setAttribute("users", dao.getAllTrabajadores());
-        RequestDispatcher view = request.getRequestDispatcher(LIST_USER);            
-        view.forward(request, response);
-        return;
+ 
     }
 
     /**
