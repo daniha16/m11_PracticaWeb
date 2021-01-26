@@ -37,10 +37,10 @@
             var min = '08:30';
             var max = '18:00';
             if(document.getElementById("horaEntrada").value>=min && document.getElementById("horaEntrada").value<max && document.getElementById("horaSalida").value>min && document.getElementById("horaSalida").value<=max){
-                location.href="<%=request.getContextPath()%>/PeticionesController?action=solicitarHoras&entrada="+document.getElementById("horaEntrada").value+"&salida="+document.getElementById("horaSalida").value+"&concepto="+document.getElementById("concepto").value+"&fecha="+document.getElementById("fecha").value
+                location.href="<%=request.getContextPath()%>/PeticionesController?action=solicitarHoras&entrada="+document.getElementById("horaEntrada").value+"&salida="+document.getElementById("horaSalida").value+"&concepto="+document.getElementById("concepto").value+"&fecha="+document.getElementById("fecha").value;
             }
             else{
-                alert("La hora especificada no esta dentro del horario de trabajo")
+                alert("La hora especificada no esta dentro del horario de trabajo");
             }
         }
     </script>
