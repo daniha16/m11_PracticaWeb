@@ -27,8 +27,7 @@
     <h1>INGENIEROS AL PESO</h1>
     
     <div class="navbar">
-      <a href="<%=request.getContextPath()%>/Empleados/main.jsp"> Empleados </a>
-      <a href="<%=request.getContextPath()%>/RRHH/main.jsp"> RRHH </a>
+        <a>BIENVENIDO A INGENIEROS AL PESO</a>
     </div>
 
     <div class="texto1">
