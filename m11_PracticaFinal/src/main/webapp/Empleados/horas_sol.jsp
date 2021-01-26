@@ -32,23 +32,32 @@
       <a href="<%=request.getContextPath()%>/Empleados/calendario.jsp"> Calendario </a>
       <a href="<%=request.getContextPath()%>/Empleados/solicitudes.jsp"> Solicitudes </a>
     </div>
-
+    <script type="text/javascript">
+        function validarHora(){
+            var min = '08:30';
+            var max = '18:00';
+            if(document.getElementById("horaEntrada").value>=min && document.getElementById("horaEntrada").value<max && document.getElementById("horaSalida").value>min && document.getElementById("horaSalida").value<=max){
+                location.href="<%=request.getContextPath()%>/PeticionesController?action=solicitarHoras&entrada="+document.getElementById("horaEntrada").value+"&salida="+document.getElementById("horaSalida").value+"&concepto="+document.getElementById("concepto").value+"&fecha="+document.getElementById("fecha").value
+            }
+            else{
+                alert("La hora especificada no esta dentro del horario de trabajo")
+            }
+        }
+    </script>
     <div class="texto1">
         <h2> SOLICITUD DE HORAS LIBRES </h2>
         <p>El horario de la oficina es de 08:30h a 18:00h</p>
-        <form action="">
-          <br><label for="horaseleccionada">Selecciona la hora de inicio . . . . .</label>
-          <input type="time" id="hora_entrada" value="00:00" name="hora_entrada" min="08:30" max="18:00" required> <br>
-          <br><label for="horaseleccionada">Selecciona la hora de fin . . .</label>
-          <input type="time" id="hora_salida" value="00:00" name="hora_salida" min="08:30" max="18:00" required> <br>
-          <br><label for="fechaseleccionada">Selecciona el día libre</label>
-          <br><input type="date" id="fecha" name="fecha" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
-          <br><label for="concepto">Indique breve conepto:</label>
-          <br><input type="text" id="concepto" name="concepto"> <br>
-          <br><button class="boton">
-            <a id="solicitarFecha" onclick='location.href="<%=request.getContextPath()%>/PeticionesController?action=solicitarHoras&entrada="+document.getElementById("hora_entrada").value+"&salida="+document.getElementById("hora_salida").value+"&concepto="+document.getElementById("concepto").value+"&fecha="+document.getElementById("fecha").value'> Solicitar</a>
+        <br><label for="horaEntrada">Selecciona la hora de inicio . . . . .</label>
+        <input type="time" id="horaEntrada" value="00:00" name="horaEntrada" min="08:30" max="18:00" required> <br>
+        <br><label for="horaSalida">Selecciona la hora de fin . . .</label>
+        <input type="time" id="horaSalida" value="00:00" name="horaSalida" min="08:30" max="18:00" required> <br>
+        <br><label for="fechaseleccionada">Selecciona el día libre</label>
+        <br><input type="date" id="fecha" name="fecha" value="2021-01-01" min="2021-01-01" max="2030-12-31"> <br>
+        <br><label for="concepto">Indique breve conepto:</label>
+        <br><input type="text" id="concepto" name="concepto"> <br>
+        <br><button class="boton">
+                <a id="solicitarFecha" onclick='validarHora()'> Solicitar</a>
             </button>
-        </form> 
     </div>
 
     <div class="pie">

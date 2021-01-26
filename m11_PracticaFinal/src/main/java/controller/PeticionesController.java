@@ -21,6 +21,7 @@ import util.Log;
 import util.PeticionesDao;
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,6 +31,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Vacaciones;
+import util.VacacionesDao;
 
 /**
  *
@@ -41,9 +44,11 @@ public class PeticionesController extends HttpServlet {
     private static String INSERT_OR_EDIT = "/RRHH/peticiones.jsp";
     private static String SOLICITAR_DIAS = "/Empleados/solicitudes.jsp";
     private PeticionesDao dao;
+    private VacacionesDao dao2;
     public PeticionesController() {
         super();
         dao = new PeticionesDao();
+        dao2 = new VacacionesDao();
     }
 
     @Override
@@ -107,6 +112,13 @@ public class PeticionesController extends HttpServlet {
                 for(Peticion i:dao.getAllPeticiones()){
                     System.out.println(i.getReqid());
                 }
+                Peticion peticion = dao.getPeticionById(reqId);
+                Vacaciones vacaciones = new Vacaciones();
+                //vacaciones.setInicio(peticion.getInicio());
+                //vacaciones.setFin(peticion.getFin());
+                vacaciones.setIden_trabajador(peticion.getIden());
+                vacaciones.setTipo(peticion.getTipo());
+                dao2.addVacaciones(vacaciones);
             }else if(action.equalsIgnoreCase("solicitarHoras")){
                 System.out.println("QUE PACHAAAA");
                 System.out.println("TIEMPO: "+request.getParameter("entrada").toString());
@@ -118,6 +130,9 @@ public class PeticionesController extends HttpServlet {
                 Date date = Date.valueOf(request.getParameter("fecha"));
                 System.out.println("DATE: "+date);
                 Trabajador user = (Trabajador)sesion.getAttribute("usuario");
+                Timestamp inicio = Timestamp.valueOf(date+" "+entrada);
+                Timestamp fin = Timestamp.valueOf(date+" "+salida);
+                System.out.println("INICIO: "+inicio+" /FIN: "+fin);
                 int iden = user.getIden();
                 List<Peticion> listaPeticiones = new ArrayList<Peticion>();
                 listaPeticiones = dao.getAllPeticiones();

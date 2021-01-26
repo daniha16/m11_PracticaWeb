@@ -41,7 +41,25 @@
         <div id="container"></div>
 
         <script type="text/javascript">
-            $(document).ready(function(){$("#container").simpleCalendar({});});
+            var lista = [{startDate: "2021-01-04 14:48:00", endDate: "2021-01-08 14:48:00",summary:"hola"}]
+            $(document).ready(function(){$("#container").simpleCalendar({
+                    //Defaults options below
+                    //string of months starting from january
+                    months: ['january','february','march','april','may','june','july','august','september','october','november','december'],
+                    days: ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'],
+                    displayYear: true,              // Display year in header
+                    fixedStartDay: true,            // Week begin always by monday or by day set by number 0 = sunday, 7 = saturday, false = month always begin by first day of the month
+                    displayEvent: true,             // Display existing event
+                    disableEventDetails: false, // disable showing event details
+                    disableEmptyDetails: true, // disable showing empty date details
+                    events:lista,
+                    onInit: function (calendar) {}, // Callback after first initialization
+                    onMonthChange: function (month, year) {}, // Callback on month change
+                    onDateSelect: function (date, events) {}, // Callback on date selection
+                    onEventSelect: function() {}, // Callback on event selection - use $(this).data('event') to access the event
+                    onEventCreate: function( $el ) {},          // Callback fired when an HTML event is created - see $(this).data('event')
+                    onDayCreate:   function( $el, d, m, y ) {}  // Callback fired when an HTML day is created   - see $(this).data('today'), .data('todayEvents')
+            });});
         </script>
     </div>
 
