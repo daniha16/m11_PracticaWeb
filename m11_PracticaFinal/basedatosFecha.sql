@@ -57,7 +57,7 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 CREATE TABLE IF NOT EXISTS trabajador(
 	iden integer NOT NULL,
 	dni char(10),
-	nombre char(10),
+	nombre char(20),
 	apellidos char(25),
 	correo char(40),
 	contrasena char(40),
