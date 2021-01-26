@@ -76,8 +76,6 @@ public class InformeController extends HttpServlet {
                     return;
                 }
                 forward = INFORME;
-                String otraFecha = request.getParameter("otraFecha");
-                Date fechaAlt = Date.valueOf(otraFecha);
                 String tipo = request.getParameter("tipo");
                 String periodo = request.getParameter("periodo");
                 List<RegistroEmpleado> listaRegistros = new ArrayList<RegistroEmpleado>(); 
@@ -107,6 +105,8 @@ public class InformeController extends HttpServlet {
                     System.out.println(fechaFinal);
                 }
                 else if(periodo.equals("otro")){
+                    String otraFecha = request.getParameter("otraFecha");
+                    Date fechaAlt = Date.valueOf(otraFecha);
                     fechaFinal=fechaAlt;
                     System.out.println(fechaFinal);
                 }
