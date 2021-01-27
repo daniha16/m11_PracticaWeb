@@ -6,3 +6,4 @@ Aunque viene en el manual de instalación, lo usuarios que se piden son los sigu
 Nombre: Pruebas - Contraseña: Pruebas - Correo de acceso:pruebas@alpeso.com
 Nombre: Admin - Contraseña: RRHH - Correo de acceso: admin@alpeso.com
 Para acceder a la app web se necesita introducir el correo correspondiente al usuario junto a su contraseña.
+GITHUB: https://github.com/daniha16/m11_PracticaWeb
